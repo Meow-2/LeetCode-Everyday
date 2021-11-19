@@ -17,26 +17,26 @@ class Solution
 public:
     int integerReplacement(int n)
     {
-        unsigned int n0 = n;
+        unsigned int N = n;
         int count = 0;
-        while (n0 > 1)
+        while (N > 1)
         {
-            if (n0 % 2 == 0)
+            if (N % 2 == 0)
             {
-                n0 /= 2;
+                N /= 2;
                 count++;
             }
             else
             {
-                int nDec = n0 - 1;
+                int nDec = N - 1;
                 if (nDec / 2 > 1 && (nDec / 2) % 2 == 1)
                 {
-                    n0++;
+                    N++;
                     count++;
                 }
                 else
                 {
-                    n0 = nDec;
+                    N = nDec;
                     count++;
                 }
             }
