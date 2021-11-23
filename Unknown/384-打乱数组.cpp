@@ -4,7 +4,6 @@
  * [384] 打乱数组
  */
 #include <cstdlib>
-#include <ctime>
 #include <vector>
 using namespace std;
 // @lc code=start
@@ -22,11 +21,14 @@ public:
     {
         //srand(time(NULL));加上这句就无法通过
         vector<int> temp = arr;
-        int length = temp.size();
-        for (int i = 1; i < length; i++)
+        //洗牌算法(从中间拿一叠放到最上面，这里是从中间拿一个数放到数组末尾)
+        //相当于每次随机从剩下的所有数中选一个数放到新数组里
+        //i为剩下的数的个数[0,temp.size-1)，num为从剩下的数中选出的数
+        for (int i = temp.size() - 1; i > 0; i--)
         {
             int num = rand() % (i + 1);
-            swap(temp[num], temp[i]);
+            if (num != i)
+                swap(temp[num], temp[i]);
         }
         return temp;
     }
