@@ -14,3 +14,5 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [559-N叉树的最大深度](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/559-N叉树的最大深度.cpp):选取一个for循环中最大的数，使用`maxdepth = max(maxdepth,1 + maxDepth(child))`来替换掉`if(depth > maxdepth)`
 
 刷题过程中的常用api:
+
+- [458-可怜的小猪](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/458-可怜的小猪.cpp)Cpp标准库没有提供自定义底数的log函数，需要时可以这样代替`loga(b) = log2(b)/log2(a);`
