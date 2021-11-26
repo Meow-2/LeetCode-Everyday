@@ -14,7 +14,8 @@ public:
     Solution(int m, int n) : m(m), n(n), boundary(m * n)
     {
     }
-
+    //洗牌算法，构造一个数组，其元素等于索引，每次随机将随机到的元素和最末尾元素交换，最大索引减一即可保证随机到的元素不重复且概率均等
+    //为了节约空间，只需要记录最大索引前，元素不等于索引的元素即可
     vector<int> flip()
     {
         int randNum = rand() % boundary + 1;
