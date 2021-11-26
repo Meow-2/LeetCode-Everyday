@@ -25,6 +25,7 @@ public:
             return nullptr;
         else if (root->val == val)
             return root;
+        //可以写成三元式searchBST(root->val<val?root->right:root->left,val)
         else if (root->val < val)
             return searchBST(root->right, val);
         else
