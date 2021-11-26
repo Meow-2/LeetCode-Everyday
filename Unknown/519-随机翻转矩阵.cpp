@@ -5,7 +5,7 @@
  */
 
 // @lc code=start
-#include <unordered_map>
+#include <map>
 #include <cstdlib>
 using namespace std;
 class Solution
@@ -42,7 +42,7 @@ private:
     int m;
     int n;
     int boundary;
-    unordered_map<int, int> hashMap;
+    map<int, int> hashMap;
 };
 
 /**
