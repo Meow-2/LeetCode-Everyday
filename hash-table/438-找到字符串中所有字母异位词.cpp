@@ -37,15 +37,16 @@ public:
             diff[s[i] - 'a']++;
         }
         int index = 0;
-        for (index = 0; index < sLength - pLength; index++)
+        do
         {
             if (isEmpty())
                 temp.push_back(index);
+            if (index == sLength - pLength)
+                break;
             diff[s[index] - 'a']--;
             diff[s[index + pLength] - 'a']++;
-        }
-        if (isEmpty())
-            temp.push_back(index);
+            index++;
+        } while (true);
         return temp;
     }
 
