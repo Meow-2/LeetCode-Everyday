@@ -10,15 +10,13 @@ class Solution
 public:
     Solution()
     {
-        for (int i = 0; i < 26; i++)
-            diff[i] = 0;
     }
 
-    bool isEmpty()
+    bool isEmpty(int arr[])
     {
         for (int i = 0; i < 26; i++)
         {
-            if (diff[i] != 0)
+            if (arr[i] != 0)
                 return false;
         }
         return true;
@@ -26,6 +24,7 @@ public:
 
     vector<int> findAnagrams(string s, string p)
     {
+        int diff[26] = {0};
         vector<int> temp;
         int sLength = s.size();
         int pLength = p.size();
@@ -39,7 +38,7 @@ public:
         int index = 0;
         do
         {
-            if (isEmpty())
+            if (isEmpty(diff))
                 temp.push_back(index);
             if (index == sLength - pLength)
                 break;
@@ -49,8 +48,5 @@ public:
         } while (true);
         return temp;
     }
-
-private:
-    int diff[26];
 };
 // @lc code=end
