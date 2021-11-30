@@ -13,8 +13,12 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 - [559-N叉树的最大深度](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/559-N叉树的最大深度.cpp):选取一个for循环中最大的数，使用`maxdepth = max(maxdepth,1 + maxDepth(child))`来替换掉`if(depth > maxdepth)`
 
+- [400-第N位数字](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/400-第N位数字.cpp):当需要累加特别大的数字时，要考虑int溢出的问题，对于将累加数和参照值比较的问题可以这样转换:用参照值减去各个阶段的累加数，将其差值与下一个阶段的累加值进行比较，从而确定多少次累加才能达到参照值，即参照值在那个累加区间内
+
 刷题过程中的常用api:
 
 - [458-可怜的小猪](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/458-可怜的小猪.cpp):Cpp标准库没有提供自定义底数的log函数，需要时可以这样代替`loga(b) = log2(b)/log2(a);`
 
 - [594-最长和谐子序列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/594-最长和谐子序列.cpp):从小到大排序`#include <algorithm> std::sort(iterator &begin,iterator &end)`;
+
+- []():优先队列（最大堆），`priority_queue<pair<double,pair<int,int>>>q`,`q.push(pair<double,pair<int,int>>)压入`,`q.pop()弹出`
