@@ -25,6 +25,17 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [594-最长和谐子序列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/594-最长和谐子序列.cpp):从小到大排序`#include <algorithm> std::sort(iterator &begin,iterator &end)`;
 
 - [786-第K个最小的素数分数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/786-第K个最小的素数分数.cpp):
-    - 优先队列`priority_queue<pair<double,pair<int,int>>>q`,`q.push(pair<double,pair<int,int>>)压入`,`q.pop()弹出`;
+    - 优先队列
+    ```
+    priority_queue<pair<double,pair<int,int>>>q;
+    q.push({1*1.0/3,{1,3}});
+    q.pop();
+    ```
+    
     - 自定义排序
-    `vec<pair<int,int>> sort(vec.begin(), vec.end(), [&](const auto& x, const auto& y) {return x.first * y.second < x.second * y.first;});`
+    ```
+    vector<pair<int, int>> vec;
+    sort(vec.begin(), vec.end(), [&](const auto& x, const auto& y) {
+            return x.first * y.second < x.second * y.first;
+        });
+    ```
