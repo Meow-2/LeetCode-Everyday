@@ -14,6 +14,7 @@ public:
     {
         long temp = n;
         int i = 0;
+        //防止溢出
         while (temp > 0)
         {
             i++;
