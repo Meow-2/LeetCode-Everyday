@@ -11,17 +11,17 @@ public:
     string truncateSentence(string s, int k)
     {
         int count = 0;
-        for (int i = 0; i < s.size(); i++)
+        string ans = "";
+        for (auto x : s)
         {
-            if (s[i] == ' ')
+            if (x == ' ')
                 count++;
             if (count == k)
-            {
-                s.erase(i);
-                return s;
-            }
+                break;
+            ans += x;
         }
-        return s;
+
+        return ans;
     }
 };
 // @lc code=end
