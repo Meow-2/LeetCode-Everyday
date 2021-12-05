@@ -22,7 +22,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     - (x*y)%k = (x%k*y%k)%k;
     - (a<sup>b</sup>)%k = ((a%k)<sup>b</sup>)%k;
     - **a<sup>1234</sup>%k** = ((**a<sup>123</sup>%k**)<sup>10</sup>%k * a<sup>4</sup>%k)%k
-    - 定义一个函数powMod(int a,int b) = a<sup>b</sup>%k;(0<=k<10)
+    - 定义一个函数powMod(int a,int b) = a<sup>b</sup>%k ;(0<=k<10)
 
 
 刷题过程中的常用api:
@@ -46,3 +46,5 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
             return x.first * y.second < x.second * y.first;
         });
     ```
+
+- [1816-截断句子](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/1816-截断句子.cpp):删除字符串从index i到末尾的所有字符`s.erase(i)`
