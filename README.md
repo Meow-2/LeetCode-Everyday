@@ -18,6 +18,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [786-第K个最小的素数分数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/786-第K个最小的素数分数.cpp):
 对于几个有序序列的排序，可以使用多路归并的方式，每一路用最大（最小）堆取出最大（最小）值归并
 
+- [372-超级次方.cpp](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/372-超级次方.cpp): 
+    - (x*y)%k = (x%k*y%k)%k;
+    - (a<sup>b</sup>)%k = ((a%k)<sup>b</sup>)%k;
+    - **a<sup>1234</sup>%k** = ((**a<sup>123</sup>%k**)<sup>10</sup>%k * a<sup>4</sup>%k)%k
+    - 定义一个函数powMod(int a,int b) = a<sup>b</sup>%k;(0<=k<10)
+
+
 刷题过程中的常用api:
 
 - [458-可怜的小猪](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/458-可怜的小猪.cpp):Cpp标准库没有提供自定义底数的log函数，需要时可以这样代替`loga(b) = log2(b)/log2(a);`
