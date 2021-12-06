@@ -27,7 +27,7 @@ private:
         else
             return false;
     }
-    //判断（row，col）是否为边界，若为边界则将grid的颜色改变,并返回是否可以继续探索
+    //判断（row，col）是否为边界，若为边界则记录,并返回是否可以继续探索
     bool isBorder(vector<vector<int>> &grid, int row, int col, int origin, int color)
     {
         if (grid[row][col] != origin)
