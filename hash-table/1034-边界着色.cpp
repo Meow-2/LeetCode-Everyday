@@ -27,51 +27,30 @@ private:
         else
             return false;
     }
-    //判断（row，col）是否为边界，若为边界则记录,并返回是否可以继续探索
-    bool isBorder(vector<vector<int>> &grid, int row, int col, int origin, int color)
+
+    //该点如果不属于连通域就结束，
+    void Border(vector<vector<int>> &grid, int row, int col, int origin, int color)
     {
         if (grid[row][col] != origin)
-            return false;
+            return;
         else
             isConnected[row][col] = true;
         if (row == 0 || col == 0 || row == grid.size() - 1 || col == grid[0].size() - 1)
-        {
             change.push_back({row, col});
-            return true;
-        }
-        if (grid[row][col - 1] != origin || grid[row][col + 1] != origin || grid[row - 1][col] != origin || grid[row + 1][col] != origin)
-        {
+        else if (grid[row][col - 1] != origin || grid[row][col + 1] != origin || grid[row - 1][col] != origin || grid[row + 1][col] != origin)
             change.push_back({row, col});
-            return true;
-        }
-        return true;
-    }
-
-    void Border(vector<vector<int>> &grid, int row, int col, int origin, int color)
-    {
-        if (isBorder(grid, row, col, origin, color))
-        {
-
-            if (!isOutOrder(grid, row + 1, col) && !isConnected[row + 1][col])
-                Border(grid, row + 1, col, origin, color);
-            if (!isOutOrder(grid, row - 1, col) && !isConnected[row - 1][col])
-                Border(grid, row - 1, col, origin, color);
-            if (!isOutOrder(grid, row, col - 1) && !isConnected[row][col - 1])
-                Border(grid, row, col - 1, origin, color);
-            if (!isOutOrder(grid, row, col + 1) && !isConnected[row][col + 1])
-                Border(grid, row, col + 1, origin, color);
-        }
+        if (!isOutOrder(grid, row + 1, col) && !isConnected[row + 1][col])
+            Border(grid, row + 1, col, origin, color);
+        if (!isOutOrder(grid, row - 1, col) && !isConnected[row - 1][col])
+            Border(grid, row - 1, col, origin, color);
+        if (!isOutOrder(grid, row, col - 1) && !isConnected[row][col - 1])
+            Border(grid, row, col - 1, origin, color);
+        if (!isOutOrder(grid, row, col + 1) && !isConnected[row][col + 1])
+            Border(grid, row, col + 1, origin, color);
     }
 
 public:
-    Solution()
-    {
-        for (int i = 0; i < 50; i++)
-        {
-            for (int j = 0; j < 50; j++)
-                isConnected[i][j] = false;
-        }
-    }
+    Solution() : isConnected{{0}} {}
     vector<vector<int>> colorBorder(vector<vector<int>> &grid, int row, int col, int color)
     {
         int origin = grid[row][col];
