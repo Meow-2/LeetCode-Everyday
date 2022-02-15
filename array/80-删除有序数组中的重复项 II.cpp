@@ -14,31 +14,15 @@ public:
     {
         if (nums.size() <= 2)
             return nums.size();
-        int k       = 2;
-        int sameNum = 0;
-        for (int i = 2; i < nums.size(); i++) {
-            bool flag = false;
-            if (nums[i] != nums[i - 1]) {
-                sameNum = 0;
-                flag    = true;
+        int slow = 2;
+        int fast = 2;
+        while (fast < nums.size()) {
+            if (nums[fast] != nums[slow - 2]) {
+                nums[slow++] = nums[fast];
             }
-            else if (sameNum < 2) {
-                sameNum++;
-                flag = true;
-            }
-            if (flag) {
-                if (i != k) {
-                    nums[k++] = nums[i];
-                }
-                else {
-                    k++;
-                }
-            }
+            fast++;
         }
-        for (int i = nums.size() - 1; i >= k; i--) {
-            nums.pop_back();
-        }
-        return nums.size();
+        return slow;
     }
 };
 // @lc code=end
