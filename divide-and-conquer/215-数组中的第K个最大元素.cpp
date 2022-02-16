@@ -12,15 +12,29 @@ class Solution
 public:
     int findKthLargest(vector<int>& nums, int k)
     {
-        int slow = 1;
-        int i    = 1;
-        while (i < nums.size()) {
-            if (nums[i] <= nums[0]) {
-                swap(nums[i], nums[slow++]);
+        int left  = 0;
+        int right = nums.size() - 1;
+        while (left < right) {
+            int slow = left;
+            int i    = left;
+            while (i <= right) {
+                if (nums[i] >= nums[left]) {
+                    swap(nums[i], nums[slow++]);
+                }
+                i++;
             }
-            i++;
+            swap(nums[left], nums[slow - 1]);
+            if (slow - left == k)
+                return nums[slow - 1];
+            else if (slow - left > k) {
+                right = slow - 2;
+            }
+            else {
+                k    = k - slow + left;
+                left = slow;
+            }
         }
-        swap(nums[0], nums[slow - 1]);
+        return nums[left];
     }
 };
 // @lc code=end
