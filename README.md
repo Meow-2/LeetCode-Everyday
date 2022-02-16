@@ -1,8 +1,8 @@
 LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
-个人复习使用，许多地方并没有完全写清楚，如果觉得有错误或不明白，请参考正确解答
+个人快速回顾使用，所以许多地方是经过大量省略的，如果觉得有错误或不明白，请参考正确解答
 
-## A line trick:
+## One Line Trick:
 
 - [859-亲密字符串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/design/859-亲密字符串.cpp)：`set`里的元素是唯一的，可以用于字符串快速去重，`set<char>(s.begin(),s.end())`，通过比较去重后的size()还可以得到字符串是否有重复字符
 - [423-从英文中重建数字](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/423-从英文中重建数字.cpp)：`unordered_map<char,int>`哈希表可以用一个int数组代替，前提数组的范围要能容纳下字符的ASCII码(对于包含所有小写字母，大小为26的数组，可以用 `int hashmap[c - 'a']`来寻址);`unordered_map<int,int>`也是，但前提是int数组的范围要能容纳下第一个int的范围
@@ -43,19 +43,21 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
       });
   ```
 - [1816-截断句子](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/1816-截断句子.cpp)：删除字符串从index i到末尾的所有字符 `s.erase(i)`
+- [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
 
 ---
 
 ## Array-数组:
 
-1. 数组题目一般都可以使用双指针的解法,三路快排就是一个很典型的双指针加二分递归
-2. 双指针根据指针起点的不同，可以分为快慢指针和对撞指针
+1. 数组题目一般都可以使用**双指针**的解法,三路快排就是一个很典型的双指针加二分递归
+2. 双指针根据指针起点和移动方式的不同，可以分为快慢指针和对撞指针和**滑动窗口**
 
    ```
    int slow = 0,fast = 0 //快慢指针,[0,slow)维护一个题目要求的数组
    int left = 0,right = arr.size()-1 //对撞指针，当 i = j 或 i < j 时停止循环
    ```
-3. 在搜索时考虑使用二分法
+3.快慢指针，两个指针起点相同同向移动，速度不同；对撞指针，两个指针一头一尾，相向移动；滑动窗口，两个指针构成一个区间，在数组内滑动
+4. 在搜索时考虑使用二分法
 
    ```cpp
    int i = 0,j = arr.size() - 1;//[i,j]，在二分查找中，i = j 时，相当于[i]，仍旧需要对 i 进行一次判断
@@ -64,7 +66,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
        ...
    }
    ```
-4. 写不出来就暴力，但有可能会超时，超时也可以试着用if来筛选一些明显不可能的情况
+5. 写不出来就暴力，但有可能会超时，超时也可以试着用if来筛选一些明显不可能的情况
 
 - [11-盛水最多的容器](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.cpp)： 这题使用暴力解法会超时（除非用在第二层循环前用 if 过滤掉不可能的情况），使用对撞指针时，应将两个指针想象成容器的两边，若想让当前的容器盛更多的水，那么只有将短的那一边向内部移动才有可能
 - [167-两数之和 2 输入有序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%20II%20-%20%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp)：对撞指针，从比较指针和与target的大小，从而决s定如何逼近两个指针
