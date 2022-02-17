@@ -9,13 +9,11 @@ class Solution
 {
 public:
     Solution()
-    {
-    }
+    {}
 
     bool isEmpty(int arr[])
     {
-        for (int i = 0; i < 26; i++)
-        {
+        for (int i = 0; i < 26; i++) {
             if (arr[i] != 0)
                 return false;
         }
@@ -24,20 +22,18 @@ public:
 
     vector<int> findAnagrams(string s, string p)
     {
-        int diff[26] = {0};
+        int         diff[26] = {0};
         vector<int> temp;
-        int sLength = s.size();
-        int pLength = p.size();
+        int         sLength = s.size();
+        int         pLength = p.size();
         if (sLength < pLength)
             return {};
-        for (int i = 0; i < pLength; i++)
-        {
+        for (int i = 0; i < pLength; i++) {
             diff[p[i] - 'a']--;
             diff[s[i] - 'a']++;
         }
         int index = 0;
-        do
-        {
+        do {
             if (isEmpty(diff))
                 temp.push_back(index);
             if (index == sLength - pLength)
