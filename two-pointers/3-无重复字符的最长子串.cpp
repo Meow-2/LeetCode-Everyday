@@ -39,8 +39,8 @@ public:
         while (right < s.length()) {
             if (charLocation[s[right]] >= left)
                 left = charLocation[s[right]] + 1;
-            charLocation[s[right]] = right++;
-            maxLength              = max(maxLength, right - left);
+            charLocation[s[right++]] = right;
+            maxLength                = max(maxLength, right - left);
         }
         return maxLength;
     }
