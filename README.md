@@ -1,6 +1,6 @@
 LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
-个人快速回顾使用，所以许多地方是经过大量省略的，如果觉得有错误或不明白，请参考正确解答
+个人快速回顾使用，所以许多地方是经过大量省略的，甚至是只有我自己才能理解的说法，如果觉得有错误或不明白，请参考正确解答
 
 ## One Line Trick:
 
@@ -78,7 +78,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [27-移除元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/27-%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.cpp)、[283-移动零](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/283-%E7%A7%BB%E5%8A%A8%E9%9B%B6.cpp)：快慢指针
 - [88-合并两个有序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/88-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp)：归并排序的合并方法，开个新数组
 - [215-数组的第K个最大元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/divide-and-conquer/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.cpp)：二分法+快排partition；或者建堆，最小堆O（nlogk），最大堆O（klogn）;记住找准循环不变量，在while外面先将循环不变量定义好，循环不变量就是指在循环中性质不变的量
-- [209-长度最小的子数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.cpp)：滑动窗口
+- [209-长度最小的子数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.cpp)：滑动窗口，两个指针的移动是并非每次移动一步，而是在没达到条件前一直移动，使用while嵌套
 
 ## String-字符串
 
@@ -88,3 +88,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 - [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
 - [344-反转字符串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/344-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp)、[345-反转字符串中的元音字母](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/345-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E6%AF%8D.cpp)：对撞指针
+-
