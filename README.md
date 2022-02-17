@@ -88,4 +88,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 - [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
 - [344-反转字符串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/344-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2.cpp)、[345-反转字符串中的元音字母](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/345-%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%85%83%E9%9F%B3%E5%AD%97%E6%AF%8D.cpp)：对撞指针
--
+- [3-无重复字符的最长子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2.cpp)：
+  - 使用滑动窗口求解即可,注意窗口两个边界移动的条件
+  - 使用vector<int> a(256,-1)来当作字符的哈希表，因为8位ASCII码表只有256个字符
+  - 犯的小错：`int a[256]={-1}`只能将a[0]初始化为-1,其余剩余元素都为0,使用`vector<int> a(256,-1)`将所有元素都初始化为-1
