@@ -93,5 +93,43 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   - 使用vector `<int>` a(256,-1)来当作字符的哈希表，因为8位ASCII码表只有256个字符
   - 犯的小错1：`int a[256]={-1}`只能将a[0]初始化为-1,其余剩余元素都为0,使用 `vector<int> a(256,-1)`将所有元素都初始化为-1
   - 犯的小错2：`charLocation[s[right++]] = right;`从右往左运算（参照运算符重载的匹配规则，双目运算符先确定右边的数的类型），所以这一行执行完后，right+1；若写成 `charLocation[s[right]] = right++;`则在读取右边时，,right+1,左边的right就变成了加一后的right
-- [438-找到字符串中所有字母异位词](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/438-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.cpp)：不要简单问题复杂化，不要简单问题复杂化，不要简单问题复杂化，直接遍历字符串，将两个hashmap比较即可 ，hashmap的key是字符，value是字符在子串中的个数
--
+- [438-找到字符串中所有字母异位词](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/438-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.cpp)：滑动窗口;不要简单问题复杂化，不要简单问题复杂化，不要简单问题复杂化，直接遍历字符串，将两个hashmap比较即可 ，hashmap的key是字符，value是字符在子串中的个数
+- [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：
+  - 滑动窗口经典题
+  - 要比较cur的字符是否覆盖了goal的字符，可以时刻记录cur中value大于goal的key的个数，当个数等于goal的size时，cur 的字符就覆盖了goal，这样比起用循环会快很多
+  - ```
+    //1.我们在字符串S中使用双指针中的左右指针技巧，初始化left = right = 0，把索引左闭右开区间[left, right)称为一个「窗口」。
+    //2、我们先不断地增加right指针扩大窗口[left, right)，直到窗口中的字符串符合要求（包含了T中的所有字符）。
+    //3、此时，我们停止增加right，转而不断增加left指针缩小窗口[left, right)，直到窗口中的字符串不再符合要求（不包含T中的所有字符了）。同时，每次增加left，我们都要更新一轮结果。
+    //4、重复第 2 和第 3 步，直到right到达字符串S的尽头。
+    /* 滑动窗口算法框架 */
+    void slidingWindow(string s, string t) {
+        unordered_map<char, int> need, window;
+        for (char c : t) need[c]++;
+    
+        int left = 0, right = 0;
+        int valid = 0; 
+        while (right < s.size()) {
+            // c 是将移入窗口的字符
+            char c = s[right];
+            // 右移窗口
+            right++;
+            // 进行窗口内数据的一系列更新
+            ...
+    
+            /*** debug 输出的位置 ***/
+            printf("window: [%d, %d)\n", left, right);
+            /********************/
+    
+            // 判断左侧窗口是否要收缩
+            while (window needs shrink) {
+                // d 是将移出窗口的字符
+                char d = s[left];
+                // 左移窗口
+                left++;
+                // 进行窗口内数据的一系列更新
+                ...
+            }
+        }
+    }
+    ```
