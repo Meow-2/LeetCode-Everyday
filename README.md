@@ -57,17 +57,16 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
    int left = 0,right = arr.size()-1 //对撞指针，当 i = j 或 i < j 时停止循环
    ```
 
-3.快慢指针，两个指针起点相同同向移动，速度不同；对撞指针，两个指针一头一尾，相向移动；滑动窗口，两个指针构成一个区间，在数组内滑动
+3. 快慢指针，两个指针起点相同同向移动，速度不同；对撞指针，两个指针一头一尾，相向移动；滑动窗口，两个指针构成一个区间，在数组内滑动
 4. 在搜索时考虑使用二分法
 
-```cpp
+```
    int i = 0,j = arr.size() - 1;//[i,j]，在二分查找中，i = j 时，相当于[i]，仍旧需要对 i 进行一次判断
    while(i<=j){
-       mid = i+(j - i )/2; 	//防止溢出
-       ...
+     mid = i+(j - i )/2; 	//防止溢出
+     ...
    }
 ```
-
 5. 写不出来就暴力，但有可能会超时，超时也可以试着用if来筛选一些明显不可能的情况
 
 - [11-盛水最多的容器](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.cpp)： 这题使用暴力解法会超时（除非用在第二层循环前用 if 过滤掉不可能的情况），使用对撞指针时，应将两个指针想象成容器的两边，若想让当前的容器盛更多的水，那么只有将短的那一边向内部移动才有可能
@@ -106,7 +105,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     void slidingWindow(string s, string t) {
         unordered_map<char, int> need, window;
         for (char c : t) need[c]++;
-    
+
         int left = 0, right = 0;
         int valid = 0; 
         while (right < s.size()) {
@@ -116,11 +115,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
             right++;
             // 进行窗口内数据的一系列更新
             ...
-    
+
             /*** debug 输出的位置 ***/
             printf("window: [%d, %d)\n", left, right);
             /********************/
-    
+
             // 判断左侧窗口是否要收缩
             while (window needs shrink) {
                 // d 是将移出窗口的字符
