@@ -93,3 +93,5 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   - 使用vector `<int>` a(256,-1)来当作字符的哈希表，因为8位ASCII码表只有256个字符
   - 犯的小错1：`int a[256]={-1}`只能将a[0]初始化为-1,其余剩余元素都为0,使用 `vector<int> a(256,-1)`将所有元素都初始化为-1
   - 犯的小错2：`charLocation[s[right++]] = right;`从右往左运算（参照运算符重载的匹配规则，双目运算符先确定右边的数的类型），所以这一行执行完后，right+1；若写成 `charLocation[s[right]] = right++;`则在读取右边时，,right+1,左边的right就变成了加一后的right
+- [438-找到字符串中所有字母异位词](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/438-%E6%89%BE%E5%88%B0%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%89%80%E6%9C%89%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.cpp)：不要简单问题复杂化，不要简单问题复杂化，不要简单问题复杂化，直接遍历字符串，将两个hashmap比较即可 ，hashmap的key是字符，value是字符在子串中的个数
+-
