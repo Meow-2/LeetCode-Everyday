@@ -57,12 +57,12 @@ public:
         while (right < s.length()) {
             cur[s[right] - 'a']++;
             right++;
-            if (cur == goal)
-                index.push_back(left);
-            while (right - left >= p.length()) {
+            while (right - left > p.length()) {
                 cur[s[left] - 'a']--;
                 left++;
             }
+            if (cur == goal)
+                index.push_back(left);
         }
         return index;
     }

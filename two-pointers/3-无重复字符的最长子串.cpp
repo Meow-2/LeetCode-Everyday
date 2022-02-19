@@ -32,15 +32,18 @@ public:
     // 8bit ASCII 码表共有字符256个
     int lengthOfLongestSubstring(string s)
     {
-        vector<int> charLocation(256, -1);   //用于字符在字符串中的位置
+        vector<int> cur(256, 0);   //用于字符在字符串中的位置
         int         left      = 0;
         int         right     = 0;   //[left,right)
         int         maxLength = 0;
         while (right < s.length()) {
-            if (charLocation[s[right]] >= left)
-                left = charLocation[s[right]] + 1;
-            charLocation[s[right++]] = right;
-            maxLength                = max(maxLength, right - left);
+            cur[s[right]]++;
+            right++;
+            while (cur[s[right - 1]] > 1) {
+                cur[s[left]]--;
+                left++;
+            }
+            maxLength = max(maxLength, right - left);
         }
         return maxLength;
     }
