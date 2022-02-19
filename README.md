@@ -2,7 +2,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 个人快速回顾使用，所以许多地方是经过大量省略的，甚至是只有我自己才能理解的说法，如果觉得有错误或不明白，请参考正确解答
 
-## One Line Trick:
+## One Line Trick：
 
 - [859-亲密字符串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/design/859-亲密字符串.cpp)：`set`里的元素是唯一的，可以用于字符串快速去重，`set<char>(s.begin(),s.end())`，通过比较去重后的size()还可以得到字符串是否有重复字符
 - [423-从英文中重建数字](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/423-从英文中重建数字.cpp)：`unordered_map<char,int>`哈希表可以用一个int数组代替，前提数组的范围要能容纳下字符的ASCII码(对于包含所有小写字母，大小为26的数组，可以用 `int hashmap[c - 'a']`来寻址);`unordered_map<int,int>`也是，但前提是int数组的范围要能容纳下第一个int的范围
@@ -16,11 +16,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [372-超级次方.cpp](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/372-超级次方.cpp)：
 
   - (x*y)%k = (x%k*y%k)%k;
-  - (a <sup>b </sup>)%k = ((a%k)<sup>b </sup>)%k;
-  - **a <sup>1234 </sup>%k** = ((**a <sup>123 </sup>%k**)<sup>10 </sup>%k * a <sup>4 </sup>%k)%k
-  - 定义一个函数powMod(int a,int b) = a <sup>b </sup>%k ;(0<=k<10)
+  - (a `<sup>`b `</sup>`)%k = ((a%k)`<sup>`b `</sup>`)%k;
+  - **a `<sup>`1234 `</sup>`%k** = ((**a `<sup>`123 `</sup>`%k**)`<sup>`10 `</sup>`%k * a `<sup>`4 `</sup>`%k)%k
+  - 定义一个函数powMod(int a,int b) = a `<sup>`b `</sup>`%k ;(0<=k<10)
 
-## Forgetfulness Cpp Api:
+## Forgetfulness Cpp Api：
 
 - [458-可怜的小猪](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/458-可怜的小猪.cpp)：Cpp标准库没有提供自定义底数的log函数，需要时可以这样代替 `loga(b) = log2(b)/log2(a);`
 - [594-最长和谐子序列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/594-最长和谐子序列.cpp)：从小到大排序 `#include <algorithm> std::sort(iterator &begin,iterator &end)`;
@@ -44,10 +44,16 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ```
 - [1816-截断句子](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/1816-截断句子.cpp)：删除字符串从index i到末尾的所有字符 `s.erase(i)`
 - [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
+- [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：unordered_map使用count(key)的方式检查表内是否含有某个key，如果含有返回1，如果不含有返回0
+
+  ```
+  unordered_map<char,int> a;
+  if(a.count('c')){}
+  ```
 
 ---
 
-## Array-数组:
+## Array-数组：
 
 1. 数组题目一般都可以使用**双指针**的解法,三路快排就是一个很典型的双指针加二分递归
 2. 双指针根据指针起点和移动方式的不同，可以分为快慢指针和对撞指针和**滑动窗口**
@@ -56,10 +62,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
    int slow = 0,fast = 0 //快慢指针,[0,slow)维护一个题目要求的数组
    int left = 0,right = arr.size()-1 //对撞指针，当 i = j 或 i < j 时停止循环
    ```
-
 3. 快慢指针，两个指针起点相同同向移动，速度不同；对撞指针，两个指针一头一尾，相向移动；滑动窗口，两个指针构成一个区间，在数组内滑动
 4. 在搜索时考虑使用二分法
-   
+
    ```
    int i = 0,j = arr.size() - 1;//[i,j]，在二分查找中，i = j 时，相当于[i]，仍旧需要对 i 进行一次判断
    while(i<=j){
@@ -79,7 +84,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [215-数组的第K个最大元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/divide-and-conquer/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.cpp)：二分法+快排partition；或者建堆，最小堆O（nlogk），最大堆O（klogn）;记住找准循环不变量，在while外面先将循环不变量定义好，循环不变量就是指在循环中性质不变的量
 - [209-长度最小的子数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/209-%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.cpp)：滑动窗口，两个指针的移动是并非每次移动一步，而是在没达到条件前一直移动，使用while嵌套
 
-## String-字符串
+## String-字符串：
 
 1.回文、反转字符串问题可以尝试用双指针解决
 
@@ -132,3 +137,5 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         }
     }
     ```
+
+## Search-查找：
