@@ -16,7 +16,6 @@ public:
         vector<int> goal(58, 0), cur(58, 0);
         int left = 0, right = 0, minLength = s.length() + 1, resultLeft = 0, resultRight = 0,
             count = 0, valid = 0;
-
         for (auto i : t) {
             if (!goal[i - 'A'])
                 count++;
@@ -24,7 +23,7 @@ public:
         }
         while (right < s.length()) {
             if (goal[s[right] - 'A']) {
-                cur[s[right] - 'A']++;
+                valid++;
                 if (cur[s[right] - 'A'] == goal[s[right] - 'A'])
                     valid++;
             }
