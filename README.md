@@ -50,6 +50,20 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   unordered_map<char,int> a;
   if(a.count('c')){}
   ```
+- [349-两个数组的交集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp)、[350-两个数组的交集2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II.cpp)
+
+  ```
+  set<int> a;
+  map<int,int> b;
+  int key;
+  if(a.count(key))   //返回set中对应key的个数，可用于判断key是否存在
+  a.insert(key);     //插入key 
+  a.erase(key);      //删除key 
+  a.find(key);       //查找key,返回迭代器，如果是end()就说明没找到
+  b.insert(key);     //插入key 
+  b.erase(key);      //删除key
+  b.find(key);       //查找key,返回迭代器，如果是end()就说明没找到
+  ```
 
 ---
 
