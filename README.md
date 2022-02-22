@@ -50,7 +50,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   unordered_map<char,int> a;
   if(a.count('c')){}
   ```
-- [349-两个数组的交集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp)、[350-两个数组的交集2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II.cpp)
+- [349-两个数组的交集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp)、[350-两个数组的交集2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II.cpp)：
 
   ```
   set<int> a;
