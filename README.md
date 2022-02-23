@@ -64,6 +64,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   b.erase(key);      //删除key
   b.find(key);       //查找key,返回迭代器，如果是end()就说明没找到
   ```
+- [451-根据字符出现频率排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/451-%E6%A0%B9%E6%8D%AE%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E9%A2%91%E7%8E%87%E6%8E%92%E5%BA%8F.cpp)
+  
+  ```
+  sort(temp.begin(), temp.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
+            return a.second > b.second;
+        });
+  ```
 
 ---
 
