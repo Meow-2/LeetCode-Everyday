@@ -54,7 +54,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
   ```
   set<int> a;
-  map<int,int> b;
+  map<int,int> b;	   //在map中，key不插入默认是不存在的，find(key)也只会返回end(),但是b[key]会对不存在的key进行创建，且默认value为0
   int key;
   if(a.count(key))   //返回set中对应key的个数，可用于判断key是否存在
   a.insert(key);     //插入key 
@@ -153,3 +153,5 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     ```
 
 ## Search-查找：
+
+- [349-两个数组的交集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp)、[350-两个数组的交集2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II.cpp)：如果数组有序的话，使用二分查找会更好
