@@ -5,11 +5,10 @@
  */
 
 // @lc code=start
-class Solution {
+class Solution
+{
 public:
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-
-    }
+    bool containsNearbyDuplicate(vector<int>& nums, int k)
+    {}
 };
 // @lc code=end
-
