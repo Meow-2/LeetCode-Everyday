@@ -16,9 +16,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [372-超级次方.cpp](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/372-超级次方.cpp)：
 
   - (x*y)%k = (x%k*y%k)%k;
-  - (a `<sup>`b `</sup>`)%k = ((a%k)`<sup>`b `</sup>`)%k;
-  - **a `<sup>`1234 `</sup>`%k** = ((**a `<sup>`123 `</sup>`%k**)`<sup>`10 `</sup>`%k * a `<sup>`4 `</sup>`%k)%k
-  - 定义一个函数powMod(int a,int b) = a `<sup>`b `</sup>`%k ;(0<=k<10)
+  - (a <sup>b </sup>)%k = ((a%k)<sup>b </sup>)%k;
+  - **a <sup>1234 </sup>%k** = ((**a <sup>123 </sup>%k**)<sup>10 </sup>%k * a <sup>4 </sup>%k)%k
+  - 定义一个函数powMod(int a,int b) = a <sup>b </sup>%k ;(0<=k<10)
 
 ## Forgetfulness Cpp Api：
 
