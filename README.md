@@ -16,9 +16,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [372-超级次方.cpp](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/372-超级次方.cpp)：
 
   - (x*y)%k = (x%k*y%k)%k;
-  - (a <sup>b </sup>)%k = ((a%k)<sup>b </sup>)%k;
-  - **a <sup>1234 </sup>%k** = ((**a <sup>123 </sup>%k**)<sup>10 </sup>%k * a <sup>4 </sup>%k)%k
-  - 定义一个函数powMod(int a,int b) = a <sup>b </sup>%k ;(0<=k<10)
+  - (a `<sup>`b `</sup>`)%k = ((a%k)`<sup>`b `</sup>`)%k;
+  - **a `<sup>`1234 `</sup>`%k** = ((**a `<sup>`123 `</sup>`%k**)`<sup>`10 `</sup>`%k * a `<sup>`4 `</sup>`%k)%k
+  - 定义一个函数powMod(int a,int b) = a `<sup>`b `</sup>`%k ;(0<=k<10)
 
 ## Forgetfulness Cpp Api：
 
@@ -168,3 +168,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [454-四数相加2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/454-%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%20II.cpp)：如果使用暴力解法，将nums4存在哈希表里，那么时间复杂度是O(n^3)，可以先求出num1、num2所有可能的值存在哈希表里，再遍历num3、num4，那么时间复杂度是O(n^2)
 - [49-字母异位词分组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/49-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84.cpp)：异位词哈希编码，可以使用排序好的异位词作为key,或者使用每个字母出现的次数的字符串sts表示作为key
   ` string sts = string(26, '0') ; //在字母的对应位上计数`
+- [447-回旋镖的数量](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/447-%E5%9B%9E%E6%97%8B%E9%95%96%E7%9A%84%E6%95%B0%E9%87%8F.cpp)：使用hashmap记录每次循环中已遍历的点与选定镖尖点的距离从而将时间复杂度降到O(n^2)
