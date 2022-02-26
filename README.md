@@ -169,3 +169,17 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [49-字母异位词分组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/49-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84.cpp)：异位词哈希编码，可以使用排序好的异位词作为key,或者使用每个字母出现的次数的字符串sts表示作为key
   ` string sts = string(26, '0') ; //在字母的对应位上计数`
 - [447-回旋镖的数量](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/447-%E5%9B%9E%E6%97%8B%E9%95%96%E7%9A%84%E6%95%B0%E9%87%8F.cpp)：使用hashmap记录每次循环中已遍历的点与选定镖尖点的距离从而将时间复杂度降到O(n^2)
+- [149-直线上最多的点数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0.cpp)：这题主要考察如何用哈希表存储斜率
+  - 如果将key设为浮点数，那么就面临浮点数精度不一定够的情况，可以借助`<sstream>`将浮点数转为保留10位小数的string:
+    ```
+    ostringstream s;
+    s<<setiosflags(ios::fixed) << setprecision(10)
+    ```
+    但是这样就需要注意，斜率为0和分子为0的情况，这时一个斜率可能代表很多直线，或者斜率不存在无法用浮点数表示
+  - 或者使用分母分子形式的string来作为key,那么就一定要是最简形式的分子分母,"分子_分母",这就需要求最大公约数，使用辗转相除法：
+    ```
+    int gcd(int a, int b)   //最大公约数
+    {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+    ```
