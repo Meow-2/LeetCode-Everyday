@@ -64,13 +64,28 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   b.erase(key);      //删除key
   b.find(key);       //查找key,返回迭代器，如果是end()就说明没找到
   ```
-- [451-根据字符出现频率排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/451-%E6%A0%B9%E6%8D%AE%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E9%A2%91%E7%8E%87%E6%8E%92%E5%BA%8F.cpp)
+- [451-根据字符出现频率排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/451-%E6%A0%B9%E6%8D%AE%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E9%A2%91%E7%8E%87%E6%8E%92%E5%BA%8F.cpp)：
 
   ```
   sort(temp.begin(), temp.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
             return a.second > b.second;
         });
   ```
+- [149-直线上最多的点数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0.cpp)：将 float 保留10位小数转化为 string，借助ostringstream
+
+  ```
+  #include <sstream>
+  ostringstream s;
+  s<<setiosflags(ios::fixed) << setprecision(10)<<3.21;
+  ```
+
+- [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：
+   ```
+   int key;
+   set<int> windowNums;
+   auto it = windowNums.lower_bound(key);//返回不小于key的第一个元素的迭代器
+   it = windowNums.upper_bound(key);//返回大于key的第一个元素的迭代器
+   ```
 
 ---
 
@@ -170,16 +185,36 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ` string sts = string(26, '0') ; //在字母的对应位上计数`
 - [447-回旋镖的数量](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/447-%E5%9B%9E%E6%97%8B%E9%95%96%E7%9A%84%E6%95%B0%E9%87%8F.cpp)：使用hashmap记录每次循环中已遍历的点与选定镖尖点的距离从而将时间复杂度降到O(n^2)
 - [149-直线上最多的点数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0.cpp)：这题主要考察如何用哈希表存储斜率
-  - 如果将key设为浮点数，那么就面临浮点数精度不一定够的情况，可以借助`<sstream>`将浮点数转为保留10位小数的string:
+
+  - 如果将key设为浮点数，那么就面临浮点数精度不一定够的情况，可以借助 `<sstream>`将浮点数转为保留10位小数的string:
+
     ```
     ostringstream s;
     s<<setiosflags(ios::fixed) << setprecision(10)
     ```
     但是这样就需要注意，斜率为0和分子为0的情况，这时一个斜率可能代表很多直线，或者斜率不存在无法用浮点数表示
   - 或者使用分母分子形式的string来作为key,那么就一定要是最简形式的分子分母,"分子_分母",这就需要求最大公约数，使用辗转相除法：
+
     ```
     int gcd(int a, int b)   //最大公约数
     {
         return b == 0 ? a : gcd(b, a % b);
     }
     ```
+- [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：使用滑动窗口来解决k的问题，然后在滑动窗口内解决t的问题，每新加一个数x，检查窗口内的其他数是否在[x-t,x+t]的范围内，使用一个个遍历的方式会超时，故**将窗口中的数存储在一个有序的数据结构中**使用二分查找的方式来降低时间复杂度，查找的数即为第一个不小于x-t的数，若存在这个数，且这个数小于x+t则返回true：
+
+  ```
+  set<long> windowNum;
+  auto it = windowNum.lower_bound((long)nums[right]-t);
+  if (it != windowNum.end() && *it <= (long)nums[right] + t)
+      return true;
+  ```
+  本题需要考虑 x - t 和 x + t 溢出的问题，可以将所有的int改用为long解决，也可以限定[x-t,x+t]的范围如：
+
+  ```
+  //nums[right] - t 写成如下形式，其最小值也就是INT_MIN
+  max(nums[right],INT_MIN + t) - t;
+  //nums[right] + t 写成如下形式，其最大值也就是INT_MAX
+  min(num[right],INT_MAX - t) + t;
+  ```
+  
