@@ -17,17 +17,17 @@ public:
     {
         if (nums.size() < 2)
             return false;
-        set<long> windowNum;
-        int       left = 0, right = 0;   //[left,right)
+        set<int> windowNum;
+        int      left = 0, right = 0;   //[left,right)
         while (right < nums.size()) {
-            auto it = windowNum.lower_bound((long)nums[right] - t);
+            auto it = windowNum.lower_bound(max(nums[right], INT_MIN + t) - t);
             // printf("%d %d\n", nums[right], *it);
-            if (it != windowNum.end() && *it <= (long)nums[right] + t)
+            if (it != windowNum.end() && *it <= min(nums[right], INT_MAX - t) + t)
                 return true;
-            windowNum.insert((long)nums[right]);
+            windowNum.insert(nums[right]);
             right++;
-            while (right - 1 - left == k) {
-                windowNum.erase((long)nums[left]);
+            if (right - 1 - left == k) {
+                windowNum.erase(nums[left]);
                 left++;
             }
         }
