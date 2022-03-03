@@ -23,7 +23,7 @@ public:
         ListNode* pre = nullptr;
         ListNode* cur = head;
         ListNode* n;
-        size_t    count = 1;
+        int       count = 1;
         ListNode* leftPre;
         ListNode* leftCur;
         while (cur != nullptr && count < right + 1) {
