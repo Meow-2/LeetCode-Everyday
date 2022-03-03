@@ -78,14 +78,14 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ostringstream s;
   s<<setiosflags(ios::fixed) << setprecision(10)<<3.21;
   ```
-
 - [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：
-   ```
-   int key;
-   set<int> windowNums;
-   auto it = windowNums.lower_bound(key);//返回不小于key的第一个元素的迭代器
-   it = windowNums.upper_bound(key);//返回大于key的第一个元素的迭代器
-   ```
+
+  ```
+  int key;
+  set<int> windowNums;
+  auto it = windowNums.lower_bound(key);//返回不小于key的第一个元素的迭代器
+  it = windowNums.upper_bound(key);//返回大于key的第一个元素的迭代器
+  ```
 
 ---
 
@@ -201,7 +201,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return b == 0 ? a : gcd(b, a % b);
     }
     ```
-- [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：使用滑动窗口来解决k的问题，然后在滑动窗口内解决t的问题，每新加一个数x，检查窗口内的其他数是否在[x-t,x+t]的范围内，使用一个个遍历的方式会超时，故**将窗口中的数存储在一个有序的数据结构中**使用二分查找的方式来降低时间复杂度，查找的数即为第一个不小于x-t的数，若存在这个数，且这个数小于x+t则返回true：
+- [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：使用滑动窗口来解决 k 的问题，然后在滑动窗口内解决 t 的问题，每新加一个数 x，检查窗口内的其他数是否在 [ x - t , x + t ]的范围内，使用一个个遍历的方式会超时，故**将窗口中的数存储在一个有序的数据结构中**使用二分查找的方式来降低时间复杂度，查找的数即为第一个不小于 x - t 的数，若存在这个数，且这个数小于 x + t 则返回 true ：
 
   ```
   set<long> windowNum;
@@ -217,4 +217,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   //nums[right] + t 写成如下形式，其最大值也就是INT_MAX
   min(num[right],INT_MAX - t) + t;
   ```
-  
+## Linked List-链表:

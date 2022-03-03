@@ -1,8 +1,8 @@
 // @before-stub-for-debug-begin
-#include <vector>
-#include <string>
 #include "commoncppproblem786.h"
 
+#include <string>
+#include <vector>
 using namespace std;
 // @before-stub-for-debug-end
 
@@ -19,39 +19,40 @@ class Solution
 private:
     struct Fraction
     {
-        int i;
-        int j;
+        int   i;
+        int   j;
         float value;
-        Fraction() {}
-        Fraction(int i, int j) : i(i), j(j), value(i / (float)j)
-        {
-        }
-        bool operator<(const Fraction &fraction) const
+        Fraction()
+        {}
+        Fraction(int i, int j)
+            : i(i)
+            , j(j)
+            , value(i / (float)j)
+        {}
+        bool operator<(const Fraction& fraction) const
         {
             return value < fraction.value;
         }
-        bool operator>(const Fraction &fraction) const
+        bool operator>(const Fraction& fraction) const
         {
             return value > fraction.value;
         }
     };
-    Fraction *maxHeap;
-    int count;
-    int capacity;
+    Fraction* maxHeap;
+    int       count;
+    int       capacity;
 
     void shiftDown(int k)
     {
         assert(k <= count);
         Fraction temp = maxHeap[k];
-        while (2 * k <= count)
-        {
+        while (2 * k <= count) {
             int j = 2 * k;
             if (j + 1 <= count && maxHeap[j + 1] > maxHeap[j])
                 j++;
-            if (maxHeap[j] > temp)
-            {
+            if (maxHeap[j] > temp) {
                 maxHeap[k] = maxHeap[j];
-                k = j;
+                k          = j;
             }
             else
                 break;
@@ -62,12 +63,10 @@ private:
     {
         assert(k <= count);
         Fraction temp = maxHeap[k];
-        while (k / 2 >= 1)
-        {
-            if (maxHeap[k / 2] < temp)
-            {
+        while (k / 2 >= 1) {
+            if (maxHeap[k / 2] < temp) {
                 maxHeap[k] = maxHeap[k / 2];
-                k = k / 2;
+                k          = k / 2;
             }
             else
                 break;
@@ -85,9 +84,8 @@ private:
     vector<int> extractMax()
     {
         assert(count > 0);
-        vector<int> temp = {maxHeap[1].i,
-                            maxHeap[1].j};
-        maxHeap[1] = maxHeap[count];
+        vector<int> temp = {maxHeap[1].i, maxHeap[1].j};
+        maxHeap[1]       = maxHeap[count];
         count--;
         if (count > 0)
             shiftDown(1);
@@ -95,20 +93,21 @@ private:
     }
 
 public:
-    Solution() : capacity(0), count(0), maxHeap(nullptr) {}
-    vector<int> kthSmallestPrimeFraction(vector<int> &arr, int k)
+    Solution()
+        : capacity(0)
+        , count(0)
+        , maxHeap(nullptr)
+    {}
+    vector<int> kthSmallestPrimeFraction(vector<int>& arr, int k)
     {
         //最大堆
-        maxHeap = new Fraction[k + 2];
+        maxHeap  = new Fraction[k + 2];
         capacity = k + 1;
-        for (int i = 0; i < arr.size(); i++)
-        {
-            for (int j = i + 1; j < arr.size(); j++)
-            {
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = i + 1; j < arr.size(); j++) {
                 if (count < capacity - 1)
                     insert(Fraction(arr[i], arr[j]));
-                else
-                {
+                else {
                     insert(Fraction(arr[i], arr[j]));
                     extractMax();
                 }

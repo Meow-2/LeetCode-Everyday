@@ -5,9 +5,12 @@
  */
 
 #include <cstdio>
+#include <ios>
 #include <iterator>
 #include <set>
+#include <tuple>
 #include <unordered_map>
+#include <utility>
 using namespace std;
 // @lc code=start
 class Solution
