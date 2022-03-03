@@ -235,4 +235,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return pre;
     }
   ```
-- [92-反转链表2]
+- [92-反转链表2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II.cpp)：记住，在反转链表时需要用到 pre cur n 三个指针，n只是暂时用来存放 next 指针。在遍历链表的过程中，只有cur 指针指向的 node 的内容会发生改变。
