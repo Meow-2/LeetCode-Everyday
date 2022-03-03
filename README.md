@@ -218,3 +218,21 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   min(num[right],INT_MAX - t) + t;
   ```
 ## Linked List-链表:
+- [206-反转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：
+考察对链表指针的运用：
+  ```
+    ListNode* reverseList(ListNode* head)
+    {
+        ListNode* pre = nullptr;
+        ListNode* cur = head;
+        ListNode* n;
+        while (cur != nullptr) {
+            n         = cur->next;
+            cur->next = pre;
+            pre       = cur;
+            cur       = n;
+        }
+        return pre;
+    }
+  ```
+- [92-反转链表2]

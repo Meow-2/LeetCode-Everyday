@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=206 lang=cpp
+ * @lc app=leetcode.cn id=92 lang=cpp
  *
- * [206] 反转链表
+ * [92] 反转链表 II
  */
 
 // @lc code=start
@@ -18,18 +18,12 @@
 class Solution
 {
 public:
-    ListNode* reverseList(ListNode* head)
+    ListNode* reverseBetween(ListNode* head, int left, int right)
     {
         ListNode* pre = nullptr;
         ListNode* cur = head;
         ListNode* n;
-        while (cur != nullptr) {
-            n         = cur->next;
-            cur->next = pre;
-            pre       = cur;
-            cur       = n;
-        }
-        return pre;
+        size_t    count = 0;
     }
 };
 // @lc code=end
