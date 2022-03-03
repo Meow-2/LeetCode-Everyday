@@ -23,7 +23,29 @@ public:
         ListNode* pre = nullptr;
         ListNode* cur = head;
         ListNode* n;
-        size_t    count = 0;
+        size_t    count = 1;
+        ListNode* leftPre;
+        ListNode* leftCur;
+        while (cur != nullptr && count < right + 1) {
+            // 遍历链表会改变的只有当前节点，所以先保存当前节点的指针
+            n = cur->next;
+            if (count == left) {
+                leftPre = pre;
+                leftCur = cur;
+            }
+            else if (count > left) {
+                if (count == right) {
+                    if (leftPre)
+                        leftPre->next = cur;
+                    leftCur->next = n;
+                }
+                cur->next = pre;
+            }
+            pre = cur;
+            cur = n;
+            count++;
+        }
+        return left == 1 ? pre : head;
     }
 };
 // @lc code=end
