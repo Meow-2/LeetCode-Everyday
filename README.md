@@ -236,3 +236,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     }
   ```
 - [92-反转链表2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/92-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8%20II.cpp)：记住，在反转链表时需要用到 pre cur n 三个指针，n只是暂时用来存放 next 指针。在遍历链表的过程中，只有cur 指针指向的 node 的内容会发生改变。
+- [86-分隔链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.cpp)、[328-奇偶链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/328-%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8.cpp)：将一个链表拆成两个链表，然后再将两个链表连接起来，需要注意链接后的链表尾部是否指向nullptr
