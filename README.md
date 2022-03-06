@@ -28,7 +28,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
   - 优先队列
 
-  ```
+  ```cpp
   priority_queue<pair<double,pair<int,int>>>q;
   q.push({1*1.0/3,{1,3}});
   q.pop();
@@ -36,7 +36,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
   - 自定义排序
 
-  ```
+  ```cpp
   vector<pair<int, int>> vec;
   sort(vec.begin(), vec.end(), [&](const auto& x, const auto& y) {
           return x.first * y.second < x.second * y.first;
@@ -46,13 +46,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
 - [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：unordered_map使用count(key)的方式检查表内是否含有某个key，如果含有返回1，如果不含有返回0
 
-  ```
+  ```cpp
   unordered_map<char,int> a;
   if(a.count('c')){}
   ```
 - [349-两个数组的交集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/349-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86.cpp)、[350-两个数组的交集2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/350-%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86%20II.cpp)：
 
-  ```
+  ```cpp
   set<int> a;
   map<int,int> b;	   //在map中，key不插入默认是不存在的，find(key)也只会返回end(),但是b[key]会对不存在的key进行创建，且默认value为0
   int key;
@@ -66,21 +66,21 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ```
 - [451-根据字符出现频率排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/451-%E6%A0%B9%E6%8D%AE%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E9%A2%91%E7%8E%87%E6%8E%92%E5%BA%8F.cpp)：
 
-  ```
+  ```cpp
   sort(temp.begin(), temp.end(), [](const pair<char, int>& a, const pair<char, int>& b) {
             return a.second > b.second;
         });
   ```
 - [149-直线上最多的点数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/149-%E7%9B%B4%E7%BA%BF%E4%B8%8A%E6%9C%80%E5%A4%9A%E7%9A%84%E7%82%B9%E6%95%B0.cpp)：将 float 保留10位小数转化为 string，借助ostringstream
 
-  ```
+  ```cpp
   #include <sstream>
   ostringstream s;
   s<<setiosflags(ios::fixed) << setprecision(10)<<3.21;
   ```
 - [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：
 
-  ```
+  ```cpp
   int key;
   set<int> windowNums;
   auto it = windowNums.lower_bound(key);//返回不小于key的第一个元素的迭代器
@@ -94,14 +94,14 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 1. 数组题目一般都可以使用**双指针**的解法,三路快排就是一个很典型的双指针加二分递归
 2. 双指针根据指针起点和移动方式的不同，可以分为快慢指针和对撞指针和**滑动窗口**
 
-   ```
+   ```cpp
    int slow = 0,fast = 0 //快慢指针,[0,slow)维护一个题目要求的数组
    int left = 0,right = arr.size()-1 //对撞指针，当 i = j 或 i < j 时停止循环
    ```
 3. 快慢指针，两个指针起点相同同向移动，速度不同；对撞指针，两个指针一头一尾，相向移动；滑动窗口，两个指针构成一个区间，在数组内滑动
 4. 在搜索时考虑使用二分法
 
-   ```
+   ```cpp
    int i = 0,j = arr.size() - 1;//[i,j]，在二分查找中，i = j 时，相当于[i]，仍旧需要对 i 进行一次判断
    while(i<=j){
      mid = i+(j - i )/2; 	//防止溢出
@@ -137,7 +137,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：
   - 滑动窗口经典题
   - 要比较cur的字符是否覆盖了goal的字符，可以时刻记录cur中value大于goal的key的个数，当个数等于goal的size时，cur 的字符就覆盖了goal，这样比起用循环会快很多
-  - ```
+  - ```cpp
     //1.我们在字符串S中使用双指针中的左右指针技巧，初始化left = right = 0，把索引左闭右开区间[left, right)称为一个「窗口」。
     //2、我们先不断地增加right指针扩大窗口[left, right)，直到窗口中的字符串符合要求（包含了T中的所有字符）。
     //3、此时，我们停止增加right，转而不断增加left指针缩小窗口[left, right)，直到窗口中的字符串不再符合要求（不包含T中的所有字符了）。同时，每次增加left，我们都要更新一轮结果。
@@ -188,14 +188,14 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
   - 如果将key设为浮点数，那么就面临浮点数精度不一定够的情况，可以借助 `<sstream>`将浮点数转为保留10位小数的string:
 
-    ```
+    ```cpp
     ostringstream s;
     s<<setiosflags(ios::fixed) << setprecision(10)
     ```
     但是这样就需要注意，斜率为0和分子为0的情况，这时一个斜率可能代表很多直线，或者斜率不存在无法用浮点数表示
   - 或者使用分母分子形式的string来作为key,那么就一定要是最简形式的分子分母,"分子_分母",这就需要求最大公约数，使用辗转相除法：
 
-    ```
+    ```cpp
     int gcd(int a, int b)   //最大公约数
     {
         return b == 0 ? a : gcd(b, a % b);
@@ -203,7 +203,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     ```
 - [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：使用滑动窗口来解决 k 的问题，然后在滑动窗口内解决 t 的问题，每新加一个数 x，检查窗口内的其他数是否在 [ x - t , x + t ]的范围内，使用一个个遍历的方式会超时，故**将窗口中的数存储在一个有序的数据结构中**使用二分查找的方式来降低时间复杂度，查找的数即为第一个不小于 x - t 的数，若存在这个数，且这个数小于 x + t 则返回 true ：
 
-  ```
+  ```cpp
   set<long> windowNum;
   auto it = windowNum.lower_bound((long)nums[right]-t);
   if (it != windowNum.end() && *it <= (long)nums[right] + t)
@@ -211,7 +211,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ```
   本题需要考虑 x - t 和 x + t 溢出的问题，可以将所有的int改用为long解决，也可以限定[x-t,x+t]的范围如：
 
-  ```
+  ```cpp
   //nums[right] - t 写成如下形式，其最小值也就是INT_MIN
   max(nums[right],INT_MIN + t) - t;
   //nums[right] + t 写成如下形式，其最大值也就是INT_MAX
@@ -220,7 +220,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 ## Linked List-链表:
 - [206-反转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：
 考察对链表指针的运用：
-  ```
+  ```cpp
     ListNode* reverseList(ListNode* head)
     {
         ListNode* pre = nullptr;
@@ -239,7 +239,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [86-分隔链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/86-%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8.cpp)、[328-奇偶链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/328-%E5%A5%87%E5%81%B6%E9%93%BE%E8%A1%A8.cpp)：将一个链表拆成两个链表，然后再将两个链表连接起来，需要注意链接后的链表尾部是否指向nullptr
 - [2-两数相加](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/2-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0.cpp)：将链表转换成整数会溢出，需要模拟加法的过程直接在两个链表上相加，记得最后的进位。
 - [203-移除链表元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/203-%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0.cpp)：本题如果使用一个dummyNode作为第一个节点可以省略许多判断，**链表进行删除操作时考虑使用dummy节点** ，注意`while`语句的写法也不同：
-  ```
+  ```cpp
   ListNode* removeElements(ListNode* head, int val)
   {
       ListNode* preHead = new ListNode(0, head);
@@ -263,7 +263,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [147-对链表进行插入排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/147-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.cpp)：维护一个已排好序的链表，用下一个将排序的元素与链表尾元素比较，如果小于则进入循环寻找该元素的位置。
 - [237-删除链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：只给出了要删除的节点的指针，所以我们只能删除下一个节点，并将当前节点的值改为下一个节点的值。
 - [19-删除链表的倒数第N个节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9.cpp)：可能改动头节点，使用dummy节点。可以遍历两遍链表，也可以使用双指针（固定窗口）的方式：
-  ```
+  ```cpp
   auto*     dummyNode = new ListNode(0, head);
   ListNode* left      = dummyNode;
   ListNode* right     = dummyNode->next;
@@ -285,3 +285,36 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   }
   ```
 - [61-旋转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：先求出倒数N,然后断开，再连成环。
+- [234-回文链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.cpp)：
+  - 使用一个额外的数组来存储，然后对撞指针，时间复杂度为O(n),空间复杂度为O(n)。
+  - 找到中间指针，反转后面的链表，前后遍历一遍，时间复杂度O(n),空间复杂度为O(n)。找到中间指针可以用快慢指针，只需遍历一遍，而计数法需要遍历两遍 。
+  ```cpp
+  //快指针的速度是慢指针的两倍
+  auto* slow = head;
+  auto* fast = head->next;
+  while (fast && fast->next) {
+    fast = fast->next->next;
+    slow = slow->next;
+  }
+  auto* mid = slow;
+
+  ```
+  - 还可以使用哈希法，如果是回文链表的话，正向哈希、反向哈希是一样的，附上一个不太看的明白的 java 解法：
+  ```java
+  class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode t=head;
+		int base = 11, mod = 1000000007;
+    	int left = 0, right = 0, mul = 1;
+        while(t!=null){
+        	left = (int) (((long) left * base + t.val) % mod);
+        	right = (int) ((right + (long) mul * t.val) % mod);
+            mul = (int) ((long) mul * base % mod);
+            t=t.next;
+        }
+        return left==right;
+    }
+  }
+  ```
+ 
+ 
