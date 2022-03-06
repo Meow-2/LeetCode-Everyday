@@ -259,3 +259,29 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [82-删除链表中的重复元素2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II.cpp)：**用dummy节点加cur->next进行while判断能省不少事** 。本题因为需要把重复的元素都删除，如果只删除等于下一个节点的节点的话就会留下一个节点，所以使用一个临时量存储当前要删除的节点的值，即当下一个节点的值等于当前节点时，存储这个值,这样一来即使到了最后一个要删除的节点，因为下一个节点的值不等于当前值，所以这个值也不会改变，然后只要当前节点等于这个值就删除当前节点。在dummy节点下,我说的当前节点实际上是指cur->next 这个节点删除的是 cur->next。
 - [21-合并两个有序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：**使用dummy节点来处理链表的头**。
 - [24-两两交换链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：**当链表的头可能发生改变时，使用dummy节点** 。
+- [25-K个一组翻转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/25-K%20%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：画一个图就很快能解决了，另外需要注意当count == k 时, 下一个 pre 是 reverseHead 。
+- [147-对链表进行插入排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/147-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.cpp)：维护一个已排好序的链表，用下一个将排序的元素与链表尾元素比较，如果小于则进入循环寻找该元素的位置。
+- [237-删除链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：只给出了要删除的节点的指针，所以我们只能删除下一个节点，并将当前节点的值改为下一个节点的值。
+- [19-删除链表的倒数第N个节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9.cpp)：可能改动头节点，使用dummy节点。可以遍历两遍链表，也可以使用双指针（固定窗口）的方式：
+  ```
+  auto*     dummyNode = new ListNode(0, head);
+  ListNode* left      = dummyNode;
+  ListNode* right     = dummyNode->next;
+  int       count     = 1;  // right 和 left 的距离
+  while (right) {
+      if (count != n + 1) {
+          count++;
+          right = right->next;
+      }
+      else {
+          right = right->next;
+          left  = left->next;
+      }
+  }
+  if (count == n + 1) {
+      ListNode* temp = left->next;
+      left->next     = left->next->next;
+      delete temp;
+  }
+  ```
+- [61-旋转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：先求出倒数N,然后断开，再连成环。
