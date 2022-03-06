@@ -23,7 +23,7 @@ public:
     // {
     //     if (!head)
     //         return false;
-    //     vector<int> temp;
+    //     vector temp;
     //     for (auto* i = head; i; i = i->next) {
     //         temp.push_back(i->val);
     //     }
@@ -55,26 +55,20 @@ public:
         // if (count % 2)
         //     mid = mid->next;
         //快慢指针求中间节点
-        auto* slow = head;
-        auto* fast = head->next;
+        ListNode* pre  = nullptr;
+        ListNode* n    = nullptr;
+        auto*     slow = head;
+        auto*     fast = head->next;
         while (fast && fast->next) {
-            fast = fast->next->next;
-            slow = slow->next;
+            n          = slow->next;
+            slow->next = pre;
+            pre        = slow;
+            slow       = n;
+            fast       = fast->next->next;
         }
-        auto*     mid         = slow;
-        auto*     reverseHead = mid->next;
-        auto*     cur         = reverseHead;
-        auto*     pre         = mid;
-        ListNode* n;
-        while (cur) {
-            n         = cur->next;
-            cur->next = cur == reverseHead ? nullptr : pre;
-            pre       = cur;
-            cur       = n;
-        }
-        mid->next   = pre;
-        auto* left  = head;
-        auto* right = mid->next;
+        auto* right = slow->next;
+        slow->next  = pre;
+        auto* left  = fast ? slow : pre;
         while (right) {
             if (left->val != right->val)
                 return false;

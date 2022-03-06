@@ -287,17 +287,23 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [61-旋转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：先求出倒数N,然后断开，再连成环。
 - [234-回文链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.cpp)：
   - 使用一个额外的数组来存储，然后对撞指针，时间复杂度为O(n),空间复杂度为O(n)。
-  - 找到中间指针，反转后面的链表，前后遍历一遍，时间复杂度O(n),空间复杂度为O(n)。找到中间指针可以用快慢指针，只需遍历一遍，而计数法需要遍历两遍 。
+  - 找到中间指针，反转后面的链表，前后遍历一遍，时间复杂度O(n),空间复杂度为O(n)。找到中间指针可以用快慢指针，只需遍历一遍，而计数法需要遍历两遍, 而且使用快慢指针的同时由于慢指针刚好是一个个遍历且在中间停下来，故可以顺便翻转前面的链表。
   ```cpp
   //快指针的速度是慢指针的两倍
-  auto* slow = head;
-  auto* fast = head->next;
+  ListNode* pre  = nullptr;
+  ListNode* n    = nullptr;
+  auto*     slow = head;
+  auto*     fast = head->next;
   while (fast && fast->next) {
-    fast = fast->next->next;
-    slow = slow->next;
+      n          = slow->next;
+      slow->next = pre;
+      pre        = slow;
+      slow       = n;
+      fast       = fast->next->next;
   }
-  auto* mid = slow;
-
+  auto* right = slow->next;
+  slow->next  = pre;
+  auto* left  = fast ? slow : pre;
   ```
   - 还可以使用哈希法，如果是回文链表的话，正向哈希、反向哈希是一样的，附上一个不太看的明白的 java 解法：
   ```java
