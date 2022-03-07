@@ -322,5 +322,6 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     }
   }
   ```
-- [](<++>)<++> 
+- [148-排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：快排不知道为什么超时了，归并排序AC了,两个都是先拆开链表再递归再合并。
+- [143-重排链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8.cpp)：快慢指针找中点，倒转后半部分再合并。
  
