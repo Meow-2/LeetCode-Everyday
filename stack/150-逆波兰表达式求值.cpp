@@ -10,38 +10,23 @@ class Solution
 public:
     int evalRPN(vector<string>& tokens)
     {
+        unordered_map<string, function<int(int, int)>> map = {
+            {"+", [](int a, int b) { return a + b; }},
+            {"-", [](int a, int b) { return a - b; }},
+            {"*", [](int a, int b) { return a * b; }},
+            {"/", [](int a, int b) { return a / b; }}};
         stack<int> stack;
-        for (auto i : tokens) {
-            if (i == "+") {
-                int a = stack.top();
-                stack.pop();
-                int b = stack.top();
-                stack.pop();
-                stack.push(a + b);
+        for (string& s : tokens) {
+            if (!map.count(s)) {
+                stack.push(stoi(s));
             }
-            else if (i == "-") {
-                int a = stack.top();
+            else {
+                int op1 = stack.top();
                 stack.pop();
-                int b = stack.top();
+                int op2 = stack.top();
                 stack.pop();
-                stack.push(b - a);
+                stack.push(map[s](op2, op1));
             }
-            else if (i == "*") {
-                int a = stack.top();
-                stack.pop();
-                int b = stack.top();
-                stack.pop();
-                stack.push(a * b);
-            }
-            else if (i == "/") {
-                int a = stack.top();
-                stack.pop();
-                int b = stack.top();
-                stack.pop();
-                stack.push(b / a);
-            }
-            else
-                stack.push(stoi(i));
         }
         return stack.top();
     }
