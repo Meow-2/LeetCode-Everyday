@@ -341,3 +341,4 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 ## Stack-栈
 - [20-有效的括号](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.cpp)：栈顶元素反应了在嵌套的层次关系中，最近的需要匹配的元素，常用于匹配问题
 - [150-逆波兰表达式求值](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.cpp)：经典的栈，注意栈顶和次栈顶，谁是左操作数？谁是右操作数？
+- [71-简化路径](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84.cpp)：直接在结果字符串上模拟栈，或者先将path分隔，再送栈，再连接。
