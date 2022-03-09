@@ -86,7 +86,20 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   auto it = windowNums.lower_bound(key);//返回不小于key的第一个元素的迭代器
   it = windowNums.upper_bound(key);//返回大于key的第一个元素的迭代器
   ```
-
+- [150-逆波兰表达式求值](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.cpp)：Lambda表达式
+  ```cpp
+  unordered_map<string, function<int(int, int)>> map = {
+            {"+", [](int a, int b) { return a + b; }},
+            {"-", [](int a, int b) { return a - b; }},
+            {"*", [](int a, int b) { return a * b; }},
+            {"/", [](int a, int b) { return a / b; }}};
+  int op1 = stack.top();
+  stack.pop();
+  int op2 = stack.top();
+  stack.pop();
+  stack.push(map[s](op2, op1));
+  ```
+ 
 ---
 
 ## Array-数组：
@@ -324,4 +337,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   ```
 - [148-排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：快排不知道为什么超时了，归并排序AC了,两个都是先拆开链表再递归再合并。
 - [143-重排链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8.cpp)：快慢指针找中点，倒转后半部分再合并。
- 
+
+## Stack-栈
+- [20-有效的括号](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.cpp)：栈顶元素反应了在嵌套的层次关系中，最近的需要匹配的元素，常用于匹配问题
+- [150-逆波兰表达式求值](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.cpp)：经典的栈，注意栈顶和次栈顶，谁是左操作数？谁是右操作数？
