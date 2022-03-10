@@ -23,21 +23,25 @@ public:
     {
         vector<int>       result;
         vector<TreeNode*> stack;
-        vector<int>       stack_result;
-        if (root)
+        TreeNode*         pre = nullptr;
+        while (root) {
             stack.push_back(root);
+            root = root->left;
+        }
         while (!stack.empty()) {
             auto* top = stack.back();
-            stack.pop_back();
-            stack_result.push_back(top->val);
-            if (top->left)
-                stack.push_back(top->left);
-            if (top->right)
-                stack.push_back(top->right);
-        }
-        while (!stack_result.empty()) {
-            result.push_back(stack_result.back());
-            stack_result.pop_back();
+            if (top->right == pre || !top->right) {
+                result.push_back(top->val);
+                stack.pop_back();
+                pre = top;
+            }
+            else {
+                auto* temp = top->right;
+                while (temp) {
+                    stack.push_back(temp);
+                    temp = temp->left;
+                }
+            }
         }
         return result;
     }
