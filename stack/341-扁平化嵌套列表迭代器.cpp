@@ -32,44 +32,81 @@ using namespace std;
  * };
  */
 
+// class NestedIterator
+// {
+// public:
+//     NestedIterator(vector<NestedInteger>& nestedList)
+//     {
+//         vector<NestedInteger> temp;
+//         for (auto i = nestedList.rbegin(); i != nestedList.rend(); i++) {
+//             temp.push_back(*i);
+//         }
+//         while (!temp.empty()) {
+//             auto i = temp.back();
+//             temp.pop_back();
+//             if (i.isInteger())
+//                 res.push_back(i.getInteger());
+//             else {
+//                 auto k = i.getList();
+//                 for (auto j = k.rbegin(); j != k.rend(); j++)
+//                     temp.push_back(*j);
+//             }
+//         }
+//         cur = res.begin();
+//     }
+//
+//     int next()
+//     {
+//         return *cur++;
+//     }
+//
+//     bool hasNext()
+//     {
+//         return cur != res.end();
+//     }
+//
+// private:
+//     vector<int>::iterator cur;
+//     vector<int>           res{};
+// };
+
 class NestedIterator
 {
+private:
+    // pair 中存储的是列表的当前遍历位置，以及一个尾后迭代器用于判断是否遍历到了列表末尾
+    stack<pair<vector<NestedInteger>::iterator, vector<NestedInteger>::iterator>> stk;
+
 public:
     NestedIterator(vector<NestedInteger>& nestedList)
     {
-        vector<NestedInteger> temp;
-        for (auto i = nestedList.rbegin(); i != nestedList.rend(); i++) {
-            temp.push_back(*i);
-        }
-        while (!temp.empty()) {
-            auto i = temp.back();
-            temp.pop_back();
-            if (i.isInteger())
-                res.push_back(i.getInteger());
-            else {
-                auto k = i.getList();
-                for (auto j = k.rbegin(); j != k.rend(); j++)
-                    temp.push_back(*j);
-            }
-        }
-        cur = res.begin();
+        stk.emplace(nestedList.begin(), nestedList.end());
     }
 
     int next()
     {
-        return *cur++;
+        // 由于保证调用 next 之前会调用
+        // hasNext，直接返回栈顶列表的当前元素，然后迭代器指向下一个元素
+        return stk.top().first++->getInteger();
     }
 
     bool hasNext()
     {
-        return cur != res.end();
+        while (!stk.empty()) {
+            auto& p = stk.top();
+            if (p.first == p.second) {   // 遍历到当前列表末尾，出栈
+                stk.pop();
+                continue;
+            }
+            if (p.first->isInteger()) {
+                return true;
+            }
+            // 若当前元素为列表，则将其入栈，且迭代器指向下一个元素
+            auto& lst = p.first++->getList();
+            stk.emplace(lst.begin(), lst.end());
+        }
+        return false;
     }
-
-private:
-    vector<int>::iterator cur;
-    vector<int>           res{};
 };
-
 /**
  * Your NestedIterator object will be instantiated and called as such:
  * NestedIterator i(nestedList);
