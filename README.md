@@ -16,9 +16,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [372-超级次方.cpp](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/372-超级次方.cpp)：
 
   - (x*y)%k = (x%k*y%k)%k;
-  - (a `<sup>`b `</sup>`)%k = ((a%k)`<sup>`b `</sup>`)%k;
-  - **a `<sup>`1234 `</sup>`%k** = ((**a `<sup>`123 `</sup>`%k**)`<sup>`10 `</sup>`%k * a `<sup>`4 `</sup>`%k)%k
-  - 定义一个函数powMod(int a,int b) = a `<sup>`b `</sup>`%k ;(0<=k<10)
+  - (a <sup>b </sup>)%k = ((a%k)<sup>b </sup>)%k;
+  - **a <sup>1234 </sup>%k** = ((**a <sup>123 </sup>%k**)<sup>10 </sup>%k * a <sup>4 </sup>%k)%k
+  - 定义一个函数powMod(int a,int b) = a <sup>b </sup>%k ;(0<=k<10)
 
 ## Forgetfulness Cpp Api：
 
@@ -340,6 +340,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 ## Stack-栈
 - [20-有效的括号](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.cpp)：栈顶元素反应了在嵌套的层次关系中，最近的需要匹配的元素，常用于匹配问题
+ 
 - [150-逆波兰表达式求值](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.cpp)：经典的栈，注意栈顶和次栈顶，谁是左操作数？谁是右操作数？
+ 
 - [71-简化路径](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/71-%E7%AE%80%E5%8C%96%E8%B7%AF%E5%BE%84.cpp)：直接在结果字符串上模拟栈，或者先将path分隔，再送栈，再连接。
+ 
 - [144-二叉树的前序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)、[145-二叉树的中序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)、[94-二叉树的后序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)：使用栈完成，前序好写；中序需要将所有的左节点先压栈，然后弹栈，打印，将该节点的右子节点的所有左子节点压栈循环；后序遍历使用双栈, 第一个栈弹出节点，压入左节点，压入右节点，但是弹栈时不打印，而是将值存入第二个栈，第二个栈弹栈打印，又或者可以使用中序遍历的方式，只是每次pop元素时，记录下该元素，当一个元素要pop时，如果上一个pop的是左子树就要压栈右子树，如果上一个pop的是右子树或右子树为空就可以直接pop；或者有一个更通用的方法，使用一个command栈模拟递归函数调用的过程
+ 
+- [102-二叉树的层序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/breadth-first-search/102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)：双队列，两个指针指向两个队列，一个放当前层一个放下一层，当前层为空，两个指针交换，两个队列为空结束;广度优先搜索，队列中存放（TreeNode*，层数），子节点层数为父节点层数加一;更进一步优化额外空间，双队列可以优化成一个队列，每次出队前计算当前队列的节点数量，出队那么多数量的节点
