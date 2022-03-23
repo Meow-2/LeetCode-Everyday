@@ -22,9 +22,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 ## Forgetfulness Cpp Api：
 
+**不要使用`for(int i= -1;i<vec.size();i++)`，(int) -1 > (unsigned int) size()**
+
 - [458-可怜的小猪](https://github.com/Meow-2/LeetCode-Everyday/blob/main/math/458-可怜的小猪.cpp)：Cpp标准库没有提供自定义底数的log函数，需要时可以这样代替 `loga(b) = log2(b)/log2(a);`
 - [594-最长和谐子序列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/594-最长和谐子序列.cpp)：从小到大排序 `#include <algorithm> std::sort(iterator &begin,iterator &end)`;
-- [786-第K个最小的素数分数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/786-第K个最小的素数分数.cpp):
+- [786-第K个最小的素数分数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/786-第K个最小的素数分数.cpp)、[23-合并K个排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/23-%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)、[347-前K个高频元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/347-%E5%89%8D%20K%20%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.cpp):
 
   - 优先队列
 
@@ -32,6 +34,21 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   priority_queue<pair<double,pair<int,int>>>q;
   q.push({1*1.0/3,{1,3}});
   q.pop();
+
+  //23-合并K个排序链表
+  struct node
+  {
+    int       val;
+    ListNode* nodeAdress;
+    node(int a, ListNode* b) : val(a), nodeAdress(b)
+    {}
+    //优先队列，所以默认是小的在后，而题目里需要小的在前，所以return的时候是大于号
+    bool operator<(const node& a) const
+    {
+        return this->val < a.val;
+    }
+  };
+  priority_queue<node> q;
   ```
 
   - 自定义排序
@@ -41,7 +58,12 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   sort(vec.begin(), vec.end(), [&](const auto& x, const auto& y) {
           return x.first * y.second < x.second * y.first;
       });
+
+  // map 按Key从大到小排序
+  map<int,int,great<int>> mapp;
+
   ```
+
 - [1816-截断句子](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/1816-截断句子.cpp)：删除字符串从index i到末尾的所有字符 `s.erase(i)`
 - [125-验证回文串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/125-%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.cpp)：`isalnum(char)`判断一个字符是否是数字或字母，反转字符串str `string reverse_string(str.rbegin(),str.rend())`, rbegin()的类型是reverse_iterator
 - [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：unordered_map使用count(key)的方式检查表内是否含有某个key，如果含有返回1，如果不含有返回0
@@ -150,7 +172,8 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sliding-window/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp)：
   - 滑动窗口经典题
   - 要比较cur的字符是否覆盖了goal的字符，可以时刻记录cur中value大于goal的key的个数，当个数等于goal的size时，cur 的字符就覆盖了goal，这样比起用循环会快很多
-  - ```cpp
+
+    ```cpp
     //1.我们在字符串S中使用双指针中的左右指针技巧，初始化left = right = 0，把索引左闭右开区间[left, right)称为一个「窗口」。
     //2、我们先不断地增加right指针扩大窗口[left, right)，直到窗口中的字符串符合要求（包含了T中的所有字符）。
     //3、此时，我们停止增加right，转而不断增加left指针缩小窗口[left, right)，直到窗口中的字符串不再符合要求（不包含T中的所有字符了）。同时，每次增加left，我们都要更新一轮结果。
@@ -205,7 +228,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     ostringstream s;
     s<<setiosflags(ios::fixed) << setprecision(10)
     ```
+
     但是这样就需要注意，斜率为0和分子为0的情况，这时一个斜率可能代表很多直线，或者斜率不存在无法用浮点数表示
+
   - 或者使用分母分子形式的string来作为key,那么就一定要是最简形式的分子分母,"分子_分母",这就需要求最大公约数，使用辗转相除法：
 
     ```cpp
@@ -214,6 +239,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return b == 0 ? a : gcd(b, a % b);
     }
     ```
+
 - [220-存在重复元素3](https://github.com/Meow-2/LeetCode-Everyday/blob/main/ordered-map/220-%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20III.cpp)：使用滑动窗口来解决 k 的问题，然后在滑动窗口内解决 t 的问题，每新加一个数 x，检查窗口内的其他数是否在 [ x - t , x + t ]的范围内，使用一个个遍历的方式会超时，故**将窗口中的数存储在一个有序的数据结构中**使用二分查找的方式来降低时间复杂度，查找的数即为第一个不小于 x - t 的数，若存在这个数，且这个数小于 x + t 则返回 true ：
 
   ```cpp
@@ -230,6 +256,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   //nums[right] + t 写成如下形式，其最大值也就是INT_MAX
   min(num[right],INT_MAX - t) + t;
   ```
+
 ## Linked List-链表:
 - [206-反转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/206-%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：
 考察对链表指针的运用：
@@ -338,7 +365,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [148-排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：快排不知道为什么超时了，归并排序AC了,两个都是先拆开链表再递归再合并。
 - [143-重排链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8.cpp)：快慢指针找中点，倒转后半部分再合并。
 
-## Stack-栈
+## Stack-栈 & Queue 队列
 - [20-有效的括号](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/20-%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7.cpp)：栈顶元素反应了在嵌套的层次关系中，最近的需要匹配的元素，常用于匹配问题
  
 - [150-逆波兰表达式求值](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/150-%E9%80%86%E6%B3%A2%E5%85%B0%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC.cpp)：经典的栈，注意栈顶和次栈顶，谁是左操作数？谁是右操作数？
@@ -348,3 +375,15 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [144-二叉树的前序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)、[145-二叉树的中序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)、[94-二叉树的后序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)：使用栈完成，前序好写；中序需要将所有的左节点先压栈，然后弹栈，打印，将该节点的右子节点的所有左子节点压栈循环；后序遍历使用双栈, 第一个栈弹出节点，压入左节点，压入右节点，但是弹栈时不打印，而是将值存入第二个栈，第二个栈弹栈打印，又或者可以使用中序遍历的方式，只是每次pop元素时，记录下该元素，当一个元素要pop时，如果上一个pop的是左子树就要压栈右子树，如果上一个pop的是右子树或右子树为空就可以直接pop；或者有一个更通用的方法，使用一个command栈模拟递归函数调用的过程
  
 - [102-二叉树的层序遍历](https://github.com/Meow-2/LeetCode-Everyday/blob/main/breadth-first-search/102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86.cpp)：双队列，两个指针指向两个队列，一个放当前层一个放下一层，当前层为空，两个指针交换，两个队列为空结束;广度优先搜索，队列中存放（TreeNode*，层数），子节点层数为父节点层数加一;更进一步优化额外空间，双队列可以优化成一个队列，每次出队前计算当前队列的节点数量，出队那么多数量的节点，**这样可以做到逐层操作**
+
+- [279-完全平方数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/breadth-first-search/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.cpp)：dp或者广度优先搜索（队列实现），dp需要写出状态转移方程，而BFS要在脑海中构建图
+ 
+- [127-单词接龙](https://github.com/Meow-2/LeetCode-Everyday/blob/main/breadth-first-search/127-%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99.cpp)：广度优先搜索，维护一个已访问节点的链表，对于以访问的节点就不再入队
+ 
+- [126-单词接龙2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/breadth-first-search/126-%E5%8D%95%E8%AF%8D%E6%8E%A5%E9%BE%99%20II.cpp)：BFS找到最优解（使用一个bool来标记是否找到，若找到，则这一层遍历后就结束），用一个hashmap记录每个单词第一次出现的层数，下一层同样的单词就不入队了;BFS结束后DFS回溯路径，所以需要一个hashmap记录string是从哪一个string来的
+
+- [347-前K个高频元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/347-%E5%89%8D%20K%20%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.cpp)：前多少个xx，这类题目基本都可以用堆做，也就是优先队列;也可以直接用按值排序的map，map按值排序可以将其放入`vector<pair<T,T>>`中使用sort + lamdab表达式来做
+  - Q：为什么不能直接用sort对map进行排序呢？
+  - A：因为sort只能对序列化容器进行排序
+  
+- [23-合并K个排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/23-%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：注意优先队列是大的在前，小的在后，而题目里需要小的在前，所以return的时候是大于号
