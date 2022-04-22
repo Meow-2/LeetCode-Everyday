@@ -387,3 +387,16 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   - A：因为sort只能对序列化容器进行排序
   
 - [23-合并K个排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/23-%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：注意优先队列是大的在前，小的在后，而题目里需要小的在前，所以return的时候是大于号
+
+## Binaray Tree 二叉树 & Recursive 递归
+
+- [111-二叉树的最小深度](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6.cpp):
+    
+    当子节点有一方为空的时候, 以该节点为根的二叉树的最小深度为1
+ 
+- [222-完全二叉树的节点个数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6.cpp):
+    
+    先求出二叉树的层数h (从第0层开始计数), 得到可能的取值范围[1<<h , (1<<(h+1)) - 1], 然后可采用二分搜索的方法, 另为在判断某个编号的节点是否位于
+树上时, 可以采用位运算的方法, 将该节点转换为二进制( h 层的节点会转化为 h + 1 位二进制数, 其最高位为1 , 其余各位从高到低表示从根节点到第 k 个节点的路径，0 表示移动到左子节点，1 表示移动到右子节点), 然后用一个mask循环与来判断每一位是1还是0, 并从根节点按相应的路径移动, 看是否会到达空节点
+ 
+- [404-左叶子之和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/404-%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C.cpp):递归最重要的就是找到递归出口
