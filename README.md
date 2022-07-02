@@ -400,3 +400,34 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 树上时, 可以采用位运算的方法, 将该节点转换为二进制( h 层的节点会转化为 h + 1 位二进制数, 其最高位为1 , 其余各位从高到低表示从根节点到第 k 个节点的路径，0 表示移动到左子节点，1 表示移动到右子节点), 然后用一个mask循环与来判断每一位是1还是0, 并从根节点按相应的路径移动, 看是否会到达空节点
  
 - [404-左叶子之和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/404-%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C.cpp):递归最重要的就是找到递归出口
+
+- [257-二叉树所有路径](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/257-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%89%80%E6%9C%89%E8%B7%AF%E5%BE%84.cpp):深度优先遍历(先序遍历)加字符串存储
+
+- [129-求根节点到叶节点数字之和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/129-%E6%B1%82%E6%A0%B9%E8%8A%82%E7%82%B9%E5%88%B0%E5%8F%B6%E8%8A%82%E7%82%B9%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C.cpp):深度优先遍历(先序遍历)
+
+- [113-路径总和II](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20II.cpp):
+
+- [437-路径总和III](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20III.cpp): 双重深度优先遍历, 先对每个结点深度优先遍历, 再将每个结点做为树的根进行深度优先遍历
+
+    深度优先遍历模板:
+    ```
+    // 注意 dfs 的参数, 带引用的参数和不带引用的参数效果是不同的
+    // res带引用, 所以 dfs 中的 res 是全局的
+    // path 不带引用, dfs 中的 path 是和 dfs 的函数调用栈相关的, path 参数常用于记录根节点到当前节点的路径
+    void dfs(TreeNode* root,int target,T & res, T' path){
+        if (!root)
+            return;
+        //条件判断, 对当前node进行操作
+        ...
+        dfs(root->left, target, res, path);
+        dfs(root->right, target, res, path);
+    }
+    T solution(TreeNode* root,int target){
+        T res;
+        T' path;
+        dfs(root,target,res,path);
+        return res;
+    }
+    ```
+    
+
