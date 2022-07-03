@@ -146,7 +146,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 5. 写不出来就暴力，但有可能会超时，超时也可以试着用if来筛选一些明显不可能的情况
 
 - [11-盛水最多的容器](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/11-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8.cpp)： 这题使用暴力解法会超时（除非用在第二层循环前用 if 过滤掉不可能的情况），使用对撞指针时，应将两个指针想象成容器的两边，若想让当前的容器盛更多的水，那么只有将短的那一边向内部移动才有可能
-- [167-两数之和 2 输入有序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%20II%20-%20%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp)：对撞指针，从比较指针和与target的大小，从而决s定如何逼近两个指针
+- [167-两数之和 2 输入有序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/167-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C%20II%20-%20%E8%BE%93%E5%85%A5%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84.cpp)：对撞指针，从比较指针和与target的大小，从而决定如何逼近两个指针
 - [26-删除有序数组的重复项](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/26-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9.cpp)：快慢指针，慢指针维护题目要求的数组，快指针每扫到一个数，就将该数与慢指针数组的最后一位进行比较
 - [80-删除有序数组中的重复项2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/80-%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E9%A1%B9%20II.cpp)：快慢指针，同上，但快指针应与慢指针数组的最后倒数第二位进行比较
 - [75-颜色分类](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/75-%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB.cpp)：一个快指针两个慢指针，和快速排序相似
@@ -430,4 +430,24 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     }
     ```
     
+## Hot 100
 
+- [4-寻找两个正序数组的中位数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/4-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cpp):
+
+    O(log(m+n))的写法就不追求了, 简单归并, 然后取中位数就好, 注意取中位数和`m+n`的奇偶是有关系的
+
+- [5-最长回文子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/5-%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.cpp):
+ 
+    动态归划的重点就是找到状态转移方程, 然后将所有的状态的值求出来(求dp[n][n]), 之后找到满足题目要求的值, 本题求最大回文子串, 那么我们可以把所有子串作为一个状态, 其值表示是否是回文串, 写状态转移方程时注意边界条件
+    ```cpp
+    vector<vector<bool> dp{n,vector<bool>{n, false}};
+    if (j - i == 0)
+        dp[i][j] = true;
+    if (j - i == 1)
+        dp[i][j] = s[i] == s[j];
+    if (j - i > 1)
+        dp[i][j] = dp [i+1][j-1] && s[i+1]==s[j-1];
+    ```
+    `dp[n][n]` 的值是从 `dp[0][0]` 开始一步步求到 `dp[n][n]`, 双重循环, 第一层是 `2 <= j - i + 1 <= n` , 第二层是 `0 <= i < n`
+
+    另外也可以用中心扩展法来解, 但是注意扩展的时候, 字符串并不是只有 n 个可扩展的节点, 而是 n + n - 1 个, 因为两个节点中间也是一个可扩展节点, 或者说扩展本来就是从两个节点开始的(1. 从一个节点扩展相当于从两个相同节点扩展 2. 从相邻两节点扩展)
