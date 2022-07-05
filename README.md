@@ -221,7 +221,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     1. 如果 num[i] == nums[i-1] 继续, i++
     2. 如果nums[left]前一个值和它一样, 那么说明已经统计过了, 就不统计, 但是如果同时还满足 left = i + 1, 那么是没有统计过的
 
-- [18-四数之和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C.cpp)：四数之和也是一样的降维，同时需要注意整型溢出的问题，再比较 target 时用减法
+- [18-四数之和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/18-%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C.cpp)：四数之和也是一样的降维，同时需要注意整型溢出的问题，在比较 target 时用减法
 - [454-四数相加2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/454-%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%20II.cpp)：如果使用暴力解法，将nums4存在哈希表里，那么时间复杂度是O(n^3)，可以先求出num1、num2所有可能的值存在哈希表里，再遍历num3、num4，那么时间复杂度是O(n^2)
 - [49-字母异位词分组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/49-%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84.cpp)：异位词哈希编码，可以使用排序好的异位词作为key,或者使用每个字母出现的次数的字符串sts表示作为key
   ` string sts = string(26, '0') ; //在字母的对应位上计数`
@@ -303,7 +303,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   }
   ```
 - [82-删除链表中的重复元素2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II.cpp)：**用dummy节点加cur->next进行while判断能省不少事** 。本题因为需要把重复的元素都删除，如果只删除等于下一个节点的节点的话就会留下一个节点，所以使用一个临时量存储当前要删除的节点的值，即当下一个节点的值等于当前节点时，存储这个值,这样一来即使到了最后一个要删除的节点，因为下一个节点的值不等于当前值，所以这个值也不会改变，然后只要当前节点等于这个值就删除当前节点。在dummy节点下,我说的当前节点实际上是指cur->next 这个节点删除的是 cur->next。
-- [21-合并两个有序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：**使用dummy节点来处理链表的头**。
+- [21-合并两个有序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：**使用dummy节点来处理链表的头**, 链表合并时, 循环的条件可以是(l1&&l2), 如果有一方到头了, 直接把另一方剩下的迁过来即可
 - [24-两两交换链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：**当链表的头可能发生改变时，使用dummy节点** 。
 - [25-K个一组翻转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/25-K%20%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：画一个图就很快能解决了，另外需要注意当count == k 时, 下一个 pre 是 reverseHead 。
 - [147-对链表进行插入排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/147-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.cpp)：维护一个已排好序的链表，用下一个将排序的元素与链表尾元素比较，如果小于则进入循环寻找该元素的位置。
@@ -473,4 +473,15 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     2. dp[i-1][j-2] 为 true, 且 matches(i, j-1) 为true;
     3. dp[i-1][j] 为 true, 且 matches(i, j-1) 为true;
 
+- [17-电话号码的字母组合](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/17-%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88.cpp):
 
+    回溯法用于遍历所有情况, 而动态规划往往是遍历所有情况找最优
+
+    回溯法和 dfs 其实是一回事, 但是写法有稍许不同, 两者可以相互转换, 本题提供了回溯和 dfs 两种写法, dfs 相当于把记录 path 的步骤放到了每个递归调用中, 而回溯法在一次递归调用中会多次记录路径, dfs 因此也需要多一个函数参数
+
+    从结构上看, dfs 是对树的节点的遍历, 而回溯则是对树的躯干(层次)的遍历
+    在 path 的记录上, dfs 不能使用引用, 而回溯可以
+
+- [22-括号生成](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/22-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90.cpp):
+
+    枚举所有的情况用回溯法, 注意分支选择条件
