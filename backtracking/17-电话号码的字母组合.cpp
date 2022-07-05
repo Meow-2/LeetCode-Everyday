@@ -46,7 +46,7 @@ public:
     // 单个 index 无法确定一个节点,只能确定是哪一层, 回溯是选择下一步的路径的过程中做事(树的支干)
     // 选择的过程会改变path, 所以需要回溯
     void backtrack(int index, int max_depth, string const& digits, vector<string>& res,
-                   unordered_map<char, string>& dict, string path)
+                   unordered_map<char, string>& dict, string& path)
     {
         if (index == max_depth) {
             res.push_back(path);
