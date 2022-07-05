@@ -25,5 +25,23 @@ public:
         }
         return st.empty() ? true : false;
     }
+    //二刷
+    // #define isleft(ch) (ch == '(' || ch == '{' || ch == '[')
+    // bool isValid(string s)
+    // {
+    //     unordered_map<char, char> dict = {{'}', '{'}, {']', '['}, {')', '('}};
+    //     stack<char>               stc;
+    //     for (auto const& ch : s) {
+    //         if (isleft(ch))
+    //             stc.push(ch);
+    //         else if (!stc.empty() && stc.top() == dict[ch]) {
+    //             stc.pop();
+    //         }
+    //         else {
+    //             return false;
+    //         }
+    //     }
+    //     return stc.empty() ? true : false;
+    // }
 };
 // @lc code=end

@@ -66,5 +66,28 @@ public:
         }
         return dummyNode->next;
     }
+    // 二刷
+    // ListNode* removeNthFromEnd(ListNode* head, int n)
+    // {
+    //     auto cur_node = head;
+    //     for (int i = 0; i < n; i++) {
+    //         if (!cur_node)
+    //             return nullptr;
+    //         cur_node = cur_node->next;
+    //     }
+
+    //     auto dummy_node   = make_unique<ListNode>(-1, head);
+    //     auto del_node_pre = dummy_node.get();
+    //     auto del_node     = head;
+    //     while (cur_node) {
+    //         cur_node     = cur_node->next;
+    //         del_node_pre = del_node;
+    //         del_node     = del_node->next;
+    //     }
+    //     del_node_pre->next = del_node->next;
+    //     delete del_node;
+    //     del_node = nullptr;
+    //     return dummy_node->next;
+    // }
 };
 // @lc code=end
