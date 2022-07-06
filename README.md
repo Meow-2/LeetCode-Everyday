@@ -62,6 +62,10 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   // map 按Key从大到小排序
   map<int,int,great<int>> mapp;
 
+  // 使用lambda表达式的最小堆, 优先队列默认是最大堆, 比较函子是 a < b 为 true , 所以 a 在 b 的下面,
+  // 为了变成最小堆, 让大的在下面就需要为 true 时, 大的在前面
+  auto cmp = [](const ListNode* a, const ListNode* b) { return a->val > b->val; };
+  priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> q(cmp);
   ```
 
 - [1816-截断句子](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Unknown/1816-截断句子.cpp)：删除字符串从index i到末尾的所有字符 `s.erase(i)`
@@ -485,3 +489,22 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [22-括号生成](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/22-%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90.cpp):
 
     枚举所有的情况用回溯法, 注意分支选择条件
+
+- [31-下一个排列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/31-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%8E%92%E5%88%97.cpp):
+
+    草稿纸上模拟, 找规律, 注意边界条件, 如比较大小时数字相等的情况, `index = 0` 或 `index == nums.size() - 1` 的情况
+
+    1. 从数组的后面往前找, 找到第一个递增的序列, 设其下标为 `index - 1` 和 `index` , 也就是说从 `index` 开始, 数组都是递减的
+     
+    2. 再从后往前找, 找到第一个大于`nums[index-1]`的数, 设其下标为 `index1`
+     
+    3. `swap(nums[index1], nums[index - 1])` 
+     
+    4. 反转 `index` 到数组最末尾的数
+
+- [32-最长有效括号](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/32-%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7.cpp):动态规划, 找状态转移方程, 本题只需要 dp[n] 的空间就能解决, 我最开始想的是 dp[n][n], 最后10个用例超时, [LeetCode题解](https://leetcode.cn/problems/longest-valid-parentheses/solution/zui-chang-you-xiao-gua-hao-by-leetcode-solution/)
+
+- [33-搜索旋转排序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84.cpp):
+
+    注意数组有两个部分, 如果`nums[mid]`和`target`在一个部分, 则和普通二分查找没有什么区别, 如果他们不在一个部分, 那么就与普通二分查找不同, 只需要在循环中用两个 if 处理不在一个部分的两种特殊情况即可
+
