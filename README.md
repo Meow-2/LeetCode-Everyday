@@ -126,6 +126,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   stack.push(map[s](op2, op1));
   ```
  
+- [46-全排列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/46-%E5%85%A8%E6%8E%92%E5%88%97.cpp):
+
+
+    erase(pos)	删除 vector 容器中 pos 迭代器指定位置处的元素，并返回指向被删除元素下一个位置元素的迭代器。该容器的大小（size）会减 1，但容量（capacity）不会发生改变。
+
+    iterator insert(pos,n,elem)	在迭代器 pos 指定的位置之前插入 n 个元素 elem，并返回表示第一个新插入元素位置的迭代器
+
 ---
 
 ## Array-数组：
@@ -439,7 +446,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return res;
     }
     ```
-    
+
+--- 
+
 ## Hot 100
 
 - [4-寻找两个正序数组的中位数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/4-%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.cpp):
@@ -507,4 +516,24 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [33-搜索旋转排序数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/33-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84.cpp):
 
     注意数组有两个部分, 如果`nums[mid]`和`target`在一个部分, 则和普通二分查找没有什么区别, 如果他们不在一个部分, 那么就与普通二分查找不同, 只需要在循环中用两个 if 处理不在一个部分的两种特殊情况即可
+
+- [34-在排序数组中查找元素的第一个和最后一个位置](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/34-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE.cpp):
+    
+    两遍二叉搜索, 先搜索右边, 再搜索左边, 或者复杂一点把两次搜索写进一个搜索过程里(增加了代码复杂度, 也不便于理解, 不推荐)
+
+- [39-组合总和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/39-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C.cpp):
+
+    回溯, 先对数组排序, 然后选择路径, 因为允许重复元素, 所以用一个begin_index来标记可以选择的值, 即下标大于begin_index的都是可选的值, 递归结束条件就设为当path里的数字之和大于target时, 若等于target则压入res数组
+
+- [42-接雨水](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/42-%E6%8E%A5%E9%9B%A8%E6%B0%B4.cpp):
+
+    关键在于弄对雨水面积的求法, 按列求每列的雨水面积, 当前列的雨水面积只与其左边最高列和右边最高列有关, 将其高度h与其左右最高中较矮的那一个h'进行比较, 如果 h >= h' , 则当前行无雨水, 如果 h < h' , 则当前行的雨水为 h' - h, 如此一来, 三次遍历即可解, [接雨水-详细通俗的思路分析，多解法](https://leetcode.cn/problems/trapping-rain-water/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by-w-8/)
+
+- [46-全排列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/46-%E5%85%A8%E6%8E%92%E5%88%97.cpp):
+
+    在回溯的过程中, 用一个数组维护路径, 同时可选则的路径也会越来越少, 因此需要对存储可选路径的nums数组进行erase()和insert()
+
+    erase(pos)	删除 vector 容器中 pos 迭代器指定位置处的元素，并返回指向被删除元素下一个位置元素的迭代器。该容器的大小（size）会减 1，但容量（capacity）不会发生改变。
+
+    iterator insert(pos,n,elem)	在迭代器 pos 指定的位置之前插入 n 个元素 elem，并返回表示第一个新插入元素位置的迭代器
 
