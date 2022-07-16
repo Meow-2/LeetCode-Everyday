@@ -537,3 +537,15 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     iterator insert(pos,n,elem)	在迭代器 pos 指定的位置之前插入 n 个元素 elem，并返回表示第一个新插入元素位置的迭代器
 
+- [48-旋转图像](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/48-%E6%97%8B%E8%BD%AC%E5%9B%BE%E5%83%8F.cpp):
+ 
+    从外向内循环, 注意每一层实际上只需要一个临时变量就好了
+
+- [53-最大子数组和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/53-%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84%E5%92%8C.cpp):
+
+    一维的dp, 很常见的一种描述状态转移方程的方法: dp[i]代表以下标i结尾的最大子序列和
+
+
+- [55-跳跃游戏](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.cpp):
+ 
+    此题用dfs、dp超时(dp[i]表示dp[i]能否到达), 使用贪心法求解, 遍历数组(直到索引等于最大索引或超出数组范围)用一个变量记录所能到达的最大索引, 如果最大索引大于等于最后一个元素的索引则能够到达
