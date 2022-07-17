@@ -549,3 +549,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [55-跳跃游戏](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/55-%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F.cpp):
  
     此题用dfs、dp超时(dp[i]表示dp[i]能否到达), 使用贪心法求解, 遍历数组(直到索引等于最大索引或超出数组范围)用一个变量记录所能到达的最大索引, 如果最大索引大于等于最后一个元素的索引则能够到达
+
+- [56-合并区间](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sort/56-%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4.cpp):
+
+    先对数组进行排序, 再对数组进行合并, 用result数组来存储合并结果, 用left和right两个int变量来存储需要压入result的区间的两端, 只需遍历数组一遍即可完成合并
