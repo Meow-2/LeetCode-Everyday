@@ -553,3 +553,15 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [56-合并区间](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sort/56-%E5%90%88%E5%B9%B6%E5%8C%BA%E9%97%B4.cpp):
 
     先对数组进行排序, 再对数组进行合并, 用result数组来存储合并结果, 用left和right两个int变量来存储需要压入result的区间的两端, 只需遍历数组一遍即可完成合并
+
+- [62-不同路径](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/62-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84.cpp):
+
+    使用组合数学的解法或者dp, 对于 mxn 的矩阵, 共需要走 (m - 1 + n - 1) 步, 在其中选 (n - 1) 步向下, 有多少种选法就有多少种路线, 在实现的时候要注意 result 会溢出, 所以使用 long long 来代替 int , 另外不可以使用 `result *= (m - 1 + n - 1 - i) / (i + 1)` 的写法, 这样会导致先计算等号右边的式子, 而右边的式子是无法整除的, 从而导致精度丢失, 应该写成`result = result * (m - 1 + n - 1 - i) / (i + 1)`
+
+- [64-最小路径和](https://github.com/Meow-2/LeetCode-Everyday/tree/main/dynamic-programming):
+
+    dp, dp[i][j] 代表到grid[i][j]的最短路径和, 那么`dp[j][i] = min(dp[j][i - 1] + grid[j][i], dp[j - 1][i] + grid[j][i])`
+
+- [70-爬楼梯](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/70-%E7%88%AC%E6%A5%BC%E6%A2%AF.cpp):
+
+    dp, dp[i] 代表到第i阶楼梯有多少种走法
