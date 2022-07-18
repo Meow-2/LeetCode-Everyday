@@ -580,6 +580,10 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     int right = nums.size()-1;
     // 注意: nums[i] == 2 时, swap(nums[i],nums[right])后, 需要i--, 因为原本的nums[right]还没有判断
     ```
+
+- [76-最小覆盖子串](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/76-%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2.cpp):
+
+    滑动窗口，如果没有覆盖就移动right，覆盖就移动left，找到最小覆盖，然后算长度，用minLength、minLeft、minRight 保留最小字串的left和right
     
 - [78-子集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/78-%E5%AD%90%E9%9B%86.cpp):
 
@@ -588,3 +592,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     <img src="https://s2.loli.net/2022/07/17/7av2XW9UHc4SC5q.png" alt="" width="250">
 
     观察发现所有的path最后都有空, 所以可以事先将path压入, 因而就不需要空元素了
+
+- [79-单词搜索](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/79-%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2.cpp):
+    
+    回溯, 这题用 dfs 的话, hasSearch数组一定不能写成引用(此题用dfs有一个用例会超时,就是board是A,而word是AAAAAAAA...B,可能是我的写法有问题), 回溯的话, 相当于一条路走到头, 再撤回所有操作再选一条新的路走
+
+
