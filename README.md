@@ -565,3 +565,26 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [70-爬楼梯](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/70-%E7%88%AC%E6%A5%BC%E6%A2%AF.cpp):
 
     dp, dp[i] 代表到第i阶楼梯有多少种走法
+
+- [72-编辑距离](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/72-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB.cpp):
+
+    dp, dp[i][j] 代表word1的前i个字母变换到word2的前j个字母所需的最小步骤, dp[0][0]代表空字符串到空字符串, 二维的dp在找上一个状态和下一个状态之间的关系时可以着重关注dp[i][j]周围的的状态, 如dp[i-1][j]、dp[i][j-1]、dp[i-1][j-1]如何到达dp[i][j]
+
+- [75-颜色分类](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/75-%E9%A2%9C%E8%89%B2%E5%88%86%E7%B1%BB.cpp):
+
+    和快排一样的对撞指针
+    ```cpp
+    // [0,left)为0,(right,nums.size()-1]为2
+    int left = 0;
+    // 不要使用auto, auto 会把right自动推导成 unsigned int
+    int right = nums.size()-1;
+    // 注意: nums[i] == 2 时, swap(nums[i],nums[right])后, 需要i--, 因为原本的nums[right]还没有判断
+    ```
+    
+- [78-子集](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/78-%E5%AD%90%E9%9B%86.cpp):
+
+    回溯, 每次做选择之前, 把当前的path压入res中即可, 等价于在数组末尾加入了一个空元素, 每一步选择只能选比index大的元素, 每次选完之后, 下一次只能选比这次选的 index 大的元素, 如果选到了空元素, 则压入res
+
+    <img src="https://s2.loli.net/2022/07/17/7av2XW9UHc4SC5q.png" alt="" width="250">
+
+    观察发现所有的path最后都有空, 所以可以事先将path压入, 因而就不需要空元素了
