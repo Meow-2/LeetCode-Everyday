@@ -597,4 +597,41 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     
     回溯, 这题用 dfs 的话, hasSearch数组一定不能写成引用(此题用dfs有一个用例会超时,就是board是A,而word是AAAAAAAA...B,可能是我的写法有问题), 回溯的话, 相当于一条路走到头, 再撤回所有操作再选一条新的路走
 
+- [84-柱状图中的最大矩形](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/84-%E6%9F%B1%E7%8A%B6%E5%9B%BE%E4%B8%AD%E6%9C%80%E5%A4%A7%E7%9A%84%E7%9F%A9%E5%BD%A2.cpp):
+
+    二维dp超时, 使用单调栈:
+
+    1. 从左往右遍历, 为每个值记录下小于该值的左边最接近的下标, for循环遍历的同时维护一个单调递增栈
+    2. 从右往左遍历, 为每个值记录下小于该值的右边最接近的下标, for循环遍历的同时维护一个单调递增栈
+    3. 从左往右遍历, 为每个值求以其为高的矩形的面积,记录下最大的面积
+    
+    单调栈, 即栈里的所有元素代表的值都是单调的, 当需要求一个数左边/右边 大于/小于自己的第一个数时, 经常使用
+    ```cpp
+    int n = heights.size();
+    // 保存小于heights[i]的左边第一个数的下标
+    vector<int> left_low(n, -1);
+    vector<int> right_low(n, -1);
+    // 栈顶是与当前下标最接近的,小于当前值的下标
+    stack<int> st;
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && heights[st.top()] >= heights[i])
+            st.pop();
+        left_low[i] = st.empty() ? -1 : st.top();
+        st.push(i);
+    }
+    st = stack<int>();
+    for (int i = n - 1; i >= 0; i--) {
+        while (!st.empty() && heights[st.top()] >= heights[i])
+            st.pop();
+        right_low[i] = st.empty() ? n : st.top();
+        st.push(i);
+    }
+    ```
+- [85-最大矩形](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/85-%E6%9C%80%E5%A4%A7%E7%9F%A9%E5%BD%A2.cpp):
+
+    二维dp没解出来, dp[i][j]存的是以(i,j)为右下角的最大面积矩形的左上角坐标, 最后有几个用例答案错误
+    
+    参照地84题, 这题可以转化为直方图求面积, 即以j = 0为y轴, i = 0...m-1 分别为x轴, 当然了需要先将字符矩阵转化为数字矩阵, 并且将每一行的数字都按上一行是否为1进行累积
+    
+    <img src="https://s2.loli.net/2022/07/19/PIEGwmxbWjRSnFi.png" alt="" width="250">
 
