@@ -635,3 +635,20 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     
     <img src="https://s2.loli.net/2022/07/19/PIEGwmxbWjRSnFi.png" alt="" width="250">
 
+- [96-不同的二叉搜索树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.cpp):
+
+    dp , dp[i]表示i个递增的数能组成的二叉搜索树的个数
+
+    dp[i] = f(1) + f(2) + f(3) + ... + f(i) , f(x)表示以x为根, 能组成的二叉搜索树的数量
+
+    f(x) = dp[x-1]*dp[i-x], dp[x-1]表示左子树的个数, dp[i-x]表示右子树的个数
+
+    <img src="https://s2.loli.net/2022/07/19/QvoLnrpE2NDeuRJ.png" alt="" width="250">
+
+- [98-验证二叉搜索树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.cpp):
+
+    二叉搜索树的中序遍历序列一定是递增的, 注意本题节点值的范围, lastNode的初始值应当是LONG_LONG_MIN
+
+- [101-对称二叉树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.cpp):
+
+    递归求解, 参考判断两颗二叉树是否相同的解法
