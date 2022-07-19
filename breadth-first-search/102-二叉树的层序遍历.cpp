@@ -29,7 +29,7 @@ public:
         std::vector<std::vector<int>> result;
         auto*                         thisLayer = new std::queue<TreeNode*>({root});
         auto*                         nextLayer = new std::queue<TreeNode*>();
-        while (!thisLayer->empty() || !nextLayer->empty()) {
+        while (!thisLayer->empty()) {
             auto* node = thisLayer->front();
             thisLayer->pop();
             temp_result.push_back(node->val);
