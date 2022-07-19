@@ -446,7 +446,10 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return res;
     }
     ```
-
+- [230-二叉搜索树中第K小的元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/230-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%AC%ACK%E5%B0%8F%E7%9A%84%E5%85%83%E7%B4%A0.cpp):
+    
+    二叉搜索树的中序遍历序列一定是递增的, 所以中序遍历到第k个返回就可以了
+    
 --- 
 
 ## Hot 100
