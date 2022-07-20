@@ -458,6 +458,14 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     dfs或回溯, 记录遍历到q 、p 的路径, 然后返回路径中最后一个相同部分
 
+- [108-将有序数组转换为二叉搜索树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/108-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.cpp):
+
+    递归分解为子问题
+
+- [450-删除二叉搜索树中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/450-%E5%88%A0%E9%99%A4%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp):
+
+    经典模板, TreeNode* dfs(TreeNode* root, int key)返回删除key后的二叉搜索树的根节点
+
 --- 
 
 ## Hot 100
@@ -663,3 +671,29 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [101-对称二叉树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91.cpp):
 
     递归求解, 参考判断两颗二叉树是否相同的解法
+
+- [105-从前序与中序遍历序列构造二叉树](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/105-%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91.cpp):
+
+    递归构造
+
+    ```
+    [ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+
+    [ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+    ```
+
+- [114-二叉树展开为链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/114-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8.cpp):
+
+    递归分解问题, 空间复杂度为O(1);或者dfs构造一条链表, 然后让root指向新构造的链表
+
+- [121-买卖股票的最佳时机](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/121-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA.cpp):
+
+    求一个值右边最大的值, 可以用dp, dp[i]表示i右边最大的值, 从右往左遍历一遍即可, 然后从左往右遍历一遍, 记录下最大盈利
+
+    本题也可以用单调栈, 单调栈的性质和特点(单调递增栈):
+
+    1. 每个值都会被push
+    2. 栈顶的值为当前值左边第一个小于当前值的值, 如果不是, 在push当前值前要pop, 直到满足
+    3. 可以用来求数组里元素间的最大差值
+
+
