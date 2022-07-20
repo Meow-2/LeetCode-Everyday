@@ -450,6 +450,10 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     
     二叉搜索树的中序遍历序列一定是递增的, 所以中序遍历到第k个返回就可以了
 
+- [235-二叉搜索树的最近公共祖先](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/235-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88.cpp)
+
+    `bool dfs(root,p,q)` 如果以root为根的树存在p或q为子节点,则返回true,对于一个root,如果其`dfs(root->left,p,q)`和`dfs(root->right,p,q)`都为true(注意也要考虑root为p,root->left返回q的情况),则记录root为结果
+
 - [236-二叉树的最近公共祖先](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88.cpp):
 
     dfs或回溯, 记录遍历到q 、p 的路径, 然后返回路径中最后一个相同部分
