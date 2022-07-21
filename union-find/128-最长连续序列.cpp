@@ -3,6 +3,7 @@
  *
  * [128] 最长连续序列
  */
+#include <iterator>
 #include <set>
 #include <unordered_map>
 // #include <unordered_set>
@@ -12,62 +13,40 @@ using namespace std;
 class Solution
 {
 public:
-    // int longestConsecutive(vector<int>& nums)
-    // {
-    //     //数字对应的连续序列长度
-    //     unordered_map<int, int> m;
-    //     set<int>                s;
-    //     int                     res = 0;
-    //     for (auto& i : nums) {
-    //         s.insert(i);
-    //     }
-    //     // 连续序列中最大数保存着连续序列的长度, 其余的数仅表示存不存在
-    //     for (auto& i : s) {
-    //         auto temp = i;
-    //         while (m.count(temp + 1))
-    //             ++temp;
-    //         m[i] = 1;
-    //         if (m.count(i + 1)) {
-    //             if (m.count(i - 1))
-    //                 m[temp] += m[i - 1] + 1;
-    //             else
-    //                 m[temp] += 1;
-    //         }
-    //         else if (m.count(i - 1))
-    //             m[temp] = m[i - 1] + 1;
-    //         res = max(res, m[temp]);
-    //     }
-    //     return res;
-    // }
+    // union-found, 只有当uf[i] = i 时, i 才是根
+    unordered_map<int, int> uf;
+    // union-found, 只有当sz[i] = i 时, size才有效, 才表示 union-found 的大小
+    unordered_map<int, int> sz;
+
+    int find(int x)
+    {
+        // 这里本可以直接写`uf[x] == x ? x : find(uf[x])` , 之所以这么写是为了优化路径
+        return uf[x] == x ? x : uf[x] = find(uf[x]);
+    }
+    int merge(int x, int y)
+    {
+        x = find(x), y = find(y);
+        // 如果根相同, 则什么也不做
+        if (x == y)
+            return sz[x];
+        uf[y] = x;
+        sz[x] = sz[x] + sz[y];
+        return sz[x];
+    }
     int longestConsecutive(vector<int>& nums)
     {
-        //数字对应的连续序列长度, 其实只需要维护序列的端点就好了
-        unordered_map<int, int> m;
-        // unordered_set<int>      s;
-        int res = 0;
+        int ans = nums.size() ? 1 : 0;
         for (auto& i : nums) {
-            if (m.count(i))
+            if (uf.count(i))
                 continue;
-            m[i]       = 1;
-            int length = 1;
-            if (m.count(i - 1) && m.count(i + 1)) {
-                length          = 1 + m[i - 1] + m[i + 1];
-                m[i - m[i - 1]] = length;
-                m[i + m[i + 1]] = length;
-            }
-            else if (m.count(i - 1)) {
-                length          = m[i - 1] + 1;
-                m[i]            = length;
-                m[i - m[i - 1]] = length;
-            }
-            else if (m.count(i + 1)) {
-                length          = m[i + 1] + 1;
-                m[i]            = length;
-                m[i + m[i + 1]] = length;
-            }
-            res = max(res, length);
+            uf[i] = i;
+            sz[i] = 1;
+            if (uf.count(i - 1))
+                ans = max(ans, merge(i - 1, i));
+            if (uf.count(i + 1))
+                ans = max(ans, merge(i, i + 1));
         }
-        return res;
+        return ans;
     }
 };
 // @lc code=end
