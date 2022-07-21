@@ -133,6 +133,10 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     iterator insert(pos,n,elem)	在迭代器 pos 指定的位置之前插入 n 个元素 elem，并返回表示第一个新插入元素位置的迭代器
 
+- [136-只出现一次的数字](https://github.com/Meow-2/LeetCode-Everyday/blob/main/bit-manipulation/136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.cpp):
+
+    cpp的异或运算符`^`
+
 ---
 
 ## Array-数组：
@@ -314,11 +318,17 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   }
   ```
 - [82-删除链表中的重复元素2](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/82-%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%20II.cpp)：**用dummy节点加cur->next进行while判断能省不少事** 。本题因为需要把重复的元素都删除，如果只删除等于下一个节点的节点的话就会留下一个节点，所以使用一个临时量存储当前要删除的节点的值，即当下一个节点的值等于当前节点时，存储这个值,这样一来即使到了最后一个要删除的节点，因为下一个节点的值不等于当前值，所以这个值也不会改变，然后只要当前节点等于这个值就删除当前节点。在dummy节点下,我说的当前节点实际上是指cur->next 这个节点删除的是 cur->next。
+
 - [21-合并两个有序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)：**使用dummy节点来处理链表的头**, 链表合并时, 循环的条件可以是(l1&&l2), 如果有一方到头了, 直接把另一方剩下的迁过来即可
+
 - [24-两两交换链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/24-%E4%B8%A4%E4%B8%A4%E4%BA%A4%E6%8D%A2%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：**当链表的头可能发生改变时，使用dummy节点** 。
+ 
 - [25-K个一组翻转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/25-K%20%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：画一个图就很快能解决了，另外需要注意当count == k 时, 下一个 pre 是 reverseHead 。
+ 
 - [147-对链表进行插入排序](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/147-%E5%AF%B9%E9%93%BE%E8%A1%A8%E8%BF%9B%E8%A1%8C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.cpp)：维护一个已排好序的链表，用下一个将排序的元素与链表尾元素比较，如果小于则进入循环寻找该元素的位置。
+
 - [237-删除链表中的节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9.cpp)：只给出了要删除的节点的指针，所以我们只能删除下一个节点，并将当前节点的值改为下一个节点的值。
+
 - [19-删除链表的倒数第N个节点](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%AC%20N%20%E4%B8%AA%E7%BB%93%E7%82%B9.cpp)：可能改动头节点，使用dummy节点。可以遍历两遍链表，也可以使用双指针（固定窗口）的方式：
   ```cpp
   auto*     dummyNode = new ListNode(0, head);
@@ -342,6 +352,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
   }
   ```
 - [61-旋转链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/61-%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8.cpp)：先求出倒数N,然后断开，再连成环。
+
 - [234-回文链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.cpp)：
   - 使用一个额外的数组来存储，然后对撞指针，时间复杂度为O(n),空间复杂度为O(n)。
   - 找到中间指针，反转后面的链表，前后遍历一遍，时间复杂度O(n),空间复杂度为O(n)。**找到中间指针可以用快慢指针**，只需遍历一遍，而计数法需要遍历两遍, 而且使用快慢指针的同时由于慢指针刚好是一个个遍历且在中间停下来，故可以顺便翻转前面的链表。
@@ -701,3 +712,66 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     递归分解子问题, 同时计算多种情况, 多返回值
 
     对于以任意节点N为根的树都有一条最大路径, 根据路径所在位置的不同, 以N为子节点的根M的最大路径与N的最大路径的关系也不同, 所以为了涵盖所有的情况, 需要在递归求解的时候同时返回以当前根为端点的最大路径(可以和父节点连接)和不以当前根为端点的最大路径(不可以和父节点连接)
+
+- [128-最长连续序列(哈希表解法)](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/128-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97.cpp)、[128-最长连续序列(并查集解法)](https://github.com/Meow-2/LeetCode-Everyday/blob/main/union-find/128-%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97.cpp):
+    
+    本题中重复的数是累赘, 可以先去重, 或者遇到重复的数字直接跳过
+ 
+    哈希表解法很容易想到, 即用一个哈希表存储每个值的最长连续序列长度, 但是维护这个哈希表需要的时间复杂度也是O(n)级别, 所以需要优化, 实际上, 一个连续序列中, 真正有作用的只有其两个端点在哈希表里的值, 所以只需要维护每个序列的两个端点即可;
+
+    另外, 哈希表也有另一种用法: 遍历数组, 以每个数 i 为起点, 检查i+1、i+2、i+3 ...的长度, 这样的时间复杂度是O(n^2)级别, 所以也可以用哈希表优化, 先用哈希表存储整个数组, 然后遍历数组,对每个数i, 先用哈希表检查 i - 1 是否存在于数组中, 如果存在则跳过i , 因为以i为起点的序列一定被以i-1为起点序列所包含了, 然后再检查i+1、i+2、i+3 ...是否在哈希表中
+    
+    并查集解法需要自己实现并查集, 并查集由两个unordered_map uf,sz组成, uf是<元素,元素所在集合的根>, sz是<根,根所在集合的大小>
+
+    这两个集合有如下特点:
+
+    1. 对于根元素root: `uf[root] = root`
+    2. 对于非根元素ele: `uf[ele] = root_of_ele`
+    3. 对于sz中的元素, 只有sz[root]是有效的
+
+    并查集需要定义两个必要的函数find和merge:
+
+    ```cpp
+    // union-found, 只有当uf[i] = i 时, i 才是根
+    unordered_map<int, int> uf;
+    // union-found, 只有当sz[i] = i 时, size才有效, 才表示 union-found 的大小
+    unordered_map<int, int> sz;
+
+    // 返回根
+    int find(int x)
+    {
+        // 这里本可以直接写`uf[x] == x ? x : find(uf[x])` , 之所以这么写是为了优化路径
+        return uf[x] == x ? x : uf[x] = find(uf[x]);
+    }
+
+    //返回合并后集合的大小
+    int merge(int x, int y)
+    {
+        x = find(x), y = find(y);
+        // 如果根相同, 则什么也不做
+        if (x == y)
+            return sz[x];
+        uf[y] = x;
+        sz[x] = sz[x] + sz[y];
+        return sz[x];
+    }
+    ```
+
+- [139-单词拆分](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/139-%E5%8D%95%E8%AF%8D%E6%8B%86%E5%88%86.cpp):
+
+    dp, dp[i]表示s的前i个字符能否被字典表示
+
+    dfs, 超时, 需要加入记忆化, 记忆化就是用一个unordered_map存储dfs参数和其返回值, 当再次遇到相同问题时直接查表得出结果
+
+- [136-只出现一次的数字](https://github.com/Meow-2/LeetCode-Everyday/blob/main/bit-manipulation/136-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.cpp):
+
+    对数组里所以数做异或运算(相同为0,不同为1,且满足交换律和结合律), 最后出现两次的数字都变成了0, 只出现一次的数字会和0进行异或, 得到他自己
+
+- [142-环形链表 II](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/142-%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8%20II.cpp):
+
+    环形链表求环, 如果只需要判断有无环, 仅用slow和fast两个指针即可, 如何需要求环的入口, 则还需要ptr = head指针, 当slow和fast指针相遇后, 同时向后以步长为1移动 ptr 和 slow, 当 slow == ptr 时, ptr 即为环入口, 求环长也只需要沿着环走一遍即可
+
+    <img src="https://s2.loli.net/2022/07/21/85rPeMG6XZ2sqkS.png" alt="" width="250">
+
+    fast == slow 时, 有 `2(a + b) = a + n(b + c) + b`, 故 `a = nb + nc - b = c + (n - 1)(b + c)` , 所以此时让 ptr 和 slow 一起前进, 他们会在环入口相遇
+
