@@ -775,3 +775,35 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     fast == slow 时, 有 `2(a + b) = a + n(b + c) + b`, 故 `a = nb + nc - b = c + (n - 1)(b + c)` , 所以此时让 ptr 和 slow 一起前进, 他们会在环入口相遇
 
+- [146-LRU缓存](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/152-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84.cpp):
+
+    本想用按值排序的map, 但是发现map不支持自定义按值排序, 想要按值排序, 只能把map取出来放到vector里用sort排序
+
+    双向链表+哈希表, 链表头放最常访问的key, 哈希表存储key和key对应的链表地址, 单向链表不方便修改, 所以使用双向链表, 使修改的时间复杂度也降为O(1)
+
+    双向链表注意维护pre, 另外为了防止经常改动head和tail, 可以在首尾加入两个dummyNode, 使用unique_ptr和裸指针的组合防止内存泄漏
+
+- [148-排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/sort/148-%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp):
+
+    归并!归并!归并!链表排序用归并!记住在分成子链表的时候, 要断开, 然后merge两个断开的链表!
+
+- [152-乘积最大子数组](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/152-%E4%B9%98%E7%A7%AF%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84.cpp):
+
+    二维dp, dp[i][j]代表nums[i,...,j]的乘积, 最后两个用例超时
+
+    一维dp, dp[i]代表以nums[i]结尾的不包含0的子序列的最大乘积, 需要分多重情况讨论, 当nums[i]>=0时比较简单求, 对于nums[i]<0的情况:
+    1. 以nums[i]结尾到最近的0(默认往数组最开头添加一个0)有奇数个负数
+    2. 以nums[i]结尾到最近的0有偶数个负数
+
+    最简单的方法是用dp_min[i],dp_max[i]分别记录以nums[i]结尾的子序列的最小乘积和最大乘积, 因为当nums[i]<0时,dp_max[i]可能等于dp_min[i]*nums[i], 可以使用if语句在分情况更新dp_min[i]和dp_max[i], 也可以简单粗暴一点:
+
+    ```cpp
+    for (int i = 1; i < n; i++) {
+        dp_max[i] = max(nums[i], max(dp_max[i - 1] * nums[i], dp_min[i - 1] * nums[i]));
+        dp_min[i] = min(nums[i], min(dp_min[i - 1] * nums[i], dp_max[i - 1] * nums[i]));
+    }
+    ```
+
+- [155-最小栈](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/155-%E6%9C%80%E5%B0%8F%E6%A0%88.cpp):
+
+    最小栈, 用两个同步的栈, 一个栈存值, 另一个栈存每个值对应的栈内的最小值, 我最开始用了一个multiset来排序, 额...面试应该不会给过吧, 另外有一种不需要辅助栈的解法, 即栈里存元素与最小值的差值, 非常巧妙[无额外空间解法](https://leetcode.cn/problems/min-stack/solution/zui-xiao-zhan-by-leetcode-solution/531353/)
