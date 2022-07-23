@@ -807,3 +807,41 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [155-最小栈](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/155-%E6%9C%80%E5%B0%8F%E6%A0%88.cpp):
 
     最小栈, 用两个同步的栈, 一个栈存值, 另一个栈存每个值对应的栈内的最小值, 我最开始用了一个multiset来排序, 额...面试应该不会给过吧, 另外有一种不需要辅助栈的解法, 即栈里存元素与最小值的差值, 非常巧妙[无额外空间解法](https://leetcode.cn/problems/min-stack/solution/zui-xiao-zhan-by-leetcode-solution/531353/)
+
+- [[160-相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/linked-list/160-%E7%9B%B8%E4%BA%A4%E9%93%BE%E8%A1%A8.cpp)]:
+
+    哈希表, 如果要求O(1)的空间复杂度, 可以先求两条链表的长度, 然后长的先走到一样长, 再开始遍历
+
+- [[169-多数元素](https://leetcode.cn/problems/majority-element/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/260dcfdad8c1ad63e749289ff120c5203b020099/bit-manipulation/169-%E5%A4%9A%E6%95%B0%E5%85%83%E7%B4%A0.cpp)]:
+
+    位运算, 如果要用O(1)的时间复杂度, 意味这要用常数的空间保存之前遍历过的值的信息, 那么一种思路是对之前的进行某种运算, 保存运算的结果, 如此以来便容易想到位运算:
+
+    int的长度是32位, 每一位都是由0和1组成, 针对每一位, 统计数组里那一位上 1 的数量, 如果数量大于一半, 则说明 res 的那一位上的是1, 反之为零
+    
+    位运算技巧: 
+
+    1. 取i的第n位:`i & (1 << n)`
+    2. 设i的第n位为1: `i | (1 << n)`
+    3. 设i的第n位为0: `i & (~(1 << n))`
+
+    摩尔投票法: 
+    ```cpp
+    int votes     = 0;
+    int candidate = 0;
+    for (auto i : nums) {
+        if (!votes)
+            candidate = i;
+        votes = i == candidate ? votes + 1 : votes - 1;
+    }
+    ```
+    其核心就是对拼消耗, 想象有一个没有相同元素的数组, 那么candidate会轮流当选, 因为每一个candidate都会被后一数消耗掉, 而对于"数组中的大多数数", 它可以消耗掉任何其他数的当选, 而且还余下一个给自己当选
+        
+- [[198-打家劫舍](https://leetcode.cn/problems/house-robber/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/198-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D.cpp)]:
+    
+    dp[i]表示以nums[i]结尾的最大盗窃序列和
+
+- [[200-岛屿数量](https://leetcode.cn/problems/number-of-islands/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/union-find/200-%E5%B2%9B%E5%B1%BF%E6%95%B0%E9%87%8F.cpp)]:
+
+    并查集, 哈希表的key用string表示, 即grid[i][j]对应的key为"ij"
+
+    DFS解岛屿问题: [岛屿类问题的通用解法、DFS 遍历框架](https://leetcode.cn/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/), Tips: dfs先判断当前是不是1, 不是就return, 对于遍历过的地方可以设置为2, 这样就不会重复遍历
