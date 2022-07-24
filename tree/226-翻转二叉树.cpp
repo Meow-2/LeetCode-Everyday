@@ -23,11 +23,9 @@ public:
     {
         if (!root)
             return nullptr;
-        auto temp   = root->left;
-        root->left  = root->right;
-        root->right = temp;
-        invertTree(root->left);
-        invertTree(root->right);
+        auto temp   = root->right;
+        root->right = invertTree(root->left);
+        root->left  = invertTree(temp);
         return root;
     }
 };
