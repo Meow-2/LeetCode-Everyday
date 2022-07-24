@@ -880,3 +880,19 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[221-最大正方形](https://leetcode.cn/problems/maximal-square/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2.cpp)]:
 
     dp, dp[i][j]表示以matrix[i][j]为右下角的最大面积正方形的边长
+
+- [[226-翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF.cpp)]:
+
+    递归求解
+
+- [[234-回文链表](https://leetcode.cn/problems/palindrome-linked-list/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/234-%E5%9B%9E%E6%96%87%E9%93%BE%E8%A1%A8.cpp)]:
+
+    快慢指针找中间点(先移动快指针再移动慢指针, 根据链表长度的奇偶(isOdd)分情况讨论), 同时慢指针翻转链表, 然后从中间向两端遍历
+
+- [[236-二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88.cpp)]:
+
+    递归求解(注意子树存在p, 自己是q的情况), 或者回溯找出到结点的两条路径, 然后找最后一个相同点
+
+- [[238-除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF.cpp)]:
+
+    从前往后遍历, 从后往前遍历, 同时累积
