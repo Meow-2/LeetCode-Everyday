@@ -28,7 +28,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [594-最长和谐子序列](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/594-最长和谐子序列.cpp)：从小到大排序 `#include <algorithm> std::sort(iterator &begin,iterator &end)`;
 - [786-第K个最小的素数分数](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/786-第K个最小的素数分数.cpp)、[23-合并K个排序链表](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/23-%E5%90%88%E5%B9%B6K%E4%B8%AA%E5%8D%87%E5%BA%8F%E9%93%BE%E8%A1%A8.cpp)、[347-前K个高频元素](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/347-%E5%89%8D%20K%20%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.cpp):
 
-  - 优先队列
+  - 优先队列, 优先自然是大的在前
 
   ```cpp
   priority_queue<pair<double,pair<int,int>>>q;
@@ -59,7 +59,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
           return x.first * y.second < x.second * y.first;
       });
 
-  // map 按Key从大到小排序
+  // map 按Key从大到小排序, map默认是按key从小到大排
   map<int,int,great<int>> mapp;
 
   // 使用lambda表达式的最小堆, 优先队列默认是最大堆, 比较函子是 a < b 为 true , 所以 a 在 b 的下面,
@@ -845,3 +845,38 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     并查集, 哈希表的key用string表示, 即grid[i][j]对应的key为"ij"
 
     DFS解岛屿问题: [岛屿类问题的通用解法、DFS 遍历框架](https://leetcode.cn/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/), Tips: dfs先判断当前是不是1, 不是就return, 对于遍历过的地方可以设置为2, 这样就不会重复遍历
+
+- [[207-课程表](https://leetcode.cn/problems/course-schedule/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/depth-first-search/207-%E8%AF%BE%E7%A8%8B%E8%A1%A8.cpp)]:
+    
+    本题因为要经常访问课程表, 所以要先将其存储在能快速访问的数据结构中, 起初我用的是 `unordered_map<int, unordered_set<int>>`, 其实用`vector<vector<int>>`就好了, 也就是一个"拓扑排序"建图的过程, 因为其实只需要遍历图, 而不需要快速查找节点后面有没有哪一个节点, 所以用`vector`就行, 也更加快速
+ 
+    另外要表示一个节点有没有被访问过, 在数据量小, 且节点能表示成下标的情况下用数组是最快的, 用`unordered_set`需要计算hash值, 是比较慢的, 本题需要存储整个过程已经访问的节点, 和当前dfs已经访问的节点, 用`unordered_set`的话, 就需要两个`unordered_set hasSearch,curPath`, 用`vector<int>`的话, 只需要用两种不同的int值来表示这两种状态就好了
+    
+ 
+- [[208-实现 Trie (前缀树)](https://leetcode.cn/problems/implement-trie-prefix-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/design/208-%E5%AE%9E%E7%8E%B0%20Trie%20(%E5%89%8D%E7%BC%80%E6%A0%91).cpp)]:
+
+    每个节点存储一个bool值和一个数组(哈希表), bool值表示当前节点是不是一个字符串的结尾, 数组的下标从'a'到'z', 指向下一个字母节点
+
+    <img src="https://s2.loli.net/2022/07/24/HgrvmuJYOkcfAQM.png" alt="" width="250">
+
+    另外在实现的过程中遇到了一个小问题: C++中一个引用指向的地址不会改变，改变的是指向地址的内容，然而java中引用指向的地址在变, 所以老老实实用指针迭代而不要用引用迭代
+
+- [[215-数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/215-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E7%AC%ACK%E4%B8%AA%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0.cpp)]:
+
+    STL里的优先队列默认是最大堆, 毕竟是"优先"嘛, map和set是默认小的key在前
+
+    对于本题, 可以用一个大小为k的最小堆来存储, 这样的话, 时间复杂度就是O(nlogk), 用最大堆的话就需要O(nlogn), 一个自定义的heap需要有一下几个部分:
+
+    1. 一个数组, 数组下标表示节点序号(从0到n), 通过序号可以求子节点和父节点
+        
+        1. 对于从1开始的下标i的父节点为i/2, 子节点为2*i、2*i+1
+        2. 对于从0开始的下标i的父节点为(i/2+1)-1 , 子节点为2*i+1、2*i+2
+
+    2. shiftUp()、shiftDown()
+    3. push()、pop()
+
+    使用容量为k的最小堆的话, 先用前k个元素建成最小堆, 然后遇到比堆顶小的nums[i]就不管, 比堆顶大的nums[i]替换掉堆顶然后shiftDown()
+
+- [[221-最大正方形](https://leetcode.cn/problems/maximal-square/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/221-%E6%9C%80%E5%A4%A7%E6%AD%A3%E6%96%B9%E5%BD%A2.cpp)]:
+
+    dp, dp[i][j]表示以matrix[i][j]为右下角的最大面积正方形的边长
