@@ -910,3 +910,18 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     dp[i]表示i的完全平方数的最少数量(即题目所求), 在遍历过程中提前将所有的完全平方数的dp值设为1, 当遍历到这些数时, 将其压入vector, vector里存储的即为i之前所有的完全平方数, 对于非完全平方数的, 则遍历vector中每个元素j, dp[i] = min(dp[i-j]+1)
 
     或者找到每个 i 之前的每个完全平方数, 然后广度优先遍历
+
+    后记: 好吧其实不用那么麻烦
+    ```cpp
+    int numSquares(int n) {
+        vector<int> f(n + 1);
+        for (int i = 1; i <= n; i++) {
+            int minn = INT_MAX;
+            for (int j = 1; j * j <= i; j++) {
+                minn = min(minn, f[i - j * j]);
+            }
+            f[i] = minn + 1;
+        }
+        return f[n];
+    }
+    ```
