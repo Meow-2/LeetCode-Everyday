@@ -896,3 +896,17 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[238-除自身以外数组的乘积](https://leetcode.cn/problems/product-of-array-except-self/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/238-%E9%99%A4%E8%87%AA%E8%BA%AB%E4%BB%A5%E5%A4%96%E6%95%B0%E7%BB%84%E7%9A%84%E4%B9%98%E7%A7%AF.cpp)]:
 
     从前往后遍历, 从后往前遍历, 同时累积
+
+- [[239-滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/heap/239-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.cpp)]:
+
+    用一个优先队列存放滑动窗口中的数(存放一个val和pos构成的pair), 当窗口右移时, push新数, 检查堆顶, 如果堆顶元素的pos不属于当前窗口,则pop它, 直到堆顶的pos属于当前窗口, 以后有时间可以看看双向队列O(n)的解法
+
+- [[240-搜索二维矩阵](https://leetcode.cn/problems/search-a-2d-matrix-ii/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/240-%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5%20II.cpp)]:
+
+    用了非常low的递归算法, 然后当target在三个角落里会超时, 可能是代码bug, 不想调了, 本来就感觉这个递归写的还不如直接遍历...答案是分行二分查找, 用了标准库的算法`lower_bound(row.begin(), row.end(), target)`, 以后有时间可以看看Z形查找
+
+- [[279-完全平方数](https://leetcode.cn/problems/perfect-squares/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/279-%E5%AE%8C%E5%85%A8%E5%B9%B3%E6%96%B9%E6%95%B0.cpp)]:
+
+    dp[i]表示i的完全平方数的最少数量(即题目所求), 在遍历过程中提前将所有的完全平方数的dp值设为1, 当遍历到这些数时, 将其压入vector, vector里存储的即为i之前所有的完全平方数, 对于非完全平方数的, 则遍历vector中每个元素j, dp[i] = min(dp[i-j]+1)
+
+    或者找到每个 i 之前的每个完全平方数, 然后广度优先遍历
