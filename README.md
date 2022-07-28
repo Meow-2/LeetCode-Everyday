@@ -925,3 +925,25 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
         return f[n];
     }
     ```
+
+- [[283-移动零](https://leetcode.cn/problems/move-zeroes/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/283-%E7%A7%BB%E5%8A%A8%E9%9B%B6.cpp)]:
+
+    标记非零元素和零的分界线, 每当遇到非零元素就将其与分界线后的第一个零元素交换
+
+- [[287-寻找重复数](https://leetcode.cn/problems/find-the-duplicate-number/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/two-pointers/287-%E5%AF%BB%E6%89%BE%E9%87%8D%E5%A4%8D%E6%95%B0.cpp)]:
+
+    本题的解法虽然很, 但每种都过于巧妙, 不是很容易想出来
+
+    1. 二分查找, target的范围是[1, n], 可以对这个区间进行二分查找, `left=1,right=n,mid=left+(right-left)>>1`, 但二分查找的前提能根据mid来确定下一个[left, right], 这一点很难想到解决办法, 可以定义 cnt[i] 表示 nums 数组中小于等于 i 的数有多少个，[1, target−1]里的所有数满足 cnt[i]≤i，[target, n] 里的所有数满足 cnt[i]>i，从而就可以知道当前的mid在target的左边还是右边, 进而进行二分查找, 这里还需要关注停止条件, 当 left>right 时会停止(且一定是因为right = mid - 1), 此时上一个 [left, right] 的 mid 即为 target
+    2. 位运算, 求 target 的每一位, 那么nums的第i位上共有 x 个 1 ,设 [1, n] 的第i位上共有 y 个 1, 只有当 x > y 时, target的第 i 位上才可能是1
+    3. 快慢指针, 将数组抽象成环型链表, target 就是环的入口; 快指针和慢指针一定会在环上相遇, 相遇后, 令一个 ptr 从链表头开始走, 当slow和 ptr 相遇时, 相遇的节点就是环的入口; 有疑惑可以参见这个评论[i=nums[i]怎么跳出去](https://leetcode.cn/problems/find-the-duplicate-number/solution/xun-zhao-zhong-fu-shu-by-leetcode-solution/1356666)
+     
+- [[297-二叉数的序列化与反序列化](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/297-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.cpp)]:
+
+    序列化成层序遍历有些麻烦, 直接序列化成先序遍历就好了, 使用istringsteam, 用空格分隔每个字符串, nullptr 用 # 表示, 反序列化时可以方便地从 istringsteam 中取出当初放进去的每个 string
+
+- [[300-最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/)|[解答]()]:
+
+    动态规划, dp[i] 表示以 nums[i] 结尾的最长子序列, 需要 O(n^2) 的时间复杂度, 因为对于每个 dp[i] 要比较 i 之前所以小于 nums[i] 的数
+
+    还有一种贪心+二分搜索的办法, 实在不想看了, 附链接吧[贪心+二分搜索](https://leetcode.cn/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/)
