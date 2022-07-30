@@ -947,3 +947,84 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     动态规划, dp[i] 表示以 nums[i] 结尾的最长子序列, 需要 O(n^2) 的时间复杂度, 因为对于每个 dp[i] 要比较 i 之前所以小于 nums[i] 的数
 
     还有一种贪心+二分搜索的办法, 实在不想看了, 附链接吧[贪心+二分搜索](https://leetcode.cn/problems/longest-increasing-subsequence/solution/zui-chang-shang-sheng-zi-xu-lie-by-leetcode-soluti/)
+
+- [[301-删除无效的括号](https://leetcode.cn/problems/remove-invalid-parentheses/)|[解答]()]:
+
+    暴力搜索所有的正确的最长解(删除最少的括号意味着剩余的字符串是最长的合法字符串), 那么如何判断一个解是否正确呢?
+
+    1. 左右括号的数量是相等的
+    2. 用score记录左括号的数量, 如果是'(', score++, 如果是')', score--
+    3. 对于一个子串, score=0 的话就是合格的
+   
+    我们使用一个set<string>来存储题目的答案, 用string res来记录当前判断的字符串, 可以这样看, res最开始时是"", 对于字符串s的每一个字符ch, 我们只有两种选择, 将ch加入res, 舍弃res, 因而可以依此来进行dfs或回溯
+
+    优化: 加入枝剪, score的最大值为s中'('和')'数量的最小值, 当score超过了这个值, 就舍弃
+
+    C++代码参考: [【宫水三叶】将括号的「是否合法」转化为「数学判定」](https://leetcode.cn/problems/remove-invalid-parentheses/solution/yi-fen-zhong-nei-kan-dong-jiang-gua-hao-aya6k/1199550)
+
+- [[309-最佳买卖股票时机含冷冻期](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/309-%E6%9C%80%E4%BD%B3%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E6%97%B6%E6%9C%BA%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F.cpp)]:
+
+    分状态dp , dp[i]表示第i天**结束后**的状态, 是第i天结束后最大的累积收益, 这个最大收益跟第i天的操作相关, 但是这么简单的dp定义并不能让我们写出状态转移方程, 尝试让dp状态携带更多信息:
+
+    1. dp[i][0] 第i天结束后持有股票-> 可能是第i天买的, 也可是之前买的
+        dp[i][0] = max(dp[i-1][2] - price[i], dp[i-1][0])
+    2. dp[i][1] 第i天结束后不持有股票, 且处于冷冻期, 说明是第i天卖的, 第i+1天处于冷冻期
+        dp[i][1] = dp[i-1][0] + price[i]
+    3. dp[i][2] 第i天结束后不持有股票, 且不处于冷冻期, 第i天结束后不处于冷冻期, 所以第i天可以是冷冻期, 也就是第i-1天结束后处于冷冻期    
+        dp[i][2] = max(dp[i-1][2], dp[i-1][1])
+    
+    分这三种情况后, dp状态就可以覆盖股票买卖的所有情况了,同时收益可以这样看待, 最开始收益是r = 0, 当买入股票时, 收益r = r - price0,当卖出股票时, 收益r = r + price1, dp[prices.size()-1][1]就是最大收益
+
+- [[312-戳气球](https://leetcode.cn/problems/burst-balloons/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/312-%E6%88%B3%E6%B0%94%E7%90%83.cpp)]:
+
+    回溯法, 每次选一个气球戳破, 这样回溯的话, 子问题之间不是相互独立的, 做记忆化的代码也不是很会写, 因为nums会变化, 每个nums对应一个最大值解的话, 就需要对nums数组进行哈希编码, 可能有些麻烦, 所以逆向思考, 把问题转化成易于记忆化的, 相互独立的子问题
+
+    可以向数组两端插入两个哨兵气球, nums[-1] = 1, nums[n] = 1, 假设最后一个被戳破的气球的下标为k, 那么就可以变成(-1,k)和(k,n)的两个子问题, 然后就可以使用回溯或区间dp来解, 就是说dp[i][j] = dp[i][k] + nums[i]*nums[k]*nums[j] + dp[k][j]
+
+- [[322-零钱兑换](https://leetcode.cn/problems/coin-change/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/322-%E9%9B%B6%E9%92%B1%E5%85%91%E6%8D%A2.cpp)]:
+
+    dp, dp[i]表示凑齐i块钱需要的最少硬币数量, 对于每一个dp[i], 遍历数组coins, dp[i] = min(dp[i-j] + 1)
+
+    bfs + 记忆化, 队列里存的是当前积累的总数和当前层数的pair, 为了防止溢出, 可以用 long long 存当前积累的总数, 或者使用减法, 即队列里存当前剩余需要凑的数量和当前层数的pair
+
+    ```cpp
+    unordered_map<long long, int> m;
+    queue<pair<long long, int>>   q;
+    q.push({0, 0});
+    while (!q.empty()) {
+        for (int i = 0; i < q.size(); i++) {
+            auto f = q.front();
+            q.pop();
+            for (auto i : coins) {
+                long long temp  = f.first + i;
+                int  layer = f.second + 1;
+                if (m.count(temp) && m[temp] <= layer)
+                    continue;
+                if (temp == amount)
+                    return f.second + 1;
+                if (temp < amount) {
+                    q.push({temp, layer});
+                    m[temp] = layer;
+                }
+            }
+        }
+    }
+    ```
+
+- [[337-打家劫舍III](https://leetcode.cn/problems/house-robber-iii/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/depth-first-search/337-%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D%20III.cpp)]:
+
+    递归函数返回一个pair, pair<打劫当前节点的最大值, 不打劫当前节点的最大值>, 另外可以发现, 每一个节点都对应一个返回值, 故也可以不用返回值的方式, 使用两个 unordered_map<TreeNode*,int> 来存储每个节点的返回值
+
+    注意当不打劫当前节点时, 可以选择不打劫左子树和右子树的根节点, 而去选择更优的策略
+
+- [[338-比特位计数](https://leetcode.cn/problems/counting-bits/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/bit-manipulation/338-%E6%AF%94%E7%89%B9%E4%BD%8D%E8%AE%A1%E6%95%B0.cpp)]:
+
+    取n的第i位: n & (1 << i)
+
+- [[347-前K个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/hash-table/347-%E5%89%8D%20K%20%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0.cpp)]:
+
+    哈希表计数, 然后用 size = k 最小堆来筛选前 k 大的元素
+
+- [[394-字符串解码](https://leetcode.cn/problems/decode-string/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.cpp)]:
+
+    简单栈, 栈可以直接用 string 代替, 可以省去复制的开销
