@@ -19,28 +19,27 @@
 class Solution
 {
 public:
-    void dfs(TreeNode* root, long long targetSum, int& res)
+    int  res{0};
+    void dfs(TreeNode* root, long long targetSum)
     {
         if (!root)
             return;
-        targetSum -= root->val;
-        if (targetSum == 0)
-            res += 1;
-        dfs(root->left, targetSum, res);
-        dfs(root->right, targetSum, res);
+        if (root->val == targetSum)
+            res++;
+        dfs(root->left, targetSum - root->val);
+        dfs(root->right, targetSum - root->val);
     }
-    void dfsEveryNode(TreeNode* root, long long targetSum, int& res)
+    void dfsEveryNode(TreeNode* root, long long targetSum)
     {
         if (!root)
             return;
-        dfs(root, targetSum, res);
-        dfsEveryNode(root->left, targetSum, res);
-        dfsEveryNode(root->right, targetSum, res);
+        dfs(root, targetSum);
+        dfsEveryNode(root->left, targetSum);
+        dfsEveryNode(root->right, targetSum);
     }
     int pathSum(TreeNode* root, int targetSum)
     {
-        int res = 0;
-        dfsEveryNode(root, targetSum, res);
+        dfsEveryNode(root, targetSum);
         return res;
     }
 };
