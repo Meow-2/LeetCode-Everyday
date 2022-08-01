@@ -1028,3 +1028,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[394-字符串解码](https://leetcode.cn/problems/decode-string/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/394-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A7%A3%E7%A0%81.cpp)]:
 
     简单栈, 栈可以直接用 string 代替, 可以省去复制的开销
+
+- [[399-除法求值](https://leetcode.cn/problems/evaluate-division/)|[解答]()]:
+
+- [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答]()]:
+
+- [[416-分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)|[解答]()]:
+
+- [[437-路径总和III](https://leetcode.cn/problems/path-sum-iii/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20III.cpp)]:
+
+    在dfs基础上以每个节点为root进行dfs, 为了防止溢出使用long long
