@@ -1031,6 +1031,7 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
 - [[399-除法求值](https://leetcode.cn/problems/evaluate-division/)|[解答]()]:
 
+    
 - [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答]()]:
 
 - [[416-分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)|[解答]()]:
@@ -1038,3 +1039,19 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[437-路径总和III](https://leetcode.cn/problems/path-sum-iii/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20III.cpp)]:
 
     在dfs基础上以每个节点为root进行dfs, 为了防止溢出使用long long
+
+- [[448-找到所有数组中消失的数字](https://leetcode.cn/problems/find-all-numbers-disappeared-in-an-array/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/448-%E6%89%BE%E5%88%B0%E6%89%80%E6%9C%89%E6%95%B0%E7%BB%84%E4%B8%AD%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97.cpp)]:
+
+    遍历数组, 用一个哈希表记录每个值的存在情况, 然后从[1,n]看每个值是否存于哈希表, 为了优化空间复杂度, 可以将nums数组用作哈希表, 为了在用做哈希表的过程中, 不影响取值, 可以使用`+n`、取模的方式来分别表示某数存在和还原该index的原值
+
+- [[461-汉明距离](https://leetcode.cn/problems/hamming-distance/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/bit-manipulation/461-%E6%B1%89%E6%98%8E%E8%B7%9D%E7%A6%BB.cpp)]:
+
+    位运算, (x & (1 << i)) ^ (y & (1 << i))
+
+- [[494-目标和](https://leetcode.cn/problems/target-sum/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/depth-first-search/494-%E7%9B%AE%E6%A0%87%E5%92%8C.cpp)]:
+
+    dfs记忆化, 哈希表存储string和int, string 为pos和target的编码
+
+- [[538-把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/538-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91.cpp)]:
+    
+    优先右子树的中序遍历
