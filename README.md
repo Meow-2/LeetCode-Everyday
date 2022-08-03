@@ -1055,3 +1055,21 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[538-把二叉搜索树转换为累加树](https://leetcode.cn/problems/convert-bst-to-greater-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/538-%E6%8A%8A%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BD%AC%E6%8D%A2%E4%B8%BA%E7%B4%AF%E5%8A%A0%E6%A0%91.cpp)]:
     
     优先右子树的中序遍历
+
+- [[543-二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/543-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84.cpp)]:
+
+    多种思路: 
+        1. DFS遍历每个节点, 计算过每个节点的最大直径, 用一个公共遍历ans保存最大直径, 即在求高的过程中算出该点的直径并与ans比较
+        2. 递归求解子问题, 用tuple<过根的最大直径, 不过根的最大直径, 高>来返回子问题的解
+
+- [[560-和为k的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/560-%E5%92%8C%E4%B8%BA%20K%20%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84.cpp)]:
+
+    前缀和, 即用一个哈希表存储nums[0,i)的和pre和pre的个数, 时间复杂度为O(n), 我们寻找以nums[i]结尾的, 和为target的子数组, 如果哈希表内存在pre = sum[i] - k, 则res += pre的个数
+
+- [[581-最短无序连续子数组](https://leetcode.cn/problems/shortest-unsorted-continuous-subarray/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/581-%E6%9C%80%E7%9F%AD%E6%97%A0%E5%BA%8F%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84.cpp)]:
+
+    单调栈, 遇到小的值就pop, 记录下pop的最小的下标就是左边界, 单调栈里只需要记录元素的下标就可以了
+
+- [[617-合并二叉树](https://leetcode.cn/problems/merge-two-binary-trees/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91.cpp)]:
+ 
+    递归构造二叉树
