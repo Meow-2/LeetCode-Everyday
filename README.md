@@ -1029,8 +1029,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     简单栈, 栈可以直接用 string 代替, 可以省去复制的开销
 
-- [[399-除法求值](https://leetcode.cn/problems/evaluate-division/)|[解答]()]:
+- [[399-除法求值](https://leetcode.cn/problems/evaluate-division/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/union-find/399-%E9%99%A4%E6%B3%95%E6%B1%82%E5%80%BC.cpp)]:
 
+    带权并查集, 重点在于find的时候更新权值
+
+    两个哈希表, uf<string, string>, weight<string, double>, uf代表string和其父亲的映射, weight代表string和father_string/string的映射 , 对于 a/b = 3, uf[b] = a, uf[a] = a, weight[b] = 3, weight[a] = 1
     
 - [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答]()]:
 
