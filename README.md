@@ -1034,7 +1034,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
     
 - [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答]()]:
 
-- [[416-分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)|[解答]()]:
+- [[416-分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86.cpp)]:
+
+    先将问题转换成, 能否在 nums 里凑出nums数字总和 sum 的一半 target
+
+    dfs记忆化, dfs有两种思路, 一种把选取过程完全看作01背包问题, 对于每个数都有选和不选两种情况, 另一种思路是每次选择只能在有限的集合中选一个下标作为开始, 每次选择的下标只能比上一次选择的下标更大, 具体看代码
+
+    二维dp, dp[i][j]表示nums[0,i]能否凑出j
 
 - [[437-路径总和III](https://leetcode.cn/problems/path-sum-iii/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/437-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%20III.cpp)]:
 
@@ -1073,3 +1079,13 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 - [[617-合并二叉树](https://leetcode.cn/problems/merge-two-binary-trees/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/tree/617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91.cpp)]:
  
     递归构造二叉树
+
+- [[621-任务调度器](https://leetcode.cn/problems/task-scheduler/)|[解答]()]:
+
+- [[647-回文子串](https://leetcode.cn/problems/palindromic-substrings/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/647-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.cpp)]:
+
+    区间dp
+ 
+- [[739-每日温度](https://leetcode.cn/problems/daily-temperatures/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6.cpp)]:
+
+    单调递减栈, 当遇到更高温时, 弹栈, 并计算天数
