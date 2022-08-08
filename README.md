@@ -1035,7 +1035,9 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
 
     两个哈希表, uf<string, string>, weight<string, double>, uf代表string和其父亲的映射, weight代表string和father_string/string的映射 , 对于 a/b = 3, uf[b] = a, uf[a] = a, weight[b] = 3, weight[a] = 1
     
-- [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答]()]:
+- [[406-根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/greedy/406-%E6%A0%B9%E6%8D%AE%E8%BA%AB%E9%AB%98%E9%87%8D%E5%BB%BA%E9%98%9F%E5%88%97.cpp)]:
+
+    先按身高进行排序从大到小进行排序(若身高相同, k小的在前面), 然后对每个人按k值进行插入即可, 按身高排序后, 每次插入的都是比之前矮的, 因而不会影响到之前已经排好的顺序
 
 - [[416-分割等和子集](https://leetcode.cn/problems/partition-equal-subset-sum/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/416-%E5%88%86%E5%89%B2%E7%AD%89%E5%92%8C%E5%AD%90%E9%9B%86.cpp)]:
 
@@ -1083,7 +1085,11 @@ LeetCode每日一题个人刷题记录,C++解题,始于2021.11.19
  
     递归构造二叉树
 
-- [[621-任务调度器](https://leetcode.cn/problems/task-scheduler/)|[解答]()]:
+- [[621-任务调度器](https://leetcode.cn/problems/task-scheduler/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/array/621-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E5%99%A8.cpp)]:
+
+     模拟, 使用两个数组, 分别存储每种任务下次可执行的时间和每种任务剩余的数量, 每一个时间片从可执行的任务中选择剩余数量最多的任务执行即可, 直到所有任务执行完毕
+     
+     另外一种方法([构造解法](https://leetcode.cn/problems/task-scheduler/solution/ren-wu-diao-du-qi-by-leetcode-solution-ur9w/))靠脑力, 就不细说了
 
 - [[647-回文子串](https://leetcode.cn/problems/palindromic-substrings/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/647-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2.cpp)]:
 
