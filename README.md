@@ -45,7 +45,7 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
     //优先队列，所以默认是小的在后，而题目里需要小的在前，所以return的时候是大于号
     bool operator<(const node& a) const
     {
-        return this->val < a.val;
+        return this->val > a.val;
     }
   };
   priority_queue<node> q;
@@ -59,7 +59,7 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
           return x.first * y.second < x.second * y.first;
       });
 
-  // map 按Key从大到小排序, map默认是按key从小到大排
+  // 这里的 map 按Key从大到小排序, 而 map 默认是按key从小到大排
   map<int,int,great<int>> mapp;
 
   // 使用lambda表达式的最小堆, 优先队列默认是最大堆, 比较函子是 a < b 为 true , 所以 a 在 b 的下面,
@@ -566,6 +566,7 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
 - [34-在排序数组中查找元素的第一个和最后一个位置](https://github.com/Meow-2/LeetCode-Everyday/blob/main/binary-search/34-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%92%8C%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E4%BD%8D%E7%BD%AE.cpp):
 
   两遍二叉搜索, 先搜索右边, 再搜索左边, 或者复杂一点把两次搜索写进一个搜索过程里(增加了代码复杂度, 也不便于理解, 不推荐)
+  后记: 题目要求搜索左右边界, 那么二叉搜索的退出条件就不再是 num[mid] == target, 如果是搜索左边界, num[mid] >= target 时, right = mid-1, 退出条件是 right < left , 而过程中需要持续记录 mid 的值, 当 right < left 时, 最后一个 mid 就是要找的边界, 然后通过判断 num[mid] == target 来判断是否找到
 
 - [39-组合总和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/backtracking/39-%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8C.cpp):
 
@@ -603,7 +604,7 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
 
   使用组合数学的解法或者 dp, 对于 mxn 的矩阵, 共需要走 (m - 1 + n - 1) 步, 在其中选 (n - 1) 步向下, 有多少种选法就有多少种路线, 在实现的时候要注意 result 会溢出, 所以使用 long long 来代替 int , 另外不可以使用 `result *= (m - 1 + n - 1 - i) / (i + 1)` 的写法, 这样会导致先计算等号右边的式子, 而右边的式子是无法整除的, 从而导致精度丢失, 应该写成`result = result * (m - 1 + n - 1 - i) / (i + 1)`
 
-- [64-最小路径和](https://github.com/Meow-2/LeetCode-Everyday/tree/main/dynamic-programming):
+- [64-最小路径和](https://github.com/Meow-2/LeetCode-Everyday/blob/main/dynamic-programming/64-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C.cpp):
 
   dp, dp[i][j] 代表到 grid[i][j]的最短路径和, 那么`dp[j][i] = min(dp[j][i - 1] + grid[j][i], dp[j - 1][i] + grid[j][i])`
 
