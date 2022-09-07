@@ -1118,3 +1118,56 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
 - [[739-每日温度](https://leetcode.cn/problems/daily-temperatures/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/stack/739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6.cpp)]:
 
   单调递减栈, 当遇到更高温时, 弹栈, 并计算天数
+
+## 剑指 Offer
+
+2022.9.8 重新开始, 拾回手感
+
+- [[剑指 Offer 07. 重建二叉树](https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/)|[解答]()]:
+
+  重建二叉树, 构建二叉树直接考虑递归构建, 即分为三步, 构建 root , root->left = 递归构建左子树, root->right = 递归构建右子树
+  另外为了快速确定 先序遍历的根 在 中序遍历数组中的位置,
+  可以先用哈希表存储中序遍历数组的元素位置
+
+- [[剑指 Offer 09. 用两个栈实现队列](https://leetcode.cn/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)|[解答]()]:
+
+  一个栈用于入队, 当要出队时, 把入队的栈全部弹出, 全部入第二个栈,
+  就完成了栈的逆序, 然后出栈
+
+- [[剑指 Offer 10- I. 斐波那契数列](https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/)|[解答]()]:
+
+  dfs+记忆化/dp, 记忆化改 dp 很简单, 只需 mem 改名为 dp,
+  然后观察 dfs 的参数是怎么变的
+
+- [[剑指 Offer 11. 旋转数组的最小数字](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)|[解答]()]:
+
+  值得学习的二分法, 用于求两个不同段的分界线, [此题的二段性为何会失效](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/by-ac_oier-p751/)
+
+  ```cpp
+    int minArray(vector<int>& numbers)
+    {
+        int left  = 0;
+        int right = numbers.size() - 1;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (numbers[mid] < numbers[right]) {
+                right = mid;
+            }
+            else if (numbers[mid] > numbers[right]) {
+                left = mid + 1;
+            }
+            else {
+                // 用于恢复二段性
+                right -= 1;
+            }
+        }
+        return numbers[left];
+    }
+  ```
+
+- [[剑指 Offer 12. 矩阵中的路径](https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof/)|[解答]()]:
+
+  当需要记录路径时, 优先考虑回溯, 因为节省了参数拷贝的时间所以更快,
+  回溯这种地图类问题, 先把地图当前的值记下来, 然改变当前地图的值由于标记路径, dfs 完了再改回来就行
+  同时不要一上来就记忆化, 容易出错, 如果超时, 再考虑记忆化,
+  此外 dfs 枝剪, 把所有条件列出来返回 false 即可, 不用写的花里胡哨
