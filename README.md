@@ -1165,6 +1165,19 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
     }
   ```
 
+  后记: 二分法查找元素即不断缩小[left, right]的范围, 直到找到该元素,
+  而缩小的依据就是当前的 nums[mid]在目标的左边还是右边, 例如查找升序数组的任意一个值, target 左边的值都小于 target, 右边的值都大于 target;
+  而本题是查找旋转数组最小值, target 左边的数一定大于等于 nums[right],
+  target 右边的数一定小于等于 nums[right], 所以 nums[mid]比较的对象是 nums[right],
+  有三种情况:
+
+        1. nums[mid]>nums[right], 那么nums[mid]一定在target左边, 因此left = mid+1;
+        2. nums[mid]<nums[right], 那么nums[mid]一定在target右边或就是target, 因此right = mid;
+        3. nums[mid]=nums[right], 无法判断nums[mid]在target的哪一边,
+           但是也可以缩小范围, 因为范围里有两个一样的数, 外层那个就可以省去,
+           right = right - 1;(mid 是不会等于right的, 当left < right成立时, 因为,
+           mid = left + (right-left) >> 1; mid 是偏向 left 的
+
 - [[剑指 Offer 12. 矩阵中的路径](https://leetcode.cn/problems/ju-zhen-zhong-de-lu-jing-lcof/)|[解答]()]:
 
   当需要记录路径时, 优先考虑回溯, 因为节省了参数拷贝的时间所以更快,
