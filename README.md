@@ -1184,3 +1184,38 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
   回溯这种地图类问题, 先把地图当前的值记下来, 然改变当前地图的值由于标记路径, dfs 完了再改回来就行
   同时不要一上来就记忆化, 容易出错, 如果超时, 再考虑记忆化,
   此外 dfs 枝剪, 把所有条件列出来返回 false 即可, 不用写的花里胡哨
+
+- [[剑指 Offer 14- I.剪绳子](https://leetcode.cn/problems/jian-sheng-zi-lcof/)|[解答]()]:
+
+  一维 dp 即可, dp[i]表示 i 能拆成的最大积, dp[i] 可以拆成 k = [1, i)和 i - k, dp[i] = max(k*(i-k), k*dp[i-k]);
+
+- [[剑指 Offer 14- II. 剪绳子 II](https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/)|[解答]()]:
+
+  考虑溢出问题, cpp 即使是 long 也会溢出, 但 python 底层的整数是变长的, 不会溢出,
+  所以用 python 写会简单很多, 中间的 dp 结果不会溢出, 只需要对 dp[n]取余即可;
+  如果用 cpp 写的话就要考虑贪心, 对于每个大于 4 的 n, 切了之后的积都会比没切之前大,
+  所以尽量按 3 的长度一切就是最优的, 同时也要避免切出 1
+
+  ```cpp
+  class Solution {
+    public:
+        int cuttingRope(int n) {
+            if (n <= 3) return n - 1;
+            long ret = 1;
+            // 避免切出1
+            if (n % 3 == 1){
+                ret = 4;
+                n = n - 4;
+            }
+            if (n % 3 == 2){
+                ret = 2;
+                n = n - 2;
+            }
+            while (n) {
+                ret = ret * 3 % 1000000007;
+                n = n - 3;
+            }
+            return (int)ret;
+        }
+  };
+  ```
