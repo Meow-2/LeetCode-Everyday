@@ -1219,3 +1219,42 @@ LeetCode 每日一题个人刷题记录,C++解题,始于 2021.11.19
         }
   };
   ```
+
+- [[剑指 Offer 25. 合并两个排序的链表](https://leetcode.cn/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/)|[解答]()]:
+  合并链表时可以把 while 的条件改为`while( l1 && l2 )`, 最后再`cur->next = l1?l1:l2;`, 因为链表不像数组, 可以不用复制
+
+- [[剑指 Offer 26. 树的子结构](https://leetcode.cn/problems/shu-de-zi-jie-gou-lcof/)|[解答]()]:
+
+  注意大小递归中对 nullptr 的处理, match 函数 A 和 B 一起在变,
+  isSubStructure 函数则是对 A 的每一个节点 match 一次 B, 只有 A 在变
+
+  ```cpp
+      bool match(TreeNode* A, TreeNode* B)
+  {
+      if (!B)
+          return true;
+      if (!A)
+          return false;
+      return A->val == B->val && match(A->left, B->left) && match(A->right, B->right);
+  }
+  bool isSubStructure(TreeNode* A, TreeNode* B)
+  {
+      if (!A && !B)
+          return true;
+      if (!A || !B)
+          return false;
+      return match(A, B) || isSubStructure(A->left, B) || isSubStructure(A->right, B);
+  }
+  ```
+
+- [[剑指 Offer 29. 顺时针打印矩阵](https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)|[解答]()]:
+
+  顺时针打印, 用 border、M、N 来分别表示已打印的层数, 当前层长和宽
+
+- [[剑指 Offer 30. 包含 min 函数的栈](https://leetcode.cn/problems/bao-han-minhan-shu-de-zhan-lcof/)|[解答]()]:
+
+  使用一个辅助栈, 辅助栈的栈顶始终是栈内的最小值, 本题中`using namespace std;`后 std::min 和 MinStack::min 重名了, 所以不能直接调用 min, 而应该写::min, 表示调用全局的 min 而不是这里局部的 min
+
+- [[剑指 Offer 32 - II. 从上到下打印二叉树 II](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/)|[解答]()]:
+
+  层序遍历时, 使用 cnt 记下当前 queue 的 size, 然后`for(int i = 0; i < cnt; i++)`而不要`for(int i = 0; i < q.size();i++)`
