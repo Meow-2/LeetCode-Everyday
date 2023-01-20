@@ -3,7 +3,7 @@
 函数类型后置
 
 ```python
-def findRepeatNumber(self, nums: List[int]) -> int:
+def findRepeatNumber(self, nums: list[int]) -> int:
 ```
 
 Python 中的哈希表是 set

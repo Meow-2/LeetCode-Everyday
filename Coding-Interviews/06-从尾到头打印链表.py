@@ -12,7 +12,7 @@
 #             head = head.next
 #         return res[::-1]
 
-# 递归写法
+# 递归写法: 先走至链表末端，回溯时依次将节点值加入列表
 class Solution:
     def reversePrint(self, head: ListNode) -> List[int]:
         return self.reversePrint(head.next) + [head.val] if head else []
