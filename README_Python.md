@@ -47,9 +47,16 @@ b = [1, 2, 3, 4]
 c = a + b
 ```
 
+4. 创建 list
+
+```python
+# 长度为20的全零数组
+a = [0]*10
+```
+
 ### Python 二分查找 API
 
-```
+```python
 idx = bisect.bisect_left(row, target)
 
 bisect.bisect_left(nums, target, lo=0, hi=len(a))
@@ -103,8 +110,11 @@ python 中的 dict 不支持索引访问
   https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/
 
 - [[10-II.青蛙跳台阶问题](https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)|[解答](https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/)]:
-  一定要注意题目的输入范围, 很多时候 list 越界都是输入范围有特例的问题
-  不用特意追求最优解法, 滚动数组就算了, 普通的 dp 会一点就行
-  滚动数组的 range 范围可以看下面这个
-  https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/jian-zhi-offer-10-ii-qing-wa-tiao-tai-ji-aq1j/
-  https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/
+  1. 单独列出 n=1, n=2 的特殊情况 return
+  2. 构造 dp 数组
+  3. 返回 dp[n]
+     一定要注意题目的输入范围, 很多时候 list 越界都是输入范围有特例的问题
+     不用特意追求最优解法, 滚动数组就算了, 普通的 dp 会一点就行
+     滚动数组的 range 范围可以看下面这个
+     https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/jian-zhi-offer-10-ii-qing-wa-tiao-tai-ji-aq1j/
+     https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/
