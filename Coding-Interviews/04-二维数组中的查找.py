@@ -20,6 +20,7 @@ import bisect
 # Z字查找, 将矩阵旋转45度就明白了, 从右上角开始作为mid, 每次消除一行或一列
 class Solution:
     def findNumberIn2DArray(self, matrix: list[list[int]], target: int) -> bool:
+        # 这一行很关键, 因为如果matrix为空, matrix[0]就会报错
         if matrix == []:
             return False
         x = 0

@@ -1,10 +1,17 @@
 ## Python 基本语法
 
-函数类型后置
+### 函数类型后置
 
 ```python
-def findRepeatNumber(self, nums: list[int]) -> int:
+from typing import List
+def findRepeatNumber(self, nums: List[int]) -> int:
+def findRepeatNumber(self, nums: Dict[int, int]) -> int:
 ```
+
+Python 里的自定义类型首字母一般要大写, 这是约定俗成的
+看源码就可以知道, List 只是 list 的别名而已
+
+### Python set
 
 Python 中的哈希表是 set
 
@@ -12,7 +19,7 @@ Python 中的哈希表是 set
 hashset = set()
 ```
 
-Python list
+### Python list
 
 1. 交换 list 中的元素
 
@@ -40,7 +47,7 @@ b = [1, 2, 3, 4]
 c = a + b
 ```
 
-Python 二分查找 API
+### Python 二分查找 API
 
 ```
 idx = bisect.bisect_left(row, target)
@@ -52,7 +59,8 @@ bisect.bisect_left(nums, target, lo=0, hi=len(a))
 if idx < len(nums) and nums[idx]==target:
 ```
 
-Python str
+### Python str
+
 python 的字符串是不可变的, 不可以同过下标访问的方式来进行修改
 要修改字符串可以通过切片、或转成列表的方式
 
