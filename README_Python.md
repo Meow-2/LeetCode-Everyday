@@ -115,6 +115,6 @@ python 中的 dict 不支持索引访问
   3. 返回 dp[n]
      一定要注意题目的输入范围, 很多时候 list 越界都是输入范围有特例的问题
      不用特意追求最优解法, 滚动数组就算了, 普通的 dp 会一点就行
-     滚动数组的 range 范围可以看下面这个
+     滚动数组的 range 范围可以看下面这个, 一般都是先确定 range 再确定 a, b, c 的初始值
      https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/jian-zhi-offer-10-ii-qing-wa-tiao-tai-ji-aq1j/
      https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/
