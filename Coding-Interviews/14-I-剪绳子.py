@@ -1,6 +1,5 @@
-
-#一维dp, 注意这里的max有三个值, 因为 dp 存的是切成 m 段的最大积, 而 m> 1, 所以至少切两段
-#而计算dp[n] 的时候, 已经满足了m> 1, 所以需要比较dp[i - j] 和i - j
+# 一维dp, 注意这里的max有三个值, 因为 dp 存的是切成 m 段的最大积, 而 m > 1, 所以至少切两段
+# 而计算dp[n]的时候,已经满足了m>1,所以需要比较dp[i-j]和i-j
 class Solution:
     def cuttingRope(self, n: int) -> int:
         dp = [0]*(n+1)
