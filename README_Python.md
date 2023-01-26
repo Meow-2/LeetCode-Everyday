@@ -54,6 +54,13 @@ c = a + b
 a = [0]*10
 ```
 
+5. 创建二维 list
+
+```python
+# 不可以写成 a = [[0]*10]*5, 这样每一行会变成引用
+a = [[0]*10 for _ in range(5)]
+```
+
 ### Python 二分查找 API
 
 ```python
@@ -92,6 +99,10 @@ s = ''.join(s)
 python 中的 dict 不支持索引访问
 即使当 dict 的 key 是 int 类型时, 也不能使用 dict[数字]的方式访问
 
+### Python 函数
+
+函数的内部可以创建函数
+
 ## 剑指 Offer
 
 - [[4-二维数组中的查找](https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.py)]:
@@ -123,3 +134,6 @@ python 中的 dict 不支持索引访问
 - [[11-旋转数组的最小数字](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)|[解答]()]:
   https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/
   https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-by-leetcode-s/
+
+- [[19-正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-s3jgn/)|[解答]()]:
+  写一个函数进行字符的匹配, 方便匹配'.', 创建二维 dp 数组时需要注意, 不要把每一行搞成引用了, 状态转移需要考虑周围的每个状态
