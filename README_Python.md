@@ -137,3 +137,6 @@ python 中的 dict 不支持索引访问
 
 - [[19-正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-s3jgn/)|[解答]()]:
   写一个函数进行字符的匹配, 方便匹配'.', 创建二维 dp 数组时需要注意, 不要把每一行搞成引用了, 状态转移需要考虑周围的每个状态
+
+- [[27-二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)|[解答]()]:
+  先考虑特殊情况, 比如 A 为 None, B 为 None
