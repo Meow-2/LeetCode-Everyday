@@ -99,6 +99,23 @@ s = ''.join(s)
 python 中的 dict 不支持索引访问
 即使当 dict 的 key 是 int 类型时, 也不能使用 dict[数字]的方式访问
 
+### Python queue
+
+```python
+import queue
+
+q = queue.Queue()
+q.put()
+q.get()
+# 一定要使用 empty 来判断是否为空, 不能使用 while not q:
+while not q.empty():
+```
+
+[各种 Python 队列](https://blog.csdn.net/brucewong0516/article/details/84025027): queue、deque、PriorityQueue
+
+Python 中使用 collections 中的双端队列 deque() ，其 popleft() 方法可达到 O(1) 时间复杂度；列表 list 的 pop(0) 方法时间复杂度为
+O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来判断 deque 是否为空, 所以推荐使用 deque
+
 ### Python 函数
 
 函数的内部可以创建函数
@@ -140,3 +157,13 @@ python 中的 dict 不支持索引访问
 
 - [[27-二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)|[解答]()]:
   先考虑特殊情况, 比如 A 为 None, B 为 None
+
+- [[29-顺时针打印矩阵](https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)|[解答]()]:
+  注意, 在逐层打印的时候, 如果 lengthX 或 lengthY==1 的话, 有些 for 循环是要去除的, 要考虑那一层只有一行或只有一列的情况
+
+- [[31-栈的压入、弹出序列](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)|[解答]()]:
+  外层循环的条件不太好找, 需要注意, 对于每一个 poped 中的元素(这就是一个 for 循环), 如果模拟栈的栈顶不是该元素, 则要一直压栈, 压到不能压了, 就返回 False, 如果是该元素就出栈, 判断下一个 poped 中的元素, 直到 poped 中的元素都判断成功就返回 True
+
+- [[32-I-从上到下打印二叉树](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)|[解答]()]:
+  https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/solution/mian-shi-ti-32-i-cong-shang-dao-xia-da-yin-er-ch-4/
+  deque 的用法和 list 比较相似
