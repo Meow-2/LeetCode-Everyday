@@ -167,3 +167,10 @@ O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来�
 - [[32-I-从上到下打印二叉树](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)|[解答]()]:
   https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/solution/mian-shi-ti-32-i-cong-shang-dao-xia-da-yin-er-ch-4/
   deque 的用法和 list 比较相似
+
+- [[33-二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)|[解答]()]:
+  后序遍历的特点就是最后一个节点是根节点, 然后根据二叉搜索树的特性划分左右子树, 然后递归实现
+  备注:中序遍历+前(后)序遍历可以确定唯一的一颗二叉树, 这里单后序遍历是不可以确定二叉树形状的, 但是我们可以依据后续遍历构造可能的二叉搜索树
+
+- [[34-二叉树中和为某一值的路径](https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)|[解答]()]:
+  dfs 模板题, 但是需要主要 python 里列表传递默认是按引用传递, 所以`res.append(path[:])`要写成切片形式
