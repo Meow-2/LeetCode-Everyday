@@ -13,10 +13,18 @@ Python 里的自定义类型首字母一般要大写, 这是约定俗成的
 
 ### Python set
 
-Python 中的哈希表是 set
+Python 中的哈希集合是 set
 
 ```python
 hashset = set()
+```
+
+Python 中用于计数的哈希表
+
+```python
+def majorityElement(self, nums: List[int]) -> int:
+    counts = collections.Counter(nums)
+    return max(counts.keys(), key=counts.get)
 ```
 
 ### Python list
@@ -99,6 +107,10 @@ s = ''.join(s)
 python 中的 dict 不支持索引访问
 即使当 dict 的 key 是 int 类型时, 也不能使用 dict[数字]的方式访问
 
+可以使用 max 函数来求字典里的最大值
+max(d), 求最大的 key
+max(d, key=d.get), 求最大的 value
+
 ### Python queue
 
 ```python
@@ -120,6 +132,11 @@ O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来�
 
 函数的内部可以创建函数
 
+1. Python 中字符串、元组、数值类型都是按值传参的
+   如果想要字符串按引用传递, 只能通过传 list 再将 list 转为 str 的方式实现
+   如果想要数值类型按引用传递, 在函数内声明 `nonlocal idx`
+2. Python 中字典和列表都是按引用传参的
+
 ## 剑指 Offer
 
 - [[4-二维数组中的查找](https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.py)]:
@@ -128,12 +145,12 @@ O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来�
 - [[6-从尾到头打印链表](https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/06-%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8.py)]:
   [递归解法](https://leetcode.cn/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/solution/mian-shi-ti-06-cong-wei-dao-tou-da-yin-lian-biao-d/)
 
-- [[7-重建二叉树](https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/)|[解答]()]:
+- [[7-重建二叉树](https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/07-%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91.py)]:
   在 inorder 列表中查找 root 的过程其实是很耗时的, 可以先用哈希表建立一个 pre 到 ord 的一一映射
   但是这样的话就要改函数传入参数, 改成 list 的左右 index 的范围, 而不能只用切片了
   https://leetcode.cn/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/
 
-- [[10-I.斐波那契数列](https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/)|[解答]()]:
+- [[10-I.斐波那契数列](https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/10-I-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97.py)]:
   滚动数组, 其实总共只需要记录三个变量就行了, 然后这三个变量间滚动
   https://leetcode.cn/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/
 
@@ -148,29 +165,32 @@ O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来�
      https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/jian-zhi-offer-10-ii-qing-wa-tiao-tai-ji-aq1j/
      https://leetcode.cn/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/
 
-- [[11-旋转数组的最小数字](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)|[解答]()]:
+- [[11-旋转数组的最小数字](https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/11-%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97.py)]:
   https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/
   https://leetcode.cn/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-by-leetcode-s/
 
-- [[19-正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-s3jgn/)|[解答]()]:
+- [[19-正则表达式匹配](https://leetcode.cn/problems/zheng-ze-biao-da-shi-pi-pei-lcof/solution/zheng-ze-biao-da-shi-pi-pei-by-leetcode-s3jgn/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/19-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D.py)]:
   写一个函数进行字符的匹配, 方便匹配'.', 创建二维 dp 数组时需要注意, 不要把每一行搞成引用了, 状态转移需要考虑周围的每个状态
 
-- [[27-二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)|[解答]()]:
+- [[27-二叉树的镜像](https://leetcode.cn/problems/er-cha-shu-de-jing-xiang-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/27-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F.py)]:
   先考虑特殊情况, 比如 A 为 None, B 为 None
 
-- [[29-顺时针打印矩阵](https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)|[解答]()]:
+- [[29-顺时针打印矩阵](https://leetcode.cn/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/29-%E9%A1%BA%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5.py)]:
   注意, 在逐层打印的时候, 如果 lengthX 或 lengthY==1 的话, 有些 for 循环是要去除的, 要考虑那一层只有一行或只有一列的情况
 
-- [[31-栈的压入、弹出序列](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)|[解答]()]:
+- [[31-栈的压入、弹出序列](https://leetcode.cn/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/31-%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5%E3%80%81%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97.py)]:
   外层循环的条件不太好找, 需要注意, 对于每一个 poped 中的元素(这就是一个 for 循环), 如果模拟栈的栈顶不是该元素, 则要一直压栈, 压到不能压了, 就返回 False, 如果是该元素就出栈, 判断下一个 poped 中的元素, 直到 poped 中的元素都判断成功就返回 True
 
-- [[32-I-从上到下打印二叉树](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)|[解答]()]:
+- [[32-I-从上到下打印二叉树](https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/32-I-%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91.py)]:
   https://leetcode.cn/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/solution/mian-shi-ti-32-i-cong-shang-dao-xia-da-yin-er-ch-4/
   deque 的用法和 list 比较相似
 
-- [[33-二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)|[解答]()]:
+- [[33-二叉搜索树的后序遍历序列](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/33-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97.py)]:
   后序遍历的特点就是最后一个节点是根节点, 然后根据二叉搜索树的特性划分左右子树, 然后递归实现
   备注:中序遍历+前(后)序遍历可以确定唯一的一颗二叉树, 这里单后序遍历是不可以确定二叉树形状的, 但是我们可以依据后续遍历构造可能的二叉搜索树
 
-- [[34-二叉树中和为某一值的路径](https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)|[解答]()]:
+- [[34-二叉树中和为某一值的路径](https://leetcode.cn/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/34-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E4%B8%BA%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84.py)]:
   dfs 模板题, 但是需要主要 python 里列表传递默认是按引用传递, 所以`res.append(path[:])`要写成切片形式
+
+- [[37-序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/37-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.py)]:
+  记得用`,`隔开各个节点
