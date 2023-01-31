@@ -128,6 +128,26 @@ while not q.empty():
 Python 中使用 collections 中的双端队列 deque() ，其 popleft() 方法可达到 O(1) 时间复杂度；列表 list 的 pop(0) 方法时间复杂度为
 O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来判断 deque 是否为空, 所以推荐使用 deque
 
+Python 中的最小堆和最大堆
+
+```python
+# heapq相当与在list上操作
+# 使用heapq实现最大堆和最小堆
+# https://blog.csdn.net/a284365/article/details/123592517
+
+def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+    if not k:
+        return []
+    hp = []
+    for i, e in enumerate(arr):
+        if i < k:
+            # heapq默认是最小堆, 所以这里 e越大, 越排在前面
+            heapq.heappush(hp, (-e, e))
+        elif e < hp[0][1]: # 取堆的第一个元素
+            heapq.heappushpop(hp, (-e, e))
+    return [x for _, x in hp]
+```
+
 ### Python 函数
 
 函数的内部可以创建函数
@@ -194,3 +214,13 @@ O(N), deque 的 api 用法和 list 比较相似, 也可以使用 `while q:` 来�
 
 - [[37-序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/37-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.py)]:
   记得用`,`隔开各个节点
+
+- [[41-数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)|[解答]()]:
+  使用两个堆, 最大堆 A, 最小堆 B, A 里放小于中位数的数, B 里放大于中位数的数, 一个堆里放大于中位数的数, 维护这两个堆, 使他们的 size 之差永远<=1
+
+  1. 当两个堆的数目相等时, 将这个数放进 A 里, 然后将 A 的堆顶移入 B, A、B 的定义依旧满足, 之后 B 比 A 的元素个数多一
+  2. 当两个堆的数目不相等时, 也就是 B 里的元素多 1 时, 将这个数放进 B 里, 然后将 B 的堆顶移入 A, A、B 的定义依旧满足, 之后 B 比 A 的元素个数多一
+     这里的精髓就在于 A、B 堆顶的互相移动, 这样就无需在意要放的数是大于中位数还是小于中位数了
+
+- [[43-1 ～ n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)|[解答]()]:
+  https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/
