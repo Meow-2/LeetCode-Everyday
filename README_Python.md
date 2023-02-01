@@ -224,3 +224,7 @@ def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
 
 - [[43-1 ～ n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)|[解答]()]:
   https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/
+- [[44-数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)|[解答]()]:
+  https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/mian-shi-ti-44-shu-zi-xu-lie-zhong-mou-yi-wei-de-6/
+- [[46-把数字翻译成字符串](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)|[解答]()]:
+  动态规划, 和青蛙跳台阶差不多, 但是需要注意"06"是不可以被当作"6"来被翻译的, 此外 int 转 str, 直接用 str()就可以, 然后可以用切片访问字符串
