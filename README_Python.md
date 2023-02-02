@@ -157,6 +157,13 @@ def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
    如果想要数值类型按引用传递, 在函数内声明 `nonlocal idx`
 2. Python 中字典和列表都是按引用传参的
 
+### Python 作用域
+
+python if 和 for 里面的变量可以在 if 和 for 外面使用, python 是没有 python 是没有块级别的作用域的
+python 的作用域一共有四层：
+局部作用域 L (Local)-->闭包函数外的函数中 E ( Enclosing ) -->全局作用域 G ( Global ) --> 内建作用域 B (Built-in)。记成 LEGB。
+Python 以 L –> E –> G –>B 的规则查找变量
+
 ## 剑指 Offer
 
 - [[4-二维数组中的查找](https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.py)]:
@@ -228,3 +235,9 @@ def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
   https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/mian-shi-ti-44-shu-zi-xu-lie-zhong-mou-yi-wei-de-6/
 - [[46-把数字翻译成字符串](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)|[解答]()]:
   动态规划, 和青蛙跳台阶差不多, 但是需要注意"06"是不可以被当作"6"来被翻译的, 此外 int 转 str, 直接用 str()就可以, 然后可以用切片访问字符串
+
+- [[49-丑数](https://leetcode.cn/problems/chou-shu-lcof/)|[解答]()]:
+  最小堆
+
+- [[51-数组中的逆序对](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)|[解答]()]:
+  在归并排序的过程中记录逆序对的数量, 因为 O(n^2)的算法肯定过不了, 所以考虑 O(nlogn)的算法
