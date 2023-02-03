@@ -222,22 +222,46 @@ Python 以 L –> E –> G –>B 的规则查找变量
 - [[37-序列化二叉树](https://leetcode.cn/problems/xu-lie-hua-er-cha-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/37-%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91.py)]:
   记得用`,`隔开各个节点
 
-- [[41-数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)|[解答]()]:
+- [[41-数据流中的中位数](https://leetcode.cn/problems/shu-ju-liu-zhong-de-zhong-wei-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/41-%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%AD%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0.py)]:
   使用两个堆, 最大堆 A, 最小堆 B, A 里放小于中位数的数, B 里放大于中位数的数, 一个堆里放大于中位数的数, 维护这两个堆, 使他们的 size 之差永远<=1
 
   1. 当两个堆的数目相等时, 将这个数放进 A 里, 然后将 A 的堆顶移入 B, A、B 的定义依旧满足, 之后 B 比 A 的元素个数多一
   2. 当两个堆的数目不相等时, 也就是 B 里的元素多 1 时, 将这个数放进 B 里, 然后将 B 的堆顶移入 A, A、B 的定义依旧满足, 之后 B 比 A 的元素个数多一
      这里的精髓就在于 A、B 堆顶的互相移动, 这样就无需在意要放的数是大于中位数还是小于中位数了
 
-- [[43-1 ～ n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)|[解答]()]:
+- [[43-1~n 整数中 1 出现的次数](https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/43-1%EF%BD%9En%E6%95%B4%E6%95%B0%E4%B8%AD1%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0.py)]:
   https://leetcode.cn/problems/1nzheng-shu-zhong-1chu-xian-de-ci-shu-lcof/solution/mian-shi-ti-43-1n-zheng-shu-zhong-1-chu-xian-de-2/
-- [[44-数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)|[解答]()]:
+- [[44-数字序列中某一位的数字](https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/44-%E6%95%B0%E5%AD%97%E5%BA%8F%E5%88%97%E4%B8%AD%E6%9F%90%E4%B8%80%E4%BD%8D%E7%9A%84%E6%95%B0%E5%AD%97.py)]:
   https://leetcode.cn/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/solution/mian-shi-ti-44-shu-zi-xu-lie-zhong-mou-yi-wei-de-6/
-- [[46-把数字翻译成字符串](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)|[解答]()]:
+- [[46-把数字翻译成字符串](https://leetcode.cn/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/46-%E6%8A%8A%E6%95%B0%E5%AD%97%E7%BF%BB%E8%AF%91%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2.py)]:
   动态规划, 和青蛙跳台阶差不多, 但是需要注意"06"是不可以被当作"6"来被翻译的, 此外 int 转 str, 直接用 str()就可以, 然后可以用切片访问字符串
 
-- [[49-丑数](https://leetcode.cn/problems/chou-shu-lcof/)|[解答]()]:
+- [[49-丑数](https://leetcode.cn/problems/chou-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/49-%E4%B8%91%E6%95%B0.py)]:
   最小堆
 
-- [[51-数组中的逆序对](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)|[解答]()]:
+- [[51-数组中的逆序对](https://leetcode.cn/problems/shu-zu-zhong-de-ni-xu-dui-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/51-%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%86%E5%BA%8F%E5%AF%B9.py)]:
   在归并排序的过程中记录逆序对的数量, 因为 O(n^2)的算法肯定过不了, 所以考虑 O(nlogn)的算法
+
+- [[53-I-在排序数组中查找数字 I](https://leetcode.cn/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/53-I-%E5%9C%A8%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E5%AD%97I.py)]:
+  已排好序的数组, 且数组可以按一定规律分成两段, 考虑二分法, 另外, 先 return len(nums) = 0 的情况
+  整个数组, 对于最左边的 target, 它左边的元素都小于 target, 右边的元素都大于等于 target;
+  整个数组, 对于最右边的 target, 它左边的元素都小于等于 target, 右边的元素都大于 target;
+
+- [[53-II-0 ～ n-1 中缺失的数字](https://leetcode.cn/problems/que-shi-de-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/53-II-0~n-1%E4%B8%AD%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B0%E5%AD%97.py)]:
+  1. 二分法, 对于缺失的那一个数的 idx, 他左边的数都满足 i = nums[i], 对于他右边的数都满足 i > nums[i]
+  2. 位运算, 相同为 0, 不同为 1, 对整个数组异或[0, n-1]的每一个数
+  ```python
+  def solution(nums):
+    xor = 0
+    for i, n in enumerate(nums):
+        xor^=i^n
+    return xor^len(nums)
+  ```
+- [[54-二叉搜索树的第 k 大节点](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/54-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E7%AC%ACk%E5%A4%A7%E8%8A%82%E7%82%B9.py)]:
+  中序遍历二叉树
+
+  1. 对于函数内部定义的函数, 要操作一个外面的变量, 可以通过 nonlocal 的方式声明, 也可以将外部变量写成类成员变量
+  2. 递归可以提前返回, 只需要提前判断条件是否满足即可, 满足就直接 return, 这样回溯的时候就不会继续递归了
+
+- [[55-I-二叉树的深度](https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/55-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6.py)]:
+  其实是后序遍历二叉树
