@@ -265,3 +265,25 @@ Python 以 L –> E –> G –>B 的规则查找变量
 
 - [[55-I-二叉树的深度](https://leetcode.cn/problems/er-cha-shu-de-shen-du-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/55-I-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6.py)]:
   其实是后序遍历二叉树
+
+- [[56-I-数组中数字出现的次数](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/56-I-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0.py)]:
+
+  1. 对 nums 所有数进行异或, 求解 target1 xor target2 的值
+  2. target1 和 target2 不是相同的数, 这他们必定有某一位不同, 那么这一位上 xor 的结果为 1, 设这一位为 m
+  3. 将 nums 分为两个部分, 一个只包含 target1, 一个只包含 target2, 且这两个部分都满足只有 target 没有相同的数
+
+  - 可以依据 m 来对数组进行划分, 第 m 位为 0 的划分为 1 组, 第 m 位为 1 的划分为一组
+  - 这样, 这两组就一个只包含 target1, 一个只包含 target2, 而且对于每个组除 target 以外的元素而言, 和他们相同的元素一定在同一个组, 因为他们的第 m 位一定是相同的
+
+  4. 对这两个组进行异或即可求出 target1, target2
+
+- [[56-II-数组中数字出现的次数 II.py](https://leetcode.cn/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/56-II-%E6%95%B0%E7%BB%84%E4%B8%AD%E6%95%B0%E5%AD%97%E5%87%BA%E7%8E%B0%E7%9A%84%E6%AC%A1%E6%95%B0II.py)]:
+  把数组中所有数字的二进制表示的每一位加起来，如果某一位的和可以被 3 整除，那么那个只出现一次的数字二进制表示中对应的那一位是 0，否则是 1
+
+  分别考虑数的每一位:
+
+  - 如果 target 的那一位为 0, 那么整个数组的那一位的和一定是三的倍数
+  - 如果 target 的那一位为 1, 那么整个数组的那一位的和除以 3 的余数一定是 1
+
+- [[57-和为 s 的两个数字](https://leetcode.cn/problems/he-wei-sde-liang-ge-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/57-%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97.py)]:
+  对于已排好序的数组, 可以双指针求两数之和
