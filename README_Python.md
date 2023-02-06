@@ -287,3 +287,13 @@ Python 以 L –> E –> G –>B 的规则查找变量
 
 - [[57-和为 s 的两个数字](https://leetcode.cn/problems/he-wei-sde-liang-ge-shu-zi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/57-%E5%92%8C%E4%B8%BAs%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0%E5%AD%97.py)]:
   对于已排好序的数组, 可以双指针求两数之和
+
+- [[57-II-和为 s 的连续正数序列](https://leetcode.cn/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/57-II-%E5%92%8C%E4%B8%BAs%E7%9A%84%E8%BF%9E%E7%BB%AD%E6%AD%A3%E6%95%B0%E5%BA%8F%E5%88%97.py)]:
+  看到连续子数组两个字就可以往滑动窗口的方向想了
+
+- [[58-I-翻转单词顺序](https://leetcode.cn/problems/fan-zhuan-dan-ci-shun-xu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/58-I-%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F.py)]:
+  python 使用 str api 一行流, `' '.join(s.strip().split()[::-1])`, 这里要使用`split()`, 而不能使用`split(" ")`, 后者无法区分多个空格连在一起的情况
+
+- [[59-I-滑动窗口的最大值](https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/59-I-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC.py)]:
+  https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/
+  双端队列可以不看, 但是滑动窗口+堆一定要会, 堆中存储的是(-nums[i], i), 窗口收缩时, 如果堆顶的 i 在 r-k+1 之前, 就说明堆顶的元素是不在滑动窗口范围内的, 这时候就要出堆
