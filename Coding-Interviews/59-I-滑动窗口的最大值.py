@@ -12,7 +12,7 @@ class Solution:
         for r in range(k, len(nums)):
             heapq.heappush(hp, (-nums[r], r))
             while hp[0][1] < r - k + 1:
-                heapq.headpop(hp)
+                heapq.heappop(hp)
             res.append(-hp[0][0])
         return res
 

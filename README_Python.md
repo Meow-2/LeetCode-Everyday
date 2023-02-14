@@ -69,6 +69,12 @@ a = [0]*10
 a = [[0]*10 for _ in range(5)]
 ```
 
+6. 对 list 进行排序
+
+```python
+list1 = sorted(list1)
+```
+
 ### Python 二分查找 API
 
 ```python
@@ -297,3 +303,35 @@ Python 以 L –> E –> G –>B 的规则查找变量
 - [[59-I-滑动窗口的最大值](https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/59-I-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC.py)]:
   https://leetcode.cn/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/
   双端队列可以不看, 但是滑动窗口+堆一定要会, 堆中存储的是(-nums[i], i), 窗口收缩时, 如果堆顶的 i 在 r-k+1 之前, 就说明堆顶的元素是不在滑动窗口范围内的, 这时候就要出堆
+
+- [[60-n 个骰子的点数](https://leetcode.cn/problems/nge-tou-zi-de-dian-shu-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/60-n%E4%B8%AA%E9%AA%B0%E5%AD%90%E7%9A%84%E7%82%B9%E6%95%B0.py)]:
+  https://leetcode.cn/problems/nge-tou-zi-de-dian-shu-lcof/solution/jian-zhi-offer-60-n-ge-tou-zi-de-dian-sh-z36d/
+  二维 dp, dp[i][j] 表示前 i 个骰子和为 j 的概率, `dp[1] = [1/6]*6`, 因此可以递推出 dp[2]的值,到最后返回 dp[n]的值即可
+
+- [[62-圆圈中最后剩下的数字](https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/?favorite=xb9nqhhg)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/62-%E5%9C%86%E5%9C%88%E4%B8%AD%E6%9C%80%E5%90%8E%E5%89%A9%E4%B8%8B%E7%9A%84%E6%95%B0%E5%AD%97.py)]:
+  [动态规划](https://leetcode.cn/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/jian-zhi-offer-62-yuan-quan-zhong-zui-ho-dcow/)
+  约瑟夫环问题, 动态规划可解, 设置该问题为(n, m)问题, 其解为 f(n), 当 m 固定时, f(n)可以由 f(n-1)推导得来
+
+  1. (n, m)问题在删除一个数后得到一个长度为 n-1 的序列，这个序列可以和(n-1, m)的序列完成一个一一映射, (n-1, m)的解为 f(n-1), 这个解映射到(n, m)删除一个数后的 n-1 序列就是 f(n)
+  2. 映射关系如下
+
+  ```
+   f(n-1)
+      0    1    2    3    4   ...   n-3    n-2
+   设 t = m % n, (n, m) 第一个要删除的数是 (m - 1) % n, t 即为下一个循环开头的数
+      t   t+1  t+2  t+3  t+4  ...   t-3    t-2
+   f(n) = (f(n-1) + t)%n
+  ```
+
+  3. f(0) = 0, 迭代即可解
+
+- [[63-股票最大利润](https://leetcode.cn/problems/gu-piao-de-zui-da-li-run-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/63-%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E5%A4%A7%E5%88%A9%E6%B6%A6.py)]:
+  动态规划，dp[i]表示在 prices[i]处卖出的最大收益，所以 `dp[i] = max(0, dp[i-1]+prices[i] - prices[i-1])`
+
+- [[64-求 1+2+…+n](https://leetcode.cn/problems/qiu-12n-lcof/?favorite=xb9nqhhg)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/64-%E6%B1%821%2B2%2Bn.py)]:
+  使用递归来代替循环, 利用 and 来制造递归出口和返回 0
+  ```python
+  class Solution:
+    def sumNums(self, n: int) -> int:
+        return n > 0 and (self.sumNums(n-1) + n)
+  ```
