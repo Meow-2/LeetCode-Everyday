@@ -170,6 +170,57 @@ python 的作用域一共有四层：
 局部作用域 L (Local)-->闭包函数外的函数中 E ( Enclosing ) -->全局作用域 G ( Global ) --> 内建作用域 B (Built-in)。记成 LEGB。
 Python 以 L –> E –> G –>B 的规则查找变量
 
+### Python 整数表示
+
+```python
+print(hex(1)) # = 0x1 补码
+print(hex(-1)) # = -0x1 负号 + 原码 （ Python 特色，Java 会直接输出补码）
+
+print(hex(1 & 0xffffffff)) # = 0x1 正数补码
+print(hex(-1 & 0xffffffff)) # = 0xffffffff 负数补码
+
+print(-1 & 0xffffffff) # = 4294967295 （ Python 将其认为正数）
+```
+
+计算机里的负数使用补码的形式存储, 以 32 位 int 为例
+
+负数的补码=其绝对值取反+1
+
+可以通过最高位来判断 32 位 int 数字的正负
+
+```
+  0 : 0000 0000 0000 0000 0000 0000 0000 0001
+  1 : 0000 0000 0000 0000 0000 0000 0000 0001
+ -1 : 1111 1111 1111 1111 1111 1111 1111 1111
++max: 0111 1111 1111 1111 1111 1111 1111 1111(2147483647)
+-max: 1000 0000 0000 0000 0000 0000 0000 0000(-2147483648)
+```
+
+python 没有 int 和 long 的区别, python 的 int 是无限长不会溢出的
+所以题目中如果限定了 32 位整数, 那么使用 python 解题时要对数字进行转换:
+
+#### 计算 32 位整型加法
+
+1. 32 位整数的范围在[-2147483648, 2147483647], 所以题目的输入一定是这个范围的,
+   对于这个范围的数，python int 的后 32 位和 C++ 的 int32 相同，但是前面是不同的，
+   对于[0, 2147483647], python 的前面全为 0
+   对于[-2147483648, -1], python 的前面全为 1
+2. 为了仿照 32 位 int 加法来处理，需要对 python 整数的后 32 位进行截断
+
+```
+x = 0xffffffff
+a, b = a & x, b & x
+```
+
+3. 截断后的数, 相当于前面的位都是 0，在输出时就会出现问题，因为 python 会将其认定为正数
+4. 对于 int32 里应当是负数的数, 应当转换成 python 的表示形式, 即将前面的位全部变成 1
+5. 要将前面的位全部变成 1，可以对后 32 位取反，在对整个数取反
+   `res^x`, 相同为 0，不同为 1，可对 res 的后 32 位取反, 前面的位依然保持 0
+
+```
+return res if res < 0x7fffffff else ~(res^x)
+```
+
 ## 剑指 Offer
 
 - [[4-二维数组中的查找](https://leetcode.cn/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/04-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE.py)]:
@@ -334,4 +385,13 @@ Python 以 L –> E –> G –>B 的规则查找变量
   class Solution:
     def sumNums(self, n: int) -> int:
         return n > 0 and (self.sumNums(n-1) + n)
+  ```
+- [[65-不用加减乘除做加法](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)|[解答]()]:
+  [位运算做加法](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/solution/mian-shi-ti-65-bu-yong-jia-jian-cheng-chu-zuo-ji-7/)
+  使用位运算可解, 注意 python 的数字存储格式, 加法可转化为非进位和与进位和的加法, 直到进位和为 0
+  1. 两个数的加法可以转变为两个数的非进位和+两个数的进位和
+  2. 这又是一个加法, 而这个加法又可以这样转换, 直到两个数的进位和为 0
+  3. 两个数的非进位和就等于 `a ^ b`, 两个数的进位和就等于`(a & b ) << 1`
+  ```
+  s = a + b = n + c = ... = n' + 0
   ```
