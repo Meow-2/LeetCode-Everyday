@@ -389,9 +389,15 @@ return res if res < 0x7fffffff else ~(res^x)
 - [[65-不用加减乘除做加法](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)|[解答]()]:
   [位运算做加法](https://leetcode.cn/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/solution/mian-shi-ti-65-bu-yong-jia-jian-cheng-chu-zuo-ji-7/)
   使用位运算可解, 注意 python 的数字存储格式, 加法可转化为非进位和与进位和的加法, 直到进位和为 0
+
   1. 两个数的加法可以转变为两个数的非进位和+两个数的进位和
   2. 这又是一个加法, 而这个加法又可以这样转换, 直到两个数的进位和为 0
   3. 两个数的非进位和就等于 `a ^ b`, 两个数的进位和就等于`(a & b ) << 1`
+
   ```
   s = a + b = n + c = ... = n' + 0
   ```
+
+- [[68-I-二叉搜索树的最近公共祖先](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/?favorite=xb9nqhhg)|[解答]()]:
+
+- [[68-II-二叉树的最近公共祖先](https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/?favorite=xb9nqhhg)|[解答]()]:
