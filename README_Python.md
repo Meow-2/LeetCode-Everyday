@@ -398,6 +398,32 @@ return res if res < 0x7fffffff else ~(res^x)
   s = a + b = n + c = ... = n' + 0
   ```
 
-- [[68-I-二叉搜索树的最近公共祖先](https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/?favorite=xb9nqhhg)|[解答]()]:
+- [[1-整数除法](https://leetcode.cn/problems/xoh6Oh/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/01-%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95.py)]:
 
-- [[68-II-二叉树的最近公共祖先](https://leetcode.cn/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/?favorite=xb9nqhhg)|[解答]()]:
+  1. 注意符号
+  2. 注意溢出
+  3. 使用慢启动的思想加速
+
+- [[2-二进制加法](https://leetcode.cn/problems/JFETK5/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/02-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%8A%A0%E6%B3%95.py)]:
+  二进制加法其实可以转化为两个位运算之和, 使用循环求解
+
+  ```python
+    class Solution:
+        def addBinary(self, a, b) -> str:
+            x, y = int(a, 2), int(b, 2)
+            while y:
+                answer = x ^ y
+                carry = (x & y) << 1
+                x, y = answer, carry
+            return bin(x)[2:]
+  ```
+
+- [[3-数组中重复的数字](https://leetcode.cn/problems/w3tCBm/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/03-%E5%89%8Dn%E4%B8%AA%E6%95%B0%E5%AD%97%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0.py)]:
+  动态规划
+
+  1. 对于奇数 x，其 1 的个数比上一个数多 1
+  2. 对于偶数 x，其 1 的个数等于 x//2 中 1 的个数，因为 x//2 变成 x 需要左移 1 位，末尾补零，1 的个数不变
+
+- [[4-只出现一次的数字](https://leetcode.cn/problems/WGki4K/)|[解答](https://github.com/Meow-2/LeetCode-Everyday/blob/main/Coding-Interviews/04-%E5%8F%AA%E5%87%BA%E7%8E%B0%E4%B8%80%E6%AC%A1%E7%9A%84%E6%95%B0%E5%AD%97.py)]:
+  1. 如果不存在这个数, 那么每一位上 1 的个数之和都应当是 3 的倍数
+  2. 注意 python 的整数表示，如果第 32 位上是 1，那么 python 的前面所有位都应该是 1，0xFFFFFFFF 的亦或运算可以用来对低 32 位取反，然后整体取反就可以得到 python 正确的整数表示

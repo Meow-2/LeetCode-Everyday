@@ -60,8 +60,8 @@ public:
     }
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites)
     {
-        vector<int> hasSearch(numCourses, 0);
-        vector      p(numCourses, vector<int>());
+        vector<int>         hasSearch(numCourses, 0);
+        vector<vector<int>> p(numCourses, vector<int>());
         for (auto& i : prerequisites)
             p[i[0]].push_back(i[1]);
         for (int i = 0; i < numCourses; i++) {
